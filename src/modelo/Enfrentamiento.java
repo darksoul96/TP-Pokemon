@@ -1,3 +1,5 @@
+package modelo;
+import personajes.Entrenador;
 
 public class Enfrentamiento {
 

@@ -1,4 +1,7 @@
+package modelo;
 import java.util.ArrayList;
+
+import personajes.Entrenador;
 
 public class Arena {
 

@@ -1,3 +1,4 @@
+package personajes;
 import java.util.ArrayList;
 
 public class Entrenador {

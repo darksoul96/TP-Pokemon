@@ -1,3 +1,4 @@
+package personajes;
 
 public class Psiquico extends Pokemon {
 

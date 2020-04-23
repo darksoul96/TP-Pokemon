@@ -1,3 +1,4 @@
+package personajes;
 
 public class Fuego extends Pokemon {
 

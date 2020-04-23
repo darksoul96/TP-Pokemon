@@ -1,3 +1,4 @@
+package personajes;
 
 public abstract class Pokemon {
 	protected String nombre;
