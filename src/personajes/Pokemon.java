@@ -15,4 +15,25 @@ public abstract class Pokemon {
 		this.ataque = ataque;
 	}
 
+	public String getNombre() {
+		return nombre;
+	}
+
+	public double getExperiencia() {
+		return experiencia;
+	}
+
+	public double getEscudo() {
+		return escudo;
+	}
+
+	public double getVitalidad() {
+		return vitalidad;
+	}
+
+	public double getAtaque() {
+		return ataque;
+	}
+
+	
 }
