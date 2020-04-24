@@ -52,6 +52,10 @@ public class Entrenador implements Cloneable {
 		if (!this.pokemones.contains(pokemon))
 			this.pokemones.add(pokemon);
 	}
+
+	public ArrayList<ICarta> getCartas() {
+		return cartas;
+	}
 	
 	
 }

@@ -72,4 +72,10 @@ public abstract class Pokemon implements Cloneable, Atacable, Hechizable {
 	public void serHechizado(ICarta carta) {
 		carta.hechizar(this);
 	}
+
+	public void setExperiencia(double experiencia) {
+		this.experiencia = experiencia;
+	}
+	
+	
 }
