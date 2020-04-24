@@ -3,6 +3,7 @@ package personajes;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 
 import interfaces.ICarta;
 
@@ -10,13 +11,13 @@ public class Entrenador implements Cloneable {
 
 	private String nombre;
 	private ArrayList<Pokemon> pokemones = new ArrayList<Pokemon>();
-	private int hechizos;
-	private ArrayList<ICarta> cartas=new ArrayList<ICarta>();
+	private int cantidadHechizos;
+	private ArrayList<ICarta> cartas = new ArrayList<ICarta>();
 
 	public Entrenador(String nombre, ArrayList<ICarta> cartas) {
 		this.nombre = nombre;
-		this.hechizos = 0;
-		this.cartas=cartas;
+		this.cantidadHechizos = 0;
+		this.cartas = cartas;
 	}
 
 	public String getNombre() {
@@ -27,12 +28,12 @@ public class Entrenador implements Cloneable {
 		return pokemones;
 	}
 
-	public int getHechizos() {
-		return hechizos;
+	public int getCantidadHechizos() {
+		return cantidadHechizos;
 	}
 
-	public void setHechizos(int hechizos) {
-		this.hechizos = hechizos;
+	public void setCantidadHechizos(int hechizos) {
+		this.cantidadHechizos = hechizos;
 	}
 
 	@Override
@@ -56,6 +57,12 @@ public class Entrenador implements Cloneable {
 	public ArrayList<ICarta> getCartas() {
 		return cartas;
 	}
-	
-	
+
+	public ICarta elegirCarta() {
+		int indicecarta;
+		Random r = new Random();
+		indicecarta = r.nextInt(3);
+		return this.getCartas().get(indicecarta);
+	}
+
 }
