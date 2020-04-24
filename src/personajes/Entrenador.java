@@ -4,15 +4,19 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import interfaces.ICarta;
+
 public class Entrenador implements Cloneable {
 
 	private String nombre;
 	private ArrayList<Pokemon> pokemones = new ArrayList<Pokemon>();
 	private int hechizos;
+	private ArrayList<ICarta> cartas=new ArrayList<ICarta>();
 
-	public Entrenador(String nombre) {
+	public Entrenador(String nombre, ArrayList<ICarta> cartas) {
 		this.nombre = nombre;
 		this.hechizos = 0;
+		this.cartas=cartas;
 	}
 
 	public String getNombre() {
@@ -43,4 +47,11 @@ public class Entrenador implements Cloneable {
 
 		return entrenadorClonado;
 	}
+
+	public void agregarPokemon(Pokemon pokemon) {
+		if (!this.pokemones.contains(pokemon))
+			this.pokemones.add(pokemon);
+	}
+	
+	
 }
