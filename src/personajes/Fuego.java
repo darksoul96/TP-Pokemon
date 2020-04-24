@@ -53,5 +53,4 @@ public class Fuego extends Pokemon {
 		// TODO Auto-generated method stub
 		
 	}
-
 }

@@ -2,8 +2,9 @@ package personajes;
 
 import interfaces.Atacable;
 import interfaces.Hechizable;
+import interfaces.ICarta;
 
-public abstract class Pokemon implements Cloneable, Atacable,Hechizable {
+public abstract class Pokemon implements Cloneable, Atacable, Hechizable {
 	protected String nombre;
 	protected double experiencia = 0;
 	protected double escudo;
@@ -66,6 +67,9 @@ public abstract class Pokemon implements Cloneable, Atacable,Hechizable {
 		return "Pokemon nombre=" + nombre + ", experiencia=" + experiencia + ", escudo=" + escudo + ", vitalidad="
 				+ vitalidad + ", ataque=" + ataque + ", recarga=" + recarga;
 	}
-	
-	
+
+	@Override
+	public void serHechizado(ICarta carta) {
+		carta.hechizar(this);
+	}
 }

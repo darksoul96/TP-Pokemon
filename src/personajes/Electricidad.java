@@ -27,6 +27,13 @@ public class Electricidad extends Pokemon {
 		
 	}
 
+	
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		// TODO Auto-generated method stub
+		throw new CloneNotSupportedException("No se puede clonar este tipo de pokemon");
+	}
+
 	@Override
 	public void hechizarViento() {
 		// TODO Auto-generated method stub
@@ -43,12 +50,6 @@ public class Electricidad extends Pokemon {
 	public void hechizarTormenta() {
 		// TODO Auto-generated method stub
 		
-	}
-	
-	@Override
-	protected Object clone() throws CloneNotSupportedException {
-		// TODO Auto-generated method stub
-		throw new CloneNotSupportedException("No se puede clonar este tipo de pokemon");
 	}
 
 }

@@ -49,5 +49,4 @@ public class Hielo extends Pokemon {
 		// TODO Auto-generated method stub
 		
 	}
-
 }
