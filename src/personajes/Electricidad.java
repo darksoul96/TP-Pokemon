@@ -44,5 +44,11 @@ public class Electricidad extends Pokemon {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		// TODO Auto-generated method stub
+		throw new CloneNotSupportedException("No se puede clonar este tipo de pokemon");
+	}
 
 }

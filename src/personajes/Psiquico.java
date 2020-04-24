@@ -45,4 +45,12 @@ public class Psiquico extends Pokemon {
 		
 	}
 
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		// TODO Auto-generated method stub
+		throw new CloneNotSupportedException("No se puede clonar este tipo de pokemon");
+	}
+	
+	
+
 }
