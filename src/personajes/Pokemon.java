@@ -1,11 +1,15 @@
 package personajes;
 
-public abstract class Pokemon implements Cloneable {
+import interfaces.Atacable;
+import interfaces.Hechizable;
+
+public abstract class Pokemon implements Cloneable, Atacable,Hechizable {
 	protected String nombre;
 	protected double experiencia = 0;
 	protected double escudo;
 	protected double vitalidad;
 	protected double ataque;
+	protected boolean recarga = false;
 
 	public Pokemon(String nombre, double escudo, double vitalidad, double ataque) {
 		super();
@@ -41,5 +45,19 @@ public abstract class Pokemon implements Cloneable {
 		return super.clone();
 	}
 
-	
+	@Override
+	public void atacar(Atacable atacable) {
+		this.golpeInicial(atacable);
+		this.recarga();
+		this.golpeFinal(atacable);
+	}
+
+	public void golpeInicial(Atacable atacable) {
+		atacable.recibeDano(this.ataque);
+		this.ataque = this.ataque / 2;
+	}
+
+	public abstract void recarga();
+
+	public abstract void golpeFinal(Atacable atacable);
 }

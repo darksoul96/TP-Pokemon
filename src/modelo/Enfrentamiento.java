@@ -1,4 +1,6 @@
 package modelo;
+import java.util.Random;
+
 import personajes.Entrenador;
 
 public class Enfrentamiento {
@@ -7,29 +9,17 @@ public class Enfrentamiento {
 	private Entrenador entrenadorDos;
 	private String ganador;
 	private String perdedor;
-
-	public Entrenador getEntrenadorUno() {
-		return entrenadorUno;
-	}
-
-	public void setEntrenadorUno(Entrenador entrenadorUno) {
+	
+	public Enfrentamiento(Entrenador entrenadorUno, Entrenador entrenadorDos, String ganador, String perdedor) {
+		super();
 		this.entrenadorUno = entrenadorUno;
-	}
-
-	public Entrenador getEntrenadorDos() {
-		return entrenadorDos;
-	}
-
-	public void setEntrenadorDos(Entrenador entrenadorDos) {
 		this.entrenadorDos = entrenadorDos;
+		this.ganador = ganador;
+		this.perdedor = perdedor;
 	}
 
-	public String getGanador() {
-		return ganador;
+	public void batalla() {
+		Random r = new Random();
+		int rng = r.nextInt(10); // flip a coin, de 0 a 4 ataca primero E1, sino ataca primero E2.
 	}
-
-	public String getPerdedor() {
-		return perdedor;
-	}
-
 }
