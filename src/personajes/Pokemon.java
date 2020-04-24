@@ -1,6 +1,6 @@
 package personajes;
 
-public abstract class Pokemon {
+public abstract class Pokemon implements Cloneable {
 	protected String nombre;
 	protected double experiencia = 0;
 	protected double escudo;
@@ -33,6 +33,12 @@ public abstract class Pokemon {
 
 	public double getAtaque() {
 		return ataque;
+	}
+
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		// TODO Auto-generated method stub
+		return super.clone();
 	}
 
 	
