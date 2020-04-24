@@ -60,4 +60,12 @@ public abstract class Pokemon implements Cloneable, Atacable,Hechizable {
 	public abstract void recarga();
 
 	public abstract void golpeFinal(Atacable atacable);
+
+	@Override
+	public String toString() {
+		return "Pokemon nombre=" + nombre + ", experiencia=" + experiencia + ", escudo=" + escudo + ", vitalidad="
+				+ vitalidad + ", ataque=" + ataque + ", recarga=" + recarga;
+	}
+	
+	
 }
