@@ -2,22 +2,33 @@ package personajes;
 
 public class PokemonFactory {
 	
-	public Pokemon PokemonFactory(String nombre, double escudo, double vitalidad, double ataque, String tipo) {
+	public static Pokemon fabricaPokemon(String nombre,String tipo,boolean recarga) {
+		Pokemon pokemon = null;
 		if (tipo==null)
-			return null;
+			pokemon = null;
 		else if(tipo=="Agua")
-			return new Agua(nombre);
+			pokemon = new Agua(nombre,recarga);
 		else if (tipo=="Hielo")
-			return new Hielo(nombre);
+			pokemon = new Hielo(nombre,recarga,false);
 		else if (tipo=="Fuego")
-			return new Fuego(nombre);
+			pokemon = new Fuego(nombre,recarga);
 		else if (tipo=="Electricidad")
-			return new Electricidad(nombre,escudo,vitalidad,ataque);
+			pokemon = new Electricidad(nombre,recarga);
 		else if (tipo=="Psiquico")
-			return new Psiquico(nombre);
+			pokemon = new Psiquico(nombre,recarga);
 		else if (tipo=="Tierra")
-			return new Tierra(nombre,escudo,vitalidad,ataque);
-		return null;
+			pokemon = new Tierra(nombre,recarga);
+		return pokemon;
+	}
+	// CACA PERO NO ME GUSTA TAMPOCO PASAR POR PARAMETRO GRANRECARGA A LOS OTROS QUE NI LA USAN.
+	public static Pokemon fabricaPokemon(String nombre,String tipo, boolean recarga, boolean granRecarga) {
+		Pokemon pokemon = null;
+		if(tipo==null)
+			pokemon = null;
+		else if (tipo=="Hielo")
+			pokemon = new Hielo(nombre,recarga,granRecarga);
+		return pokemon;
+		
 	}
 	
 }
