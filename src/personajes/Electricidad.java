@@ -5,25 +5,31 @@ import interfaces.Atacable;
 public class Electricidad extends Pokemon {
 
 	public Electricidad(String nombre, double escudo, double vitalidad, double ataque) {
-		super(nombre, escudo, vitalidad, ataque);
-		// TODO Auto-generated constructor stub
+		super(nombre, 150, 500, 110);
 	}
 
 	@Override
-	public void recibeDano(double ataque) {
-		// TODO Auto-generated method stub
-		
+	public void recibeDano(double cantidad) {
+		if (cantidad < this.escudo)
+			this.escudo -= cantidad *1.2;
+		else {
+			this.vitalidad -= (cantidad - this.escudo);
+			this.escudo = 0;
+		}
+
 	}
+
 
 	@Override
 	public void recarga() {
-		// TODO Auto-generated method stub
+		this.ataque = this.ataque *1.2;
 		
 	}
 
 	@Override
 	public void golpeFinal(Atacable atacable) {
-		// TODO Auto-generated method stub
+		atacable.recibeDano(this.getAtaque() *1.5);
+		this.ataque = this.ataque *0.2;
 		
 	}
 

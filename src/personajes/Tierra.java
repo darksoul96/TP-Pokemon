@@ -5,25 +5,30 @@ import interfaces.Atacable;
 public class Tierra extends Pokemon {
 
 	public Tierra(String nombre, double escudo, double vitalidad, double ataque) {
-		super(nombre, escudo, vitalidad, ataque);
-		// TODO Auto-generated constructor stub
+		super(nombre, 250, 650, 40);
 	}
 
 	@Override
-	public void recibeDano(double ataque) {
-		// TODO Auto-generated method stub
-		
+	public void recibeDano(double cantidad) {
+		if (cantidad < this.escudo)
+			this.escudo -= cantidad * 0.6;
+		else {
+			this.vitalidad -= (cantidad - this.escudo);
+			this.escudo = 0;
+		}
+
 	}
 
 	@Override
 	public void recarga() {
-		// TODO Auto-generated method stub
+		this.escudo = this.escudo *1.5;
 		
 	}
 
 	@Override
 	public void golpeFinal(Atacable atacable) {
-		// TODO Auto-generated method stub
+		atacable.recibeDano(this.escudo + this.ataque*0.2);
+		this.escudo =0;
 		
 	}
 

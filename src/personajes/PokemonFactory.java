@@ -14,7 +14,7 @@ public class PokemonFactory {
 		else if (tipo=="Electricidad")
 			return new Electricidad(nombre,escudo,vitalidad,ataque);
 		else if (tipo=="Psiquico")
-			return new Psiquico(nombre,escudo,vitalidad,ataque);
+			return new Psiquico(nombre);
 		else if (tipo=="Tierra")
 			return new Tierra(nombre,escudo,vitalidad,ataque);
 		return null;

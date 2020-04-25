@@ -4,26 +4,26 @@ import interfaces.Atacable;
 
 public class Psiquico extends Pokemon {
 
-	public Psiquico(String nombre, double escudo, double vitalidad, double ataque) {
-		super(nombre, escudo, vitalidad, ataque);
-		// TODO Auto-generated constructor stub
+	public Psiquico(String nombre) {
+		super(nombre, 100, 700, 40);
+		this.recarga = false;
 	}
 
 	@Override
-	public void recibeDano(double ataque) {
-		// TODO Auto-generated method stub
-		
+	public void recibeDano(double cantidad) {
+		if (cantidad < this.escudo)
+			this.escudo -= cantidad;
+		else {
+			this.vitalidad -= (cantidad - this.escudo);
+			this.escudo = 0;
+		}
+
 	}
 
-	@Override
-	public void recarga() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public void golpeFinal(Atacable atacable) {
-		// TODO Auto-generated method stub
+		atacable.recibeDano(atacable.getAtaque() + this.getAtaque());
 		
 	}
 
@@ -48,6 +48,11 @@ public class Psiquico extends Pokemon {
 	@Override
 	public void hechizarTormenta() {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void recarga() {
 		
 	}
 	
