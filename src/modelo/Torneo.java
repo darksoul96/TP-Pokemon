@@ -7,13 +7,13 @@ import personajes.Entrenador;
 public class Torneo {
 
 	private static Torneo torneo;
-	private ArrayList<Entrenador> parcipantes;
+	private ArrayList<Entrenador> participantes;
 	private ArrayList<Entrenador> clasificados;
 	private ArrayList<Enfrentamiento> enfrentamientos;
 	private int cantidadDeParticipantes;
 
 	private Torneo() {
-		this.parcipantes = new ArrayList<Entrenador>();
+		this.participantes = new ArrayList<Entrenador>();
 		this.enfrentamientos = new ArrayList<Enfrentamiento>();
 	}
 
@@ -26,7 +26,7 @@ public class Torneo {
 	}
 
 	public ArrayList<Entrenador> getEntrenadores() {
-		return parcipantes;
+		return participantes;
 	}
 
 	public ArrayList<Enfrentamiento> getEnfrentamientos() {
@@ -34,11 +34,11 @@ public class Torneo {
 	}
 
 	public void agregarEntrenador(Entrenador entrenador) {
-		this.parcipantes.add(entrenador);
+		this.participantes.add(entrenador);
 	}
 
 	public void arrancaTorneo() {
-		this.clasificados = (ArrayList<Entrenador>) this.parcipantes.clone();
+		this.clasificados = (ArrayList<Entrenador>) this.participantes.clone();
 		if (clasificados.size() == this.cantidadDeParticipantes) {
 			while (clasificados.size() != 1) {
 				this.juegaRonda(clasificados.size());
@@ -76,5 +76,13 @@ public class Torneo {
 			}
 			this.clasificados.remove(perdedor);
 		}
+	}
+	
+	@Override
+	public String toString() {
+		String aux = "Lista de participantes: \n";
+		for(Entrenador e : participantes)
+			aux += e.toString();
+		return aux;
 	}
 }
