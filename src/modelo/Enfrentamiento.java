@@ -60,4 +60,12 @@ public class Enfrentamiento {
 		return perdedor;
 	}
 
+	public Entrenador getEntrenadorUno() {
+		return entrenadorUno;
+	}
+
+	public Entrenador getEntrenadorDos() {
+		return entrenadorDos;
+	}
+
 }
