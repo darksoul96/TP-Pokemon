@@ -21,8 +21,7 @@ public class Enfrentamiento {
 	}
 
 	public void batalla(Entrenador e1, Entrenador e2) throws CantidadHechizosExcedidosException {
-		// lo ideal seria que el ganador y el perdedor se setee despues de batalla y no
-		// en el constructor
+		double puntaje1,puntaje2;
 		Random r = new Random();
 		int atacaprimero = r.nextInt(10); // flip a coin, de 0 a 4 ataca primero E1, sino ataca primero E2.
 		ICarta hechizo1 = e1.elegirCarta();
@@ -43,13 +42,19 @@ public class Enfrentamiento {
 			pokemon1.atacar(pokemon2);
 		else
 			pokemon1.atacar(pokemon2);
-		if (pokemon1.getVitalidad() > pokemon2.getVitalidad()) {
+		puntaje1 = calculaPuntaje(pokemon1);
+		puntaje2 = calculaPuntaje(pokemon2);
+		if (puntaje1 > puntaje2) {
 			this.ganador = e1.getNombre();
 			pokemon1.setExperiencia(pokemon1.getExperiencia() + 3);
 		} else {
 			this.ganador = e2.getNombre();
 			pokemon2.setExperiencia(pokemon2.getExperiencia() + 3);
 		}
+	}
+
+	private double calculaPuntaje(Pokemon p) {
+		return p.getVitalidad() + p.getAtaque() * 0.4 + p.getEscudo() * 0.3;
 	}
 
 	public String getGanador() {
