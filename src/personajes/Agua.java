@@ -4,14 +4,14 @@ import interfaces.Atacable;
 
 public class Agua extends Pokemon {
 
-	public Agua(String nombre) {
-		super(nombre, 100, 500, 120);
+	public Agua(String nombre,boolean recarga) {
+		super(nombre, 100, 500, 120,recarga);
 		this.recarga = true;
 	}
 
 	@Override
 	public void recarga() {
-		if (this.recarga = true) {
+		if (this.recarga == true) {
 			this.vitalidad = this.vitalidad * 1.1;
 			this.ataque = this.ataque * 1.1;
 		}
@@ -33,24 +33,6 @@ public class Agua extends Pokemon {
 			this.escudo = 0;
 		}
 
-	}
-
-	@Override
-	public void hechizarViento() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void hechizarNiebla() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void hechizarTormenta() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

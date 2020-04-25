@@ -4,8 +4,8 @@ import interfaces.Atacable;
 
 public class Psiquico extends Pokemon {
 
-	public Psiquico(String nombre) {
-		super(nombre, 100, 700, 40);
+	public Psiquico(String nombre,boolean recarga) {
+		super(nombre, 100, 700, 40,recarga);
 		this.recarga = false;
 	}
 
@@ -39,6 +39,12 @@ public class Psiquico extends Pokemon {
 
 	@Override
 	public void recarga() {
+		if(this.recarga == true) {
+			if(this.vitalidad <700)
+				this.vitalidad = this.vitalidad + (700- this.vitalidad) *0.5;
+			else
+				this.vitalidad = this.vitalidad * 1.2;
+		}
 
 	}
 

@@ -4,8 +4,8 @@ import interfaces.Atacable;
 
 public class Electricidad extends Pokemon {
 
-	public Electricidad(String nombre, double escudo, double vitalidad, double ataque) {
-		super(nombre, 150, 500, 110);
+	public Electricidad(String nombre,boolean recarga) {
+		super(nombre, 150, 500, 110,recarga);
 	}
 
 	@Override
@@ -22,7 +22,8 @@ public class Electricidad extends Pokemon {
 
 	@Override
 	public void recarga() {
-		this.ataque = this.ataque *1.2;
+		if(this.recarga == true)
+			this.ataque = this.ataque *1.2;
 		
 	}
 

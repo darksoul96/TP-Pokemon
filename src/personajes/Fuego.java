@@ -4,8 +4,8 @@ import interfaces.Atacable;
 
 public class Fuego extends Pokemon {
 
-	public Fuego(String nombre) {
-		super(nombre, 200, 530, 80);
+	public Fuego(String nombre,boolean recarga) {
+		super(nombre, 200, 530, 80,recarga);
 		this.recarga = true;
 	}
 
@@ -23,7 +23,7 @@ public class Fuego extends Pokemon {
 
 	@Override
 	public void recarga() {
-		if (this.recarga = true) {
+		if (this.recarga == true) {
 			this.vitalidad = this.vitalidad * 1.1;
 			this.ataque = this.ataque * 1.1;
 		}

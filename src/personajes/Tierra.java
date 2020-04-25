@@ -4,8 +4,8 @@ import interfaces.Atacable;
 
 public class Tierra extends Pokemon {
 
-	public Tierra(String nombre, double escudo, double vitalidad, double ataque) {
-		super(nombre, 250, 650, 40);
+	public Tierra(String nombre,boolean recarga) {
+		super(nombre, 250, 650, 40,recarga);
 	}
 
 	@Override
@@ -21,7 +21,8 @@ public class Tierra extends Pokemon {
 
 	@Override
 	public void recarga() {
-		this.escudo = this.escudo *1.5;
+		if(this.recarga == true)
+			this.escudo = this.escudo *1.5;
 		
 	}
 
@@ -29,24 +30,6 @@ public class Tierra extends Pokemon {
 	public void golpeFinal(Atacable atacable) {
 		atacable.recibeDano(this.escudo + this.ataque*0.2);
 		this.escudo =0;
-		
-	}
-
-	@Override
-	public void hechizarViento() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void hechizarNiebla() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void hechizarTormenta() {
-		// TODO Auto-generated method stub
 		
 	}
 
