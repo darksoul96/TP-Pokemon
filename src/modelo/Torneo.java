@@ -3,23 +3,23 @@ import java.util.ArrayList;
 
 import personajes.Entrenador;
 
-public class Arena {
+public class Torneo {
 
-	private static Arena arena;
+	private static Torneo torneo;
 	private ArrayList<Entrenador> entrenadores;
 	private ArrayList<Enfrentamiento> enfrentamientos;
 
-	private Arena() {
+	private Torneo() {
 		this.entrenadores = new ArrayList<Entrenador>();
 		this.enfrentamientos = new ArrayList<Enfrentamiento>();
 	}
 
-	public static Arena getInstanceSingleton() {
-		if (arena == null)
-			arena = new Arena();
+	public static Torneo getInstanceSingleton() {
+		if (torneo == null)
+			torneo = new Torneo();
 		else
-			System.out.println("Ya existe instancia de arena");
-		return arena;
+			System.out.println("Ya existe instancia de torneo");
+		return torneo;
 	}
 
 	public ArrayList<Entrenador> getEntrenadores() {
