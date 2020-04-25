@@ -20,7 +20,7 @@ public class Enfrentamiento {
 		this.entrenadorDos = entrenadorDos;
 	}
 
-	public void batalla(Entrenador e1, Entrenador e2) throws CantidadHechizosExcedidosException {
+	public Entrenador batalla(Entrenador e1, Entrenador e2) throws CantidadHechizosExcedidosException {
 		double puntaje1, puntaje2;
 		Random r = new Random();
 		int atacaprimero = r.nextInt(10); // flip a coin, de 0 a 4 ataca primero E1, sino ataca primero E2.
@@ -51,18 +51,19 @@ public class Enfrentamiento {
 			this.ganador = e2;
 			pokemon2.setExperiencia(pokemon2.getExperiencia() + 3);
 		}
+		return this.ganador;
 	}
 
 	private double calculaPuntaje(Pokemon p) {
 		return p.getVitalidad() + p.getAtaque() * 0.4 + p.getEscudo() * 0.3;
 	}
 
-	public String getGanador() {
-		return this.ganador.getNombre();
+	public Entrenador getGanador() {
+		return this.ganador;
 	}
 
-	public String getPerdedor() {
-		return this.perdedor.getNombre();
+	public Entrenador getPerdedor() {
+		return this.perdedor;
 	}
 
 	public Entrenador getEntrenadorUno() {
@@ -76,7 +77,7 @@ public class Enfrentamiento {
 	@Override
 	public String toString() {
 		return "Participante 1 :" + this.entrenadorUno.getNombre() + " Participante 2: "
-				+ this.entrenadorDos.getNombre() + " Ganador: " + this.ganador + "\n";
+				+ this.entrenadorDos.getNombre() + " Ganador: " + this.ganador.getNombre() + "\n";
 	}
 
 }
