@@ -11,8 +11,8 @@ public class Enfrentamiento {
 
 	private Entrenador entrenadorUno;
 	private Entrenador entrenadorDos;
-	private String ganador;
-	private String perdedor;
+	private Entrenador ganador;
+	private Entrenador perdedor;
 
 	public Enfrentamiento(Entrenador entrenadorUno, Entrenador entrenadorDos) {
 		super();
@@ -45,10 +45,10 @@ public class Enfrentamiento {
 		puntaje1 = calculaPuntaje(pokemon1);
 		puntaje2 = calculaPuntaje(pokemon2);
 		if (puntaje1 > puntaje2) {
-			this.ganador = e1.getNombre();
+			this.ganador = e1;
 			pokemon1.setExperiencia(pokemon1.getExperiencia() + 3);
 		} else {
-			this.ganador = e2.getNombre();
+			this.ganador = e2;
 			pokemon2.setExperiencia(pokemon2.getExperiencia() + 3);
 		}
 	}
@@ -58,11 +58,11 @@ public class Enfrentamiento {
 	}
 
 	public String getGanador() {
-		return ganador;
+		return this.ganador.getNombre();
 	}
 
 	public String getPerdedor() {
-		return perdedor;
+		return this.perdedor.getNombre();
 	}
 
 	public Entrenador getEntrenadorUno() {
@@ -75,7 +75,8 @@ public class Enfrentamiento {
 
 	@Override
 	public String toString() {
-		return "Participante 1 :" + this.entrenadorUno.getNombre() + " Participante 2; " + this.entrenadorDos.getNombre() + " Ganador: "+this.ganador;
+		return "Participante 1 :" + this.entrenadorUno.getNombre() + " Participante 2: "
+				+ this.entrenadorDos.getNombre() + " Ganador: " + this.ganador + "\n";
 	}
 
 }
