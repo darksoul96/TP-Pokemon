@@ -20,11 +20,10 @@ public class Psiquico extends Pokemon {
 
 	}
 
-
 	@Override
 	public void golpeFinal(Atacable atacable) {
 		atacable.recibeDano(atacable.getAtaque() + this.getAtaque());
-		
+
 	}
 
 	@Override
@@ -34,28 +33,13 @@ public class Psiquico extends Pokemon {
 	}
 
 	@Override
-	public void hechizarViento() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void hechizarNiebla() {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void hechizarTormenta() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void recarga() {
-		
+
 	}
-	
-	
 
 }

@@ -38,19 +38,7 @@ public class Fuego extends Pokemon {
 
 	@Override
 	public void hechizarViento() {
-		// TODO Auto-generated method stub
-		
+		this.ataque = 0.7;
 	}
 
-	@Override
-	public void hechizarNiebla() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void hechizarTormenta() {
-		// TODO Auto-generated method stub
-		
-	}
 }

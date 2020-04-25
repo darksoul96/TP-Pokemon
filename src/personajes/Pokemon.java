@@ -1,5 +1,7 @@
 package personajes;
 
+import java.util.Random;
+
 import interfaces.Atacable;
 import interfaces.Hechizable;
 import interfaces.ICarta;
@@ -89,7 +91,18 @@ public abstract class Pokemon implements Cloneable, Atacable, Hechizable {
 	
 	@Override
 	public void hechizarNiebla() {
-		this.hechizadoPorNiebla = true;
+		Random r = new Random();
+		int chanceDeFallar = r.nextInt(10);
+		if(chanceDeFallar<2)
+			this.hechizadoPorNiebla = true;
+	}
+	
+	@Override
+	public void hechizarViento() {
+		Random r = new Random();
+		int chanceDeReducirVida = r.nextInt(10);
+		if(chanceDeReducirVida <2)
+			this.vitalidad = this.vitalidad * 85;
 	}
 	
 	public void fallar() {
