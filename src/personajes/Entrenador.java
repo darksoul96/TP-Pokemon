@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
+import hechizos.Niebla;
 import interfaces.ICarta;
 
 public class Entrenador implements Cloneable {
@@ -63,7 +64,9 @@ public class Entrenador implements Cloneable {
 		Random r = new Random();
 		indicecarta = r.nextInt(3);
 
-		return this.getCartas().get(indicecarta);
+		//return this.getCartas().get(indicecarta);
+		ICarta carta = new Niebla();
+		return carta;
 	}
 
 	@Override
