@@ -2,6 +2,7 @@ package modelo;
 
 import java.util.ArrayList;
 
+import exceptions.CantidadHechizosExcedidosException;
 import personajes.Entrenador;
 
 public class Torneo {
@@ -51,7 +52,7 @@ public class Torneo {
 		this.cantidadDeParticipantes = cantidadDeParticipantes;
 	}
 
-	private void juegaRonda(int ronda) {
+	private void juegaRonda(int ronda){
 		int aux;
 		switch (ronda) {
 		case 32:
@@ -65,16 +66,23 @@ public class Torneo {
 		case 2:
 			System.out.println("Final");
 		}
-		for (aux = 0; aux < clasificados.size(); aux++) {
+		aux=0;
+		int auxTamaño = clasificados.size();
+		while(aux <auxTamaño) {
 			Entrenador perdedor;
-			Enfrentamiento n = new Enfrentamiento(this.clasificados.get(aux), this.clasificados.get(aux + 1));
-			enfrentamientos.add(n);
-			if (n.getPerdedor() == n.getEntrenadorDos().getNombre()) { // esto es super CACA
-				perdedor = n.getEntrenadorDos();
-			} else {
-				perdedor = n.getEntrenadorUno();
+			Enfrentamiento n = new Enfrentamiento(this.clasificados.get(aux), this.clasificados.get(aux + 1)); // aca esta el error creo , se va de indice
+			try { // PARA PROBAR NOMAS
+				n.batalla(this.clasificados.get(aux),this.clasificados.get(aux + 1));
+			} catch (CantidadHechizosExcedidosException e) {
+				System.out.println("cantidad de hechizos excedidos");
 			}
+			enfrentamientos.add(n);
+			perdedor = n.getPerdedor();
 			this.clasificados.remove(perdedor);
+			System.out.println(n);
+			System.out.println(clasificados);
+			aux++;
+			auxTamaño = clasificados.size();
 		}
 	}
 	
@@ -82,7 +90,7 @@ public class Torneo {
 	public String toString() {
 		String aux = "Lista de participantes: \n";
 		for(Entrenador e : participantes)
-			aux += e.toString();
+			aux += e.toString() + "\n";
 		return aux;
 	}
 }
