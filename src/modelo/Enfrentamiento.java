@@ -23,7 +23,7 @@ public class Enfrentamiento {
 	public Entrenador batalla(Entrenador e1, Entrenador e2) throws CantidadHechizosExcedidosException {
 		double puntaje1, puntaje2;
 		Random r = new Random();
-		int atacaprimero = r.nextInt(10); // flip a coin, de 0 a 4 ataca primero E1, sino ataca primero E2.
+		int atacaprimero = r.nextInt(11); // flip a coin, de 0 a 4 ataca primero E1, sino ataca primero E2.
 		ICarta hechizo1 = e1.elegirCarta();
 		ICarta hechizo2 = e2.elegirCarta();
 		int p1 = r.nextInt(e1.getPokemones().size());

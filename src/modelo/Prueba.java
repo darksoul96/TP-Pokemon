@@ -13,13 +13,13 @@ import personajes.PokemonFactory;
 public class Prueba {
 
 	public static void main(String[] args) {
-		ArrayList<ICarta> cartas = new ArrayList<ICarta>();
+		ICarta[] cartas = new ICarta[3];
 		Niebla cartaniebla = new Niebla();
 		Tormenta cartatormenta = new Tormenta();
 		Viento cartaviento = new Viento();
-		cartas.add(cartaviento);
-		cartas.add(cartatormenta);
-		cartas.add(cartaniebla);
+		cartas[0]=cartaviento;
+		cartas[1]=cartatormenta;
+		cartas[2]=cartaniebla;
 		String cadena, nombre, nombreP, tipoP;
 		int participantes = 1, cantidad = 0;
 		Torneo torneo = Torneo.getInstanceSingleton();

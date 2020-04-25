@@ -13,12 +13,13 @@ public class Entrenador implements Cloneable {
 	private String nombre;
 	private ArrayList<Pokemon> pokemones = new ArrayList<Pokemon>();
 	private int cantidadHechizos;
-	private ArrayList<ICarta> cartas = new ArrayList<ICarta>();
+	private ICarta[] cartas = new ICarta[3];
 	private int puntaje = 0;
 
-	public Entrenador(String nombre, ArrayList<ICarta> cartas) {
+	public Entrenador(String nombre, ICarta[] cartas) {
 		this.nombre = nombre;
 		this.cantidadHechizos = 0;
+		this.cartas=cartas;
 	}
 
 	public String getNombre() {
@@ -55,19 +56,17 @@ public class Entrenador implements Cloneable {
 			this.pokemones.add(pokemon);
 	}
 
-	public ArrayList<ICarta> getCartas() {
+	public ICarta[] getCartas() {
 		return cartas;
 	}
 
 	public ICarta elegirCarta() {
 		int indicecarta;
 		Random r = new Random();
-		indicecarta = r.nextInt(3);
-		ICarta carta;
-		if (indicecarta == 3)
-			carta = null;
-		else
-			carta = this.cartas.get(indicecarta);
+		indicecarta = r.nextInt(4);
+		ICarta carta=null;
+		if (indicecarta != 3)
+			carta = cartas[indicecarta];
 		return carta;
 	}
 
