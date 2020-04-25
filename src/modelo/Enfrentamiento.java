@@ -21,7 +21,7 @@ public class Enfrentamiento {
 	}
 
 	public void batalla(Entrenador e1, Entrenador e2) throws CantidadHechizosExcedidosException {
-		double puntaje1,puntaje2;
+		double puntaje1, puntaje2;
 		Random r = new Random();
 		int atacaprimero = r.nextInt(10); // flip a coin, de 0 a 4 ataca primero E1, sino ataca primero E2.
 		ICarta hechizo1 = e1.elegirCarta();
@@ -71,6 +71,11 @@ public class Enfrentamiento {
 
 	public Entrenador getEntrenadorDos() {
 		return entrenadorDos;
+	}
+
+	@Override
+	public String toString() {
+		return "Participante 1 :" + this.entrenadorUno.getNombre() + " Participante 2; " + this.entrenadorDos.getNombre() + " Ganador: "+this.ganador;
 	}
 
 }
