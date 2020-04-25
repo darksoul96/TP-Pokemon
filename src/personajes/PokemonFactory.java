@@ -6,17 +6,17 @@ public class PokemonFactory {
 		Pokemon pokemon = null;
 		if (tipo==null)
 			pokemon = null;
-		else if(tipo=="Agua")
+		else if(tipo.equalsIgnoreCase("Agua"))
 			pokemon = new Agua(nombre,recarga);
-		else if (tipo=="Hielo")
+		else if(tipo.equalsIgnoreCase("Hielo"))
 			pokemon = new Hielo(nombre,recarga,false);
-		else if (tipo=="Fuego")
+		else if(tipo.equalsIgnoreCase("Fuego"))
 			pokemon = new Fuego(nombre,recarga);
-		else if (tipo=="Electricidad")
+		else if(tipo.equalsIgnoreCase("Electricidad"))
 			pokemon = new Electricidad(nombre,recarga);
-		else if (tipo=="Psiquico")
+		else if(tipo.equalsIgnoreCase("Psiquico"))
 			pokemon = new Psiquico(nombre,recarga);
-		else if (tipo=="Tierra")
+		else if(tipo.equalsIgnoreCase("Tierra"))
 			pokemon = new Tierra(nombre,recarga);
 		return pokemon;
 	}
@@ -25,7 +25,7 @@ public class PokemonFactory {
 		Pokemon pokemon = null;
 		if(tipo==null)
 			pokemon = null;
-		else if (tipo=="Hielo")
+		else if(tipo.equalsIgnoreCase("Hielo"))
 			pokemon = new Hielo(nombre,recarga,granRecarga);
 		return pokemon;
 		
