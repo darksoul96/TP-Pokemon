@@ -47,9 +47,11 @@ public class Enfrentamiento {
 		if (puntaje1 > puntaje2) {
 			this.ganador = e1;
 			pokemon1.setExperiencia(pokemon1.getExperiencia() + 3);
+			pokemon2.setExperiencia(pokemon2.getExperiencia() + 1);
 		} else {
 			this.ganador = e2;
 			pokemon2.setExperiencia(pokemon2.getExperiencia() + 3);
+			pokemon1.setExperiencia(pokemon1.getExperiencia() + 1);
 		}
 		return this.ganador;
 	}

@@ -1,21 +1,32 @@
 package modelo;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
+import hechizos.Niebla;
+import hechizos.Tormenta;
+import hechizos.Viento;
+import interfaces.ICarta;
 import personajes.Entrenador;
-import personajes.EntrenadorFactory;
 import personajes.PokemonFactory;
 
 public class Prueba {
 
 	public static void main(String[] args) {
+		ArrayList<ICarta> cartas = new ArrayList<ICarta>();
+		Niebla cartaniebla = new Niebla();
+		Tormenta cartatormenta = new Tormenta();
+		Viento cartaviento = new Viento();
+		cartas.add(cartaviento);
+		cartas.add(cartatormenta);
+		cartas.add(cartaniebla);
 		String cadena, nombre, nombreP, tipoP;
 		int participantes = 1, cantidad = 0;
 		Torneo torneo = Torneo.getInstanceSingleton();
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Bienvenido al torneo Pokemon \n");
 		System.out.println("Ingrese la cantidad de participantes en el torneo: ");
-		while (participantes<2) {
+		while (participantes < 2) {
 			try {
 				cadena = scanner.nextLine();
 				participantes = Integer.parseInt(cadena);
@@ -30,7 +41,7 @@ public class Prueba {
 		for (int i = 1; i <= participantes; i++) {
 			System.out.println("Ingrese el nombre del entrenador: " + i);
 			nombre = scanner.nextLine();
-			Entrenador e1 = EntrenadorFactory.fabricaEntrenador(nombre);
+			Entrenador e1 = new Entrenador(nombre, cartas);
 			System.out.println("Ingrese cuantos pokemones tiene " + nombre);
 			cadena = scanner.nextLine();
 			try {
@@ -66,7 +77,6 @@ public class Prueba {
 
 				}
 				torneo.agregarEntrenador(e1);
-
 			}
 		}
 		System.out.println(torneo.getEntrenadores().size());

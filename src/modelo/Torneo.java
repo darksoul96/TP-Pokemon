@@ -15,6 +15,7 @@ public class Torneo {
 
 	private Torneo() {
 		this.participantes = new ArrayList<Entrenador>();
+		this.clasificados = new ArrayList<Entrenador>();
 		this.enfrentamientos = new ArrayList<Enfrentamiento>();
 	}
 
@@ -45,15 +46,14 @@ public class Torneo {
 				this.juegaRonda(clasificados.size());
 			}
 		}
-
 	}
 
 	public void setCantidadDeParticipantes(int cantidadDeParticipantes) {
 		this.cantidadDeParticipantes = cantidadDeParticipantes;
 	}
 
-	private void juegaRonda(int ronda){
-		int aux;
+	private void juegaRonda(int ronda) {
+		int aux = -1;
 		switch (ronda) {
 		case 32:
 			System.out.println("Decisiesavos");
@@ -66,13 +66,12 @@ public class Torneo {
 		case 2:
 			System.out.println("Final");
 		}
-		aux=0;
-		int auxTamaño = clasificados.size();
-		while(aux <auxTamaño) {
+		
+		for (int i=0;i<clasificados.size();i++) {
 			Entrenador perdedor;
-			Enfrentamiento n = new Enfrentamiento(this.clasificados.get(aux), this.clasificados.get(aux + 1)); // aca esta el error creo , se va de indice
+			Enfrentamiento n = new Enfrentamiento(this.clasificados.get(i), this.clasificados.get(i+1));
 			try { // PARA PROBAR NOMAS
-				n.batalla(this.clasificados.get(aux),this.clasificados.get(aux + 1));
+				n.batalla(this.clasificados.get(i), this.clasificados.get(i+1));
 			} catch (CantidadHechizosExcedidosException e) {
 				System.out.println("cantidad de hechizos excedidos");
 			}
@@ -81,15 +80,13 @@ public class Torneo {
 			this.clasificados.remove(perdedor);
 			System.out.println(n);
 			System.out.println(clasificados);
-			aux++;
-			auxTamaño = clasificados.size();
 		}
 	}
-	
+
 	@Override
 	public String toString() {
 		String aux = "Lista de participantes: \n";
-		for(Entrenador e : participantes)
+		for (Entrenador e : participantes)
 			aux += e.toString() + "\n";
 		return aux;
 	}

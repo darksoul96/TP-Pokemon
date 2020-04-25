@@ -16,7 +16,7 @@ public class Entrenador implements Cloneable {
 	private ArrayList<ICarta> cartas = new ArrayList<ICarta>();
 	private int puntaje = 0;
 
-	public Entrenador(String nombre) {
+	public Entrenador(String nombre, ArrayList<ICarta> cartas) {
 		this.nombre = nombre;
 		this.cantidadHechizos = 0;
 	}
@@ -63,9 +63,11 @@ public class Entrenador implements Cloneable {
 		int indicecarta;
 		Random r = new Random();
 		indicecarta = r.nextInt(3);
-
-		//return this.getCartas().get(indicecarta);
-		ICarta carta = new Niebla();
+		ICarta carta;
+		if (indicecarta == 3)
+			carta = null;
+		else
+			carta = this.cartas.get(indicecarta);
 		return carta;
 	}
 
