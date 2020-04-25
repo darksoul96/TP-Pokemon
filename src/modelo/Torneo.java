@@ -57,14 +57,19 @@ public class Torneo {
 		switch (ronda) {
 		case 32:
 			System.out.println("Decisiesavos");
+			break;
 		case 16:
 			System.out.println("Octavos");
+			break;
 		case 8:
 			System.out.println("Cuartos");
+			break;
 		case 4:
 			System.out.println("Semis");
+			break;
 		case 2:
 			System.out.println("Final");
+			break;
 		}
 		
 		for (int i=0;i<clasificados.size();i++) {
