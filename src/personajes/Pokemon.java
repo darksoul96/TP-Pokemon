@@ -15,7 +15,7 @@ public abstract class Pokemon implements Cloneable, Atacable, Hechizable {
 	protected boolean recarga = false;
 	protected boolean hechizadoPorNiebla = false;
 
-	public Pokemon(String nombre, double escudo, double vitalidad, double ataque) {
+	public Pokemon(String nombre, double escudo, double vitalidad, double ataque, boolean recarga) {
 		super();
 		this.nombre = nombre;
 		this.escudo = escudo;
@@ -47,7 +47,7 @@ public abstract class Pokemon implements Cloneable, Atacable, Hechizable {
 
 	@Override
 	public void atacar(Atacable atacable) {
-		if(!this.hechizadoPorNiebla)
+		if (!this.hechizadoPorNiebla)
 			this.golpeInicial(atacable);
 		else
 			this.fallar();
@@ -78,33 +78,33 @@ public abstract class Pokemon implements Cloneable, Atacable, Hechizable {
 	public void setExperiencia(double experiencia) {
 		this.experiencia = experiencia;
 	}
-	
+
 	@Override
 	public double getAtaque() {
 		return this.ataque;
 	}
-	
+
 	@Override
 	public void hechizarTormenta() {
-		this.vitalidad = this.vitalidad *0.8;
+		this.vitalidad = this.vitalidad * 0.8;
 	}
-	
+
 	@Override
 	public void hechizarNiebla() {
 		Random r = new Random();
 		int chanceDeFallar = r.nextInt(10);
-		if(chanceDeFallar<2)
+		if (chanceDeFallar < 2)
 			this.hechizadoPorNiebla = true;
 	}
-	
+
 	@Override
 	public void hechizarViento() {
 		Random r = new Random();
 		int chanceDeReducirVida = r.nextInt(10);
-		if(chanceDeReducirVida <2)
+		if (chanceDeReducirVida < 2)
 			this.vitalidad = this.vitalidad * 85;
 	}
-	
+
 	public void fallar() {
 	}
 }
