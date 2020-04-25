@@ -10,6 +10,7 @@ public class Torneo {
 	private ArrayList<Entrenador> parcipantes;
 	private ArrayList<Entrenador> clasificados;
 	private ArrayList<Enfrentamiento> enfrentamientos;
+	private int cantidadDeParticipantes;
 
 	private Torneo() {
 		this.parcipantes = new ArrayList<Entrenador>();
@@ -38,12 +39,16 @@ public class Torneo {
 
 	public void arrancaTorneo() {
 		this.clasificados = (ArrayList<Entrenador>) this.parcipantes.clone();
-		if (clasificados.size() == 16) {
+		if (clasificados.size() == this.cantidadDeParticipantes) {
 			while (clasificados.size() != 1) {
 				this.juegaRonda(clasificados.size());
 			}
 		}
 
+	}
+
+	public void setCantidadDeParticipantes(int cantidadDeParticipantes) {
+		this.cantidadDeParticipantes = cantidadDeParticipantes;
 	}
 
 	private void juegaRonda(int ronda) {
