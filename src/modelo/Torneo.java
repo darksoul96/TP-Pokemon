@@ -60,7 +60,7 @@ public class Torneo {
 		case 2:
 			System.out.println("Final");
 		}
-		for (aux = 0; aux < ronda; aux++) {
+		for (aux = 0; aux < clasificados.size(); aux++) {
 			Entrenador perdedor;
 			Enfrentamiento n = new Enfrentamiento(this.clasificados.get(aux), this.clasificados.get(aux + 1));
 			enfrentamientos.add(n);
