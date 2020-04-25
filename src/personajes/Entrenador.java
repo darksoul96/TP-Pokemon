@@ -15,10 +15,9 @@ public class Entrenador implements Cloneable {
 	private ArrayList<ICarta> cartas = new ArrayList<ICarta>();
 	private int puntaje=0;
 
-	public Entrenador(String nombre, ArrayList<ICarta> cartas) {
+	public Entrenador(String nombre) {
 		this.nombre = nombre;
 		this.cantidadHechizos = 0;
-		this.cartas = cartas;
 	}
 
 	public String getNombre() {
@@ -67,5 +66,13 @@ public class Entrenador implements Cloneable {
 		return this.getCartas().get(indicecarta);
 	}
 	
+	@Override
+	public String toString() {
+		String aux;
+		aux = "Entrenador: " + this.getNombre() + " Puntaje: " + this.puntaje + " Lista de pokemones: \n";
+		for(Pokemon p : pokemones)
+			aux += p.toString();
+		return aux;
+	}
 
 }
