@@ -1,6 +1,5 @@
 package modelo;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import exception.PokemonInvalidoException;
@@ -49,27 +48,29 @@ public class Prueba {
 				} catch (PokemonInvalidoException e) {
 					System.out.println(e.getMessage());
 				}
-				tipoP = scanner.nextLine();
-				if (tipoP.equalsIgnoreCase("Hielo")) {
-					System.out.println("Tiene gran recarga? S/N");
-					cadena = scanner.nextLine();
-					if (cadena.equalsIgnoreCase("S"))
-						e1.agregarPokemon(PokemonFactory.fabricaPokemon(nombreP, tipoP, false, true));
-					else {
+				finally {
+					tipoP = scanner.nextLine();
+					if (tipoP.equalsIgnoreCase("Hielo")) {
+						System.out.println("Tiene gran recarga? S/N");
+						cadena = scanner.nextLine();
+						if (cadena.equalsIgnoreCase("S"))
+							e1.agregarPokemon(PokemonFactory.fabricaPokemon(nombreP, tipoP, false, true));
+						else {
+							System.out.println("Tiene recarga? S/N");
+							cadena = scanner.nextLine();
+							if (cadena.equalsIgnoreCase("S"))
+								e1.agregarPokemon(PokemonFactory.fabricaPokemon(nombreP, tipoP, true));
+						}
+					} else {
 						System.out.println("Tiene recarga? S/N");
 						cadena = scanner.nextLine();
 						if (cadena.equalsIgnoreCase("S"))
 							e1.agregarPokemon(PokemonFactory.fabricaPokemon(nombreP, tipoP, true));
+						else
+							e1.agregarPokemon(PokemonFactory.fabricaPokemon(nombreP, tipoP, false));
 					}
-				} else {
-					System.out.println("Tiene recarga? S/N");
-					cadena = scanner.nextLine();
-					if (cadena.equalsIgnoreCase("S"))
-						e1.agregarPokemon(PokemonFactory.fabricaPokemon(nombreP, tipoP, true));
-					else
-						e1.agregarPokemon(PokemonFactory.fabricaPokemon(nombreP, tipoP, false));
+					torneo.agregarEntrenador(e1);
 				}
-				torneo.agregarEntrenador(e1);
 			}
 		}
 		System.out.println(torneo.getEntrenadores().size());
