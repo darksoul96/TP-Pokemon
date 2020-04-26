@@ -17,7 +17,6 @@ public class Psiquico extends Pokemon {
 			this.vitalidad -= (cantidad - this.escudo);
 			this.escudo = 0;
 		}
-
 	}
 
 	@Override

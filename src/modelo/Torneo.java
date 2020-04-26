@@ -46,6 +46,7 @@ public class Torneo {
 			while (clasificados.size() != 1) {
 				this.juegaRonda(clasificados.size());
 			}
+			System.out.println("El campeon es " + this.clasificados.get(0));
 		}
 	}
 
@@ -71,18 +72,18 @@ public class Torneo {
 			System.out.println("Final");
 			break;
 		}
-		
-		for (int i=0;i<clasificados.size();i++) {
-			Entrenador e1,e2,perdedor;
-			e1=this.clasificados.get(i);
-			e2=this.clasificados.get(i+1);
+
+		for (int i = 0; i < clasificados.size(); i++) {
+			Entrenador e1, e2, perdedor;
+			e1 = this.clasificados.get(i);
+			e2 = this.clasificados.get(i + 1);
 			Enfrentamiento n = new Enfrentamiento(e1, e2);
 			n.batalla(e1, e2);
 			enfrentamientos.add(n);
 			perdedor = n.getPerdedor();
 			this.clasificados.remove(perdedor);
 			System.out.println(n);
-			//System.out.println(clasificados);
+			// System.out.println(clasificados);
 		}
 	}
 
@@ -93,11 +94,12 @@ public class Torneo {
 			aux += e.toString() + "\n";
 		return aux;
 	}
-	
+
 	public boolean validaPokemon(String tipo) throws PokemonInvalidoException {
-		boolean respuesta=false;
-		if (tipo=="fuego" || tipo=="agua" || tipo=="electricidad" || tipo=="hielo" || tipo=="psiquico" || tipo=="tierra")
-			respuesta=true;
+		boolean respuesta = false;
+		if (tipo == "fuego" || tipo == "agua" || tipo == "electricidad" || tipo == "hielo" || tipo == "psiquico"
+				|| tipo == "tierra")
+			respuesta = true;
 		else
 			throw new PokemonInvalidoException("Tipo de pokemon invalido, ingrese un tipo correcto");
 		return respuesta;
