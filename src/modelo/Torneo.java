@@ -2,8 +2,8 @@ package modelo;
 
 import java.util.ArrayList;
 
-import exception.PokemonInvalidoException;
 import exceptions.CantidadHechizosExcedidosException;
+import exceptions.PokemonInvalidoException;
 import personajes.Entrenador;
 
 public class Torneo {

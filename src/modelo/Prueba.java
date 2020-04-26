@@ -2,7 +2,7 @@ package modelo;
 
 import java.util.Scanner;
 
-import exception.PokemonInvalidoException;
+import exceptions.PokemonInvalidoException;
 import hechizos.Niebla;
 import hechizos.Tormenta;
 import hechizos.Viento;
