@@ -33,6 +33,7 @@ public class Prueba {
 		if (cadena.equalsIgnoreCase("S")) {
 			Entrenador e1 = new Entrenador("Juan", cartas);
 			e1.agregarPokemon(PokemonFactory.fabricaPokemon("Pikachu", "Electricidad", true));
+			e1.agregarPokemon(PokemonFactory.fabricaPokemon("PokemondeTierra", "Tierra", true));
 			Entrenador e2 = new Entrenador("Pedro", cartas);
 			e2.agregarPokemon(PokemonFactory.fabricaPokemon("Squirtle", "Agua", true));
 			Entrenador e3 = new Entrenador("Carlos", cartas);
