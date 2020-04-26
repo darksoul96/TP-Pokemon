@@ -20,12 +20,22 @@ public class Enfrentamiento {
 		this.entrenadorDos = entrenadorDos;
 	}
 
-	public Entrenador batalla(Entrenador e1, Entrenador e2) throws CantidadHechizosExcedidosException {
+	public Entrenador batalla(Entrenador e1, Entrenador e2) {
 		double puntaje1, puntaje2;
 		Random r = new Random();
 		int atacaprimero = r.nextInt(11); // flip a coin, de 0 a 4 ataca primero E1, sino ataca primero E2.
-		ICarta hechizo1 = e1.elegirCarta();
-		ICarta hechizo2 = e2.elegirCarta();
+		ICarta hechizo1;
+		try {
+			hechizo1 = e1.elegirCarta();
+		} catch (CantidadHechizosExcedidosException e) {
+			hechizo1=null;
+		}
+		ICarta hechizo2;
+		try {
+			hechizo2 = e2.elegirCarta();
+		} catch (CantidadHechizosExcedidosException e) {
+			hechizo2=null;
+		}
 		int p1 = r.nextInt(e1.getPokemones().size());
 		int p2 = r.nextInt(e2.getPokemones().size());
 		Pokemon pokemon1;
