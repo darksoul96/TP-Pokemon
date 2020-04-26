@@ -3,6 +3,7 @@ package modelo;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import exception.PokemonInvalidoException;
 import hechizos.Niebla;
 import hechizos.Tormenta;
 import hechizos.Viento;
@@ -11,7 +12,7 @@ import personajes.Entrenador;
 import personajes.PokemonFactory;
 
 public class Prueba {
-
+	
 	public static void main(String[] args) {
 		ICarta[] cartas = new ICarta[3];
 		Torneo torneo = Torneo.getInstanceSingleton();
@@ -34,9 +35,7 @@ public class Prueba {
 			System.out.println("Ingrese cuantos pokemones tiene " + nombre);
 			cadena = scanner.nextLine();
 			try {
-
 				cantidad = Integer.parseInt(cadena);
-
 			} catch (NumberFormatException e) {
 				System.out.println("Numero no valido, ingrese un entero positivo mayor a 1");
 			}
@@ -44,6 +43,12 @@ public class Prueba {
 				System.out.println("Ingrese el nombre del pokemon " + j);
 				nombreP = scanner.nextLine();
 				System.out.println("Ingrese el tipo del pokemon " + j);
+				cadena=scanner.nextLine();
+				try {
+					torneo.validaPokemon(cadena);
+				} catch (PokemonInvalidoException e) {
+					System.out.println(e.getMessage());
+				}
 				tipoP = scanner.nextLine();
 				if (tipoP.equalsIgnoreCase("Hielo")) {
 					System.out.println("Tiene gran recarga? S/N");

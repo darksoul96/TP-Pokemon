@@ -2,6 +2,7 @@ package modelo;
 
 import java.util.ArrayList;
 
+import exception.PokemonInvalidoException;
 import exceptions.CantidadHechizosExcedidosException;
 import personajes.Entrenador;
 
@@ -91,5 +92,14 @@ public class Torneo {
 		for (Entrenador e : participantes)
 			aux += e.toString() + "\n";
 		return aux;
+	}
+	
+	public boolean validaPokemon(String tipo) throws PokemonInvalidoException {
+		boolean respuesta=false;
+		if (tipo=="fuego" || tipo=="agua" || tipo=="electricidad" || tipo=="hielo" || tipo=="psiquico" || tipo=="tierra")
+			respuesta=true;
+		else
+			throw new PokemonInvalidoException("Tipo de pokemon invalido, ingrese un tipo correcto");
+		return respuesta;
 	}
 }
