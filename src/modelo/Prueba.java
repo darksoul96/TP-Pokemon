@@ -52,7 +52,7 @@ public class Prueba {
 			Entrenador e10 = new Entrenador("Mario", cartas);
 			e10.agregarPokemon(PokemonFactory.fabricaPokemon("Luigi", "Fuego", true));
 			Entrenador e11 = new Entrenador("Link", cartas);
-			e11.agregarPokemon(PokemonFactory.fabricaPokemon("Raichu", "Electrico", true));
+			e11.agregarPokemon(PokemonFactory.fabricaPokemon("Raichu", "Electricidad", true));
 			Entrenador e12 = new Entrenador("Steve", cartas);
 			e12.agregarPokemon(PokemonFactory.fabricaPokemon("Ponyta", "Fuego", true));
 			Entrenador e13 = new Entrenador("Master Chief", cartas);
