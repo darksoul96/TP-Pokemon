@@ -5,7 +5,7 @@ import interfaces.Atacable;
 public class Tierra extends Pokemon {
 
 	public Tierra(String nombre,boolean recarga) {
-		super(nombre, 250, 650, 40,recarga);
+		super(nombre, 200, 500, 40,recarga);
 	}
 
 	@Override

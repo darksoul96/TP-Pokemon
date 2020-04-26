@@ -90,7 +90,7 @@ public class Enfrentamiento {
 	}
 
 	private double calculaPuntaje(Pokemon p) {
-		return p.getVitalidad() + p.getAtaque() * 0.4 + p.getEscudo() * 0.3;
+		return p.getVitalidad() *0.5 + p.getAtaque() * 0.9 + p.getEscudo() * 0.4;
 	}
 
 	public Entrenador getGanador() {
