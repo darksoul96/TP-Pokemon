@@ -16,7 +16,6 @@ public class Entrenador implements Cloneable, Clasificable {
 	private ArrayList<Pokemon> pokemones = new ArrayList<Pokemon>();
 	private int cantidadHechizos;
 	private ICarta[] cartas = new ICarta[3];
-	private int puntaje = 0;
 
 	public Entrenador(String nombre, ICarta[] cartas) {
 		this.nombre = nombre;
@@ -42,10 +41,8 @@ public class Entrenador implements Cloneable, Clasificable {
 
 	@Override
 	protected Object clone() throws CloneNotSupportedException {
-		// TODO Auto-generated method stub
+
 		Entrenador entrenadorClonado = (Entrenador) super.clone();
-		// for (int i = 0; i <= this.pokemones.size(); i++)
-		// entrenadorClonado.pokemones.add(this.pokemones.get(i));
 
 		for (Pokemon p : this.pokemones)
 			entrenadorClonado.pokemones.add((Pokemon) p.clone());
@@ -69,7 +66,8 @@ public class Entrenador implements Cloneable, Clasificable {
 		ICarta carta = null;
 		if (indicecarta != 3) {
 			if (this.getCantidadHechizos() == 0)
-				throw new CantidadHechizosExcedidosException("El entrenador "+this.nombre+" se quedo sin cartas de hechizo");
+				throw new CantidadHechizosExcedidosException(
+						"El entrenador " + this.nombre + " se quedo sin cartas de hechizo");
 			else
 				carta = cartas[indicecarta];
 		}
@@ -79,7 +77,7 @@ public class Entrenador implements Cloneable, Clasificable {
 	@Override
 	public String toString() {
 		String aux;
-		aux = "Entrenador: " + this.getNombre() + " Puntaje: " + this.puntaje + " Lista de pokemones: \n";
+		aux = "Entrenador: " + this.getNombre() + " Clasificacion: " + this.calculaClasificacion() + " Lista de pokemones: \n";
 		for (Pokemon p : pokemones)
 			aux += p.toString() + "\n";
 		return aux;
@@ -107,8 +105,7 @@ public class Entrenador implements Cloneable, Clasificable {
 	}
 
 	public void premio() {
-		// TODO Auto-generated method stub
-		for (Pokemon p:this.pokemones) 
+		for (Pokemon p : this.pokemones)
 			p.buffear();
 	}
 

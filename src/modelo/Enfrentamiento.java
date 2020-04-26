@@ -84,6 +84,8 @@ public class Enfrentamiento {
 			pokemon1.setExperiencia(pokemon1.getExperiencia() + 1);
 			e2.premio();
 		}
+		pokemon1.reiniciaStats();
+		pokemon2.reiniciaStats();
 		return this.ganador;
 	}
 

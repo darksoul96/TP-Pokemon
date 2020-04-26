@@ -13,6 +13,9 @@ public abstract class Pokemon implements Cloneable, Atacable, Hechizable, Clasif
 	protected double escudo;
 	protected double vitalidad;
 	protected double ataque;
+	protected double escudoOriginal;
+	protected double vitalidadOriginal;
+	protected double ataqueOriginal;
 	protected boolean recarga = false;
 	protected boolean hechizadoPorNiebla = false;
 
@@ -22,6 +25,9 @@ public abstract class Pokemon implements Cloneable, Atacable, Hechizable, Clasif
 		this.escudo = escudo;
 		this.vitalidad = vitalidad;
 		this.ataque = ataque;
+		this.escudoOriginal = escudo;
+		this.vitalidadOriginal = vitalidad;
+		this.ataqueOriginal = ataque;
 	}
 
 	public String getNombre() {
@@ -67,8 +73,8 @@ public abstract class Pokemon implements Cloneable, Atacable, Hechizable, Clasif
 
 	@Override
 	public String toString() {
-		return "Pokemon nombre=" + nombre + ", experiencia=" + (int) experiencia + ", escudo=" +(int) escudo + ", vitalidad="
-				+ (int) vitalidad + ", ataque=" + (int) ataque + ", recarga=" + recarga;
+		return "Pokemon nombre=" + nombre + ", experiencia=" + (int) experiencia + ", escudo=" + (int) escudo
+				+ ", vitalidad=" + (int) vitalidad + ", ataque=" + (int) ataque + ", recarga=" + recarga + " rango=" + this.calculaClasificacion();
 	}
 
 	@Override
@@ -110,8 +116,7 @@ public abstract class Pokemon implements Cloneable, Atacable, Hechizable, Clasif
 		if (chanceDeReducirVida < 2) {
 			this.vitalidad = this.vitalidad * 85;
 			System.out.println("El pokemon " + this.nombre + " ha sido hechizado por la carta Viento.");
-		}
-		else
+		} else
 			System.out.println("El pokemon " + this.nombre + " ha resisitido el hechizo de la carta Viento.");
 	}
 
@@ -135,10 +140,17 @@ public abstract class Pokemon implements Cloneable, Atacable, Hechizable, Clasif
 		return rango;
 	}
 
+	public void reiniciaStats() {
+		this.vitalidad = vitalidadOriginal;
+		this.escudo = escudoOriginal;
+		this.ataque = ataqueOriginal;
+		this.hechizadoPorNiebla = false;
+	}
+	
 	public void buffear() {
 		// TODO Auto-generated method stub
-		this.vitalidad *= 1.1;
-		this.ataque *= 1.1;
-		this.escudo *= 1.1;
+		this.vitalidadOriginal *= 1.1;
+		this.ataqueOriginal *= 1.1;
+		this.escudoOriginal *= 1.1;
 	}
 }
