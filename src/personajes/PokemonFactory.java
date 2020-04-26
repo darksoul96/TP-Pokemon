@@ -1,5 +1,9 @@
 package personajes;
 
+/**
+ * Clase que crea Pokemones.
+ *
+ */
 public class PokemonFactory {
 	
 	public static Pokemon fabricaPokemon(String nombre,String tipo,boolean recarga) {

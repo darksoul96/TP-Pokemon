@@ -10,6 +10,10 @@ import hechizos.Niebla;
 import interfaces.Clasificable;
 import interfaces.ICarta;
 
+/**
+ * Clase entrenador que posee Nombre, cantidad de hechizos utilizados, cartas con hechizos, y una lista con sus pokemones.
+ *
+ */
 public class Entrenador implements Cloneable, Clasificable {
 
 	private String nombre;
@@ -50,6 +54,9 @@ public class Entrenador implements Cloneable, Clasificable {
 		return entrenadorClonado;
 	}
 
+	/** Agrega un pokemon a la lista de pokemones del entrenador, a menos que ya lo tuviese.
+	 * @param pokemon no nulo
+	 */
 	public void agregarPokemon(Pokemon pokemon) {
 		if (!this.pokemones.contains(pokemon))
 			this.pokemones.add(pokemon);
@@ -59,6 +66,10 @@ public class Entrenador implements Cloneable, Clasificable {
 		return cartas;
 	}
 
+	/**
+	 * @return Una carta para utilizar en un combate
+	 * @throws Si ya se excedio la cantida de cartas para usar, sale una excepcion.
+	 */
 	public ICarta elegirCarta() throws CantidadHechizosExcedidosException {
 		int indicecarta;
 		Random r = new Random();
@@ -83,6 +94,9 @@ public class Entrenador implements Cloneable, Clasificable {
 		return aux;
 	}
 
+	/**
+	 * Calcula la clasificacion del Entrenador en base a la experiencia de sus pokemones.
+	 */
 	@Override
 	public char calculaClasificacion() {
 		char rango;
@@ -104,6 +118,9 @@ public class Entrenador implements Cloneable, Clasificable {
 		return rango;
 	}
 
+	/**
+	 * Premio que reciben los pokemones de un entrenador al ganar una batalla.
+	 */
 	public void premio() {
 		for (Pokemon p : this.pokemones)
 			p.buffear();

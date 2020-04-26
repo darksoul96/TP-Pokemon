@@ -2,6 +2,10 @@ package personajes;
 
 import interfaces.Atacable;
 
+/**
+ * La clase Pokemon Hielo tiene un atributo extra que es granRecarga. Se define al momento de fabricar el pokemon.
+ *
+ */
 public class Hielo extends Pokemon {
 
 	boolean granRecarga = false;

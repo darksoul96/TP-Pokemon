@@ -6,6 +6,11 @@ import exceptions.CantidadHechizosExcedidosException;
 import exceptions.PokemonInvalidoException;
 import personajes.Entrenador;
 
+/**
+ * La clase Torneo sera instanciada una sola vez y es donde se ejecutaran los
+ * metodos de competicion del Torneo.
+ *
+ */
 public class Torneo {
 
 	private static Torneo torneo;
@@ -40,6 +45,10 @@ public class Torneo {
 		this.participantes.add(entrenador);
 	}
 
+	/**
+	 * Inicia el motor de competicion. Posee un arraylist de participantes. Mientras
+	 * haya mas de 1 clasificado seguira jugando rondas entre los participantes
+	 */
 	public void arrancaTorneo() {
 		this.clasificados = (ArrayList<Entrenador>) this.participantes.clone();
 		if (clasificados.size() == this.cantidadDeParticipantes) {
@@ -54,6 +63,9 @@ public class Torneo {
 		this.cantidadDeParticipantes = cantidadDeParticipantes;
 	}
 
+	/**
+	 * @param ronda es el numero de ronda en la que se encuentra el torneo.
+	 */
 	private void juegaRonda(int ronda) {
 		switch (ronda) {
 		case 32:
@@ -95,6 +107,11 @@ public class Torneo {
 		return aux;
 	}
 
+	/**
+	 * @param tipo String con el texto que debera chequear si es un pokemon
+	 * @return Falso si no es un tipo valido de Pokemon, verdadero si lo es
+	 * @throws PokemonInvalidoException excepcion que avisa que no se ha ingresado correctamente un pokemon.
+	 */
 	public boolean validaPokemon(String tipo) throws PokemonInvalidoException {
 		boolean respuesta = false;
 		if (tipo == "fuego" || tipo == "agua" || tipo == "electricidad" || tipo == "hielo" || tipo == "psiquico"
