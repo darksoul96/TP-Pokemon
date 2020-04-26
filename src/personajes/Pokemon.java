@@ -75,7 +75,8 @@ public abstract class Pokemon implements Cloneable, Atacable, Hechizable, Clasif
 	@Override
 	public String toString() {
 		return "Pokemon nombre=" + nombre + ", experiencia=" + (int) experiencia + ", escudo=" + (int) escudo
-				+ ", vitalidad=" + (int) vitalidad + ", ataque=" + (int) ataque + ", recarga=" + recarga + " rango=" + this.calculaClasificacion();
+				+ ", vitalidad=" + (int) vitalidad + ", ataque=" + (int) ataque + ", recarga=" + recarga + " rango="
+				+ this.calculaClasificacion();
 	}
 
 	@Override
@@ -128,13 +129,13 @@ public abstract class Pokemon implements Cloneable, Atacable, Hechizable, Clasif
 	@Override
 	public char calculaClasificacion() {
 		char rango;
-		if (this.experiencia >=12)
+		if (this.experiencia >= 12)
 			rango = 'S';
 		else if (this.experiencia >= 10)
 			rango = 'A';
-		else if (this.experiencia >=4)
+		else if (this.experiencia >= 4)
 			rango = 'B';
-		else if (this.experiencia >=1)
+		else if (this.experiencia >= 1)
 			rango = 'C';
 		else
 			rango = 'D';
@@ -147,9 +148,8 @@ public abstract class Pokemon implements Cloneable, Atacable, Hechizable, Clasif
 		this.ataque = ataqueOriginal;
 		this.hechizadoPorNiebla = false;
 	}
-	
+
 	public void buffear() {
-		// TODO Auto-generated method stub
 		this.vitalidadOriginal *= 1.1;
 		this.ataqueOriginal *= 1.1;
 		this.escudoOriginal *= 1.1;
