@@ -42,25 +42,35 @@ public class Enfrentamiento {
 		Pokemon pokemon2;
 		pokemon1 = e1.getPokemones().get(p1);
 		pokemon2 = e2.getPokemones().get(p2);
+		System.out.println("Enfrentamiento: \n");
+		System.out.println(e1.getNombre() + " se enfrenta a " + e2.getNombre());
 		if (hechizo1 != null) {
+			System.out.println("El entrenador " + e1.getNombre() + " ha utilizado una carta.");
 			pokemon2.serHechizado(hechizo1);
 			e1.setCantidadHechizos(e1.getCantidadHechizos()-1);
 		}
 		if (hechizo2 != null) {
+			System.out.println("El entrenador " + e2.getNombre() + " ha utilizado una carta.");
 			pokemon1.serHechizado(hechizo2);
 			e2.setCantidadHechizos(e2.getCantidadHechizos()-1);
 		}
 		if (atacaprimero <= 4) {
+			System.out.println(pokemon1.getNombre() + " realiza sus ataques");
 			pokemon1.atacar(pokemon2);
+			System.out.println(pokemon2.getNombre() + " realiza sus ataques");
 			pokemon2.atacar(pokemon1);
 		}
 		else {
+			System.out.println(pokemon2.getNombre() + " realiza sus ataques");
 			pokemon2.atacar(pokemon1);
+			System.out.println(pokemon1.getNombre() + " realiza sus ataques");
 			pokemon1.atacar(pokemon2);
 		}
 			
 		puntaje1 = calculaPuntaje(pokemon1);
+		System.out.println("Puntaje de " + pokemon1.getNombre() + " : " + (int) puntaje1);
 		puntaje2 = calculaPuntaje(pokemon2);
+		System.out.println("Puntaje de " + pokemon2.getNombre() + " : " + (int) puntaje2);
 		if (puntaje1 > puntaje2) {
 			this.ganador = e1;
 			this.perdedor = e2;

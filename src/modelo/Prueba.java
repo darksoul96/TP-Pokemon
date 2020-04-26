@@ -129,7 +129,7 @@ public class Prueba {
 		}
 		System.out.println(torneo.getEntrenadores().size());
 		System.out.println(torneo);
-		System.out.println("Participantes correctamente cargados, inciando torneo...");
+		System.out.println("Participantes correctamente cargados, inciando torneo... \n");
 		torneo.arrancaTorneo();
 	}
 
