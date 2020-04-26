@@ -53,6 +53,9 @@ public abstract class Pokemon implements Cloneable, Atacable, Hechizable, Clasif
 		return super.clone();
 	}
 
+	/**
+	 * @param atacable Este metodo requiere un atacable valido no null
+	 */
 	@Override
 	public void atacar(Atacable atacable) {
 		if (!this.hechizadoPorNiebla)
@@ -63,6 +66,9 @@ public abstract class Pokemon implements Cloneable, Atacable, Hechizable, Clasif
 		this.golpeFinal(atacable);
 	}
 
+	/**
+	 * @param atacable Este metodo requiere un atacable valido no null
+	 */
 	public void golpeInicial(Atacable atacable) {
 		atacable.recibeDano(this.ataque);
 		this.ataque = this.ataque / 2;
@@ -70,6 +76,9 @@ public abstract class Pokemon implements Cloneable, Atacable, Hechizable, Clasif
 
 	public abstract void recarga();
 
+	/**
+	 * @param atacable Este metodo requiere un atacable valido no null
+	 */
 	public abstract void golpeFinal(Atacable atacable);
 
 	@Override

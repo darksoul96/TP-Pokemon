@@ -10,6 +10,11 @@ import interfaces.ICarta;
 import personajes.Entrenador;
 import personajes.PokemonFactory;
 
+/**
+ * Este metodo permite simular un torneo en base a datos precargados o datos
+ * ingresados por teclado. Se debe tener en cuenta a la hora de ingresar datos a
+ * mano el lanzamiento de exceptions para datos no validos.
+ */
 public class Prueba {
 
 	public static void main(String[] args) {
