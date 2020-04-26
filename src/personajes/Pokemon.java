@@ -21,6 +21,7 @@ public abstract class Pokemon implements Cloneable, Atacable, Hechizable, Clasif
 
 	public Pokemon(String nombre, double escudo, double vitalidad, double ataque, boolean recarga) {
 		super();
+		this.recarga = recarga;
 		this.nombre = nombre;
 		this.escudo = escudo;
 		this.vitalidad = vitalidad;
