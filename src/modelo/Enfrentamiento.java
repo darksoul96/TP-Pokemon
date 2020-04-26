@@ -26,10 +26,10 @@ public class Enfrentamiento {
 		int atacaprimero = r.nextInt(11); // flip a coin, de 0 a 4 ataca primero E1, sino ataca primero E2.
 		ICarta hechizo1 = e1.elegirCarta();
 		ICarta hechizo2 = e2.elegirCarta();
-		//int p1 = r.nextInt(e1.getPokemones().size());
-		//int p2 = r.nextInt(e2.getPokemones().size());
-		int p1=0;
-		int p2=0;
+		// int p1 = r.nextInt(e1.getPokemones().size());
+		// int p2 = r.nextInt(e2.getPokemones().size());
+		int p1 = 0;
+		int p2 = 0;
 		Pokemon pokemon1;
 		Pokemon pokemon2;
 		pokemon1 = e1.getPokemones().get(p1);
@@ -48,10 +48,12 @@ public class Enfrentamiento {
 		puntaje2 = calculaPuntaje(pokemon2);
 		if (puntaje1 > puntaje2) {
 			this.ganador = e1;
+			this.perdedor = e2;
 			pokemon1.setExperiencia(pokemon1.getExperiencia() + 3);
 			pokemon2.setExperiencia(pokemon2.getExperiencia() + 1);
 		} else {
 			this.ganador = e2;
+			this.perdedor= e1;
 			pokemon2.setExperiencia(pokemon2.getExperiencia() + 3);
 			pokemon1.setExperiencia(pokemon1.getExperiencia() + 1);
 		}
