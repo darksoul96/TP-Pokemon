@@ -124,4 +124,11 @@ public abstract class Pokemon implements Cloneable, Atacable, Hechizable, Clasif
 			rango = 'D';
 		return rango;
 	}
+
+	public void buffear() {
+		// TODO Auto-generated method stub
+		this.vitalidad*=1.1;
+		this.ataque*=1.1;
+		this.escudo*=1.1;
+	}
 }

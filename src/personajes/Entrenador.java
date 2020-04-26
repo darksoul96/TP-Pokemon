@@ -20,7 +20,7 @@ public class Entrenador implements Cloneable, Clasificable {
 
 	public Entrenador(String nombre, ICarta[] cartas) {
 		this.nombre = nombre;
-		this.cantidadHechizos = 5;
+		this.cantidadHechizos = 2;
 		this.cartas = cartas;
 	}
 
@@ -104,6 +104,12 @@ public class Entrenador implements Cloneable, Clasificable {
 		else
 			rango = 'D';
 		return rango;
+	}
+
+	public void premio() {
+		// TODO Auto-generated method stub
+		for (Pokemon p:this.pokemones) 
+			p.buffear();
 	}
 
 }

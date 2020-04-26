@@ -53,7 +53,6 @@ public class Torneo {
 	}
 
 	private void juegaRonda(int ronda) {
-		int aux = -1;
 		switch (ronda) {
 		case 32:
 			System.out.println("Decisiesavos");
@@ -79,7 +78,7 @@ public class Torneo {
 			Enfrentamiento n = new Enfrentamiento(e1, e2);
 			n.batalla(e1, e2);
 			enfrentamientos.add(n);
-			perdedor = n.getPerdedor(); // no esta seteando al perdedor
+			perdedor = n.getPerdedor();
 			this.clasificados.remove(perdedor);
 			System.out.println(n);
 			System.out.println(clasificados);

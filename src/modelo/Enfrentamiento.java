@@ -61,11 +61,13 @@ public class Enfrentamiento {
 			this.perdedor = e2;
 			pokemon1.setExperiencia(pokemon1.getExperiencia() + 3);
 			pokemon2.setExperiencia(pokemon2.getExperiencia() + 1);
+			e1.premio();
 		} else {
 			this.ganador = e2;
 			this.perdedor= e1;
 			pokemon2.setExperiencia(pokemon2.getExperiencia() + 3);
 			pokemon1.setExperiencia(pokemon1.getExperiencia() + 1);
+			e2.premio();
 		}
 		return this.ganador;
 	}
@@ -95,5 +97,4 @@ public class Enfrentamiento {
 		return "Participante 1 :" + this.entrenadorUno.getNombre() + " Participante 2: "
 				+ this.entrenadorDos.getNombre() + " Ganador: " + this.ganador.getNombre() + "\n";
 	}
-
 }
