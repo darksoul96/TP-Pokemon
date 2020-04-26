@@ -42,11 +42,27 @@ public class Prueba {
 			Entrenador e5 = new Entrenador("Brock", cartas);
 			e5.agregarPokemon(PokemonFactory.fabricaPokemon("Cubito", "Hielo", false, true));
 			Entrenador e6 = new Entrenador("Legolas", cartas);
-			e6.agregarPokemon(PokemonFactory.fabricaPokemon("Pato", "Psiquico", false));
+			e6.agregarPokemon(PokemonFactory.fabricaPokemon("Pato", "Psiquico", true));
 			Entrenador e7 = new Entrenador("Goku", cartas);
 			e7.agregarPokemon(PokemonFactory.fabricaPokemon("Charizard", "Fuego", true));
 			Entrenador e8 = new Entrenador("Gandalf", cartas);
-			e8.agregarPokemon(PokemonFactory.fabricaPokemon("Snorlax", "Tierra", false));
+			e8.agregarPokemon(PokemonFactory.fabricaPokemon("Snorlax", "Tierra", true));
+			Entrenador e9 = new Entrenador("Avatar", cartas);
+			e9.agregarPokemon(PokemonFactory.fabricaPokemon("Momo", "Tierra", true));
+			Entrenador e10 = new Entrenador("Mario", cartas);
+			e10.agregarPokemon(PokemonFactory.fabricaPokemon("Luigi", "Fuego", true));
+			Entrenador e11 = new Entrenador("Link", cartas);
+			e11.agregarPokemon(PokemonFactory.fabricaPokemon("Raichu", "Electrico", true));
+			Entrenador e12 = new Entrenador("Steve", cartas);
+			e12.agregarPokemon(PokemonFactory.fabricaPokemon("Ponyta", "Fuego", true));
+			Entrenador e13 = new Entrenador("Master Chief", cartas);
+			e13.agregarPokemon(PokemonFactory.fabricaPokemon("Alakazam", "Psiquico", true));
+			Entrenador e14 = new Entrenador("Geralt", cartas);
+			e14.agregarPokemon(PokemonFactory.fabricaPokemon("Arceus", "Tierra", true));
+			Entrenador e15 = new Entrenador("Jaina", cartas);
+			e15.agregarPokemon(PokemonFactory.fabricaPokemon("Cloyster", "Hielo", false, true));
+			Entrenador e16 = new Entrenador("Illidan", cartas);
+			e16.agregarPokemon(PokemonFactory.fabricaPokemon("Entei", "Fuego", true));
 			torneo.agregarEntrenador(e1);
 			torneo.agregarEntrenador(e2);
 			torneo.agregarEntrenador(e3);
@@ -55,6 +71,14 @@ public class Prueba {
 			torneo.agregarEntrenador(e6);
 			torneo.agregarEntrenador(e7);
 			torneo.agregarEntrenador(e8);
+			torneo.agregarEntrenador(e9);
+			torneo.agregarEntrenador(e10);
+			torneo.agregarEntrenador(e11);
+			torneo.agregarEntrenador(e12);
+			torneo.agregarEntrenador(e13);
+			torneo.agregarEntrenador(e14);
+			torneo.agregarEntrenador(e15);
+			torneo.agregarEntrenador(e16);
 		} else {
 			for (int i = 1; i <= participantes; i++) {
 				System.out.println("Ingrese el nombre del entrenador: " + i);

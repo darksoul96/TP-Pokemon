@@ -19,7 +19,7 @@ public class Enfrentamiento {
 		this.entrenadorUno = entrenadorUno;
 		this.entrenadorDos = entrenadorDos;
 	}
-
+	
 	public Entrenador batalla(Entrenador e1, Entrenador e2) {
 		double puntaje1, puntaje2;
 		Random r = new Random();
@@ -50,10 +50,15 @@ public class Enfrentamiento {
 			pokemon1.serHechizado(hechizo2);
 			e2.setCantidadHechizos(e2.getCantidadHechizos()-1);
 		}
-		if (atacaprimero <= 4)
+		if (atacaprimero <= 4) {
 			pokemon1.atacar(pokemon2);
-		else
 			pokemon2.atacar(pokemon1);
+		}
+		else {
+			pokemon2.atacar(pokemon1);
+			pokemon1.atacar(pokemon2);
+		}
+			
 		puntaje1 = calculaPuntaje(pokemon1);
 		puntaje2 = calculaPuntaje(pokemon2);
 		if (puntaje1 > puntaje2) {
