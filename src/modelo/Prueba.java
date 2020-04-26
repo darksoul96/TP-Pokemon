@@ -14,6 +14,7 @@ public class Prueba {
 
 	public static void main(String[] args) {
 		ICarta[] cartas = new ICarta[3];
+		Torneo torneo = Torneo.getInstanceSingleton();
 		Niebla cartaniebla = new Niebla();
 		Tormenta cartatormenta = new Tormenta();
 		Viento cartaviento = new Viento();
@@ -21,23 +22,11 @@ public class Prueba {
 		cartas[1]=cartatormenta;
 		cartas[2]=cartaniebla;
 		String cadena, nombre, nombreP, tipoP;
-		int participantes = 1, cantidad = 0;
-		Torneo torneo = Torneo.getInstanceSingleton();
-		Scanner scanner = new Scanner(System.in);
+		int participantes = 8, cantidad = 0;
 		System.out.println("Bienvenido al torneo Pokemon \n");
-		System.out.println("Ingrese la cantidad de participantes en el torneo: ");
-		while (participantes < 2) {
-			try {
-				cadena = scanner.nextLine();
-				participantes = Integer.parseInt(cadena);
-
-			} catch (NumberFormatException e) {
-				System.out.println("Numero no valido, ingrese un entero positivo mayor a 1");
-
-			}
-		}
 		System.out.println("Participaran " + participantes + " entrenadores");
-		torneo.setCantidadDeParticipantes(participantes);
+		torneo.setCantidadDeParticipantes(8);
+		Scanner scanner = new Scanner(System.in);
 		for (int i = 1; i <= participantes; i++) {
 			System.out.println("Ingrese el nombre del entrenador: " + i);
 			nombre = scanner.nextLine();
