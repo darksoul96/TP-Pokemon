@@ -34,7 +34,7 @@ public class Psiquico extends Pokemon {
 
 	@Override
 	public void hechizarNiebla() {
-
+		System.out.println("El pokemon "+ this.nombre + " al ser de tipo Psiquico, es inmune al hechizo Niebla!");
 	}
 
 	@Override

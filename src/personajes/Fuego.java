@@ -39,6 +39,7 @@ public class Fuego extends Pokemon {
 	@Override
 	public void hechizarViento() {
 		this.ataque = 0.7;
+		System.out.println(" El pokemon " + this.nombre + " al ser de tipo Fuego, recibio un efecto especial de la carta Viento.");
 	}
 
 }

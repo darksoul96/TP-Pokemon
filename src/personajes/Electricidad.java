@@ -43,7 +43,7 @@ public class Electricidad extends Pokemon {
 
 	@Override
 	public void hechizarTormenta() {
-		// TODO Auto-generated method stub
+		System.out.println("El pokemon " + this.nombre + " al ser de tipo Electricidad, es inmune a la carta tormenta!");
 		
 	}
 
