@@ -53,7 +53,7 @@ public class Enfrentamiento {
 		if (atacaprimero <= 4)
 			pokemon1.atacar(pokemon2);
 		else
-			pokemon1.atacar(pokemon2);
+			pokemon2.atacar(pokemon1);
 		puntaje1 = calculaPuntaje(pokemon1);
 		puntaje2 = calculaPuntaje(pokemon2);
 		if (puntaje1 > puntaje2) {
