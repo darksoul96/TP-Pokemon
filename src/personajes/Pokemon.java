@@ -3,10 +3,11 @@ package personajes;
 import java.util.Random;
 
 import interfaces.Atacable;
+import interfaces.Clasificable;
 import interfaces.Hechizable;
 import interfaces.ICarta;
 
-public abstract class Pokemon implements Cloneable, Atacable, Hechizable {
+public abstract class Pokemon implements Cloneable, Atacable, Hechizable, Clasificable {
 	protected String nombre;
 	protected double experiencia = 0;
 	protected double escudo;
@@ -106,5 +107,21 @@ public abstract class Pokemon implements Cloneable, Atacable, Hechizable {
 	}
 
 	public void fallar() {
+	}
+
+	@Override
+	public char calculaClasificacion() {
+		char rango;
+		if (this.experiencia > 19.2)
+			rango = 'S';
+		else if (this.experiencia > 14.4)
+			rango = 'A';
+		else if (this.experiencia > 9.6)
+			rango = 'B';
+		else if (this.experiencia > 4.8)
+			rango = 'C';
+		else
+			rango = 'D';
+		return rango;
 	}
 }

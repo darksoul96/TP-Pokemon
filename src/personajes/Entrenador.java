@@ -7,9 +7,10 @@ import java.util.Random;
 
 import exceptions.CantidadHechizosExcedidosException;
 import hechizos.Niebla;
+import interfaces.Clasificable;
 import interfaces.ICarta;
 
-public class Entrenador implements Cloneable {
+public class Entrenador implements Cloneable, Clasificable {
 
 	private String nombre;
 	private ArrayList<Pokemon> pokemones = new ArrayList<Pokemon>();
@@ -68,7 +69,7 @@ public class Entrenador implements Cloneable {
 		ICarta carta = null;
 		if (indicecarta != 3) {
 			if (this.getCantidadHechizos() == 0)
-				throw new CantidadHechizosExcedidosException();
+				throw new CantidadHechizosExcedidosException("El entrenador "+this.nombre+" se quedo sin cartas de hechizo");
 			else
 				carta = cartas[indicecarta];
 		}
@@ -82,6 +83,27 @@ public class Entrenador implements Cloneable {
 		for (Pokemon p : pokemones)
 			aux += p.toString() + "\n";
 		return aux;
+	}
+
+	@Override
+	public char calculaClasificacion() {
+		char rango;
+		double experiencia = 0;
+		for (Pokemon p : this.pokemones)
+			experiencia += p.experiencia;
+		experiencia /= this.pokemones.size();
+
+		if (experiencia > 19.2)
+			rango = 'S';
+		else if (experiencia > 14.4)
+			rango = 'A';
+		else if (experiencia > 9.6)
+			rango = 'B';
+		else if (experiencia > 4.8)
+			rango = 'C';
+		else
+			rango = 'D';
+		return rango;
 	}
 
 }
