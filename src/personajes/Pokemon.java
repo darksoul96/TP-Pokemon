@@ -127,13 +127,13 @@ public abstract class Pokemon implements Cloneable, Atacable, Hechizable, Clasif
 	@Override
 	public char calculaClasificacion() {
 		char rango;
-		if (this.experiencia > 19.2)
+		if (this.experiencia >=12)
 			rango = 'S';
-		else if (this.experiencia > 14.4)
+		else if (this.experiencia >= 10)
 			rango = 'A';
-		else if (this.experiencia > 9.6)
+		else if (this.experiencia >=4)
 			rango = 'B';
-		else if (this.experiencia > 4.8)
+		else if (this.experiencia >=1)
 			rango = 'C';
 		else
 			rango = 'D';

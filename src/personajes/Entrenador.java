@@ -91,13 +91,13 @@ public class Entrenador implements Cloneable, Clasificable {
 			experiencia += p.experiencia;
 		experiencia /= this.pokemones.size();
 
-		if (experiencia > 19.2)
+		if (experiencia >= 12)
 			rango = 'S';
-		else if (experiencia > 14.4)
+		else if (experiencia >= 10)
 			rango = 'A';
-		else if (experiencia > 9.6)
+		else if (experiencia >= 4)
 			rango = 'B';
-		else if (experiencia > 4.8)
+		else if (experiencia >= 1)
 			rango = 'C';
 		else
 			rango = 'D';
