@@ -95,6 +95,6 @@ public class Enfrentamiento {
 	@Override
 	public String toString() {
 		return "Participante 1 :" + this.entrenadorUno.getNombre() + " Participante 2: "
-				+ this.entrenadorDos.getNombre() + " Ganador: " + this.ganador.getNombre() + "\n";
+				+ this.entrenadorDos.getNombre() + ", Ganador: " + this.ganador.getNombre() + "\n";
 	}
 }
