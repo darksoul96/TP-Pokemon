@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
+import exceptions.CantidadHechizosExcedidosException;
 import hechizos.Niebla;
 import interfaces.ICarta;
 
@@ -18,8 +19,8 @@ public class Entrenador implements Cloneable {
 
 	public Entrenador(String nombre, ICarta[] cartas) {
 		this.nombre = nombre;
-		this.cantidadHechizos = 0;
-		this.cartas=cartas;
+		this.cantidadHechizos = 5;
+		this.cartas = cartas;
 	}
 
 	public String getNombre() {
@@ -60,13 +61,17 @@ public class Entrenador implements Cloneable {
 		return cartas;
 	}
 
-	public ICarta elegirCarta() {
+	public ICarta elegirCarta() throws CantidadHechizosExcedidosException {
 		int indicecarta;
 		Random r = new Random();
 		indicecarta = r.nextInt(4);
-		ICarta carta=null;
-		if (indicecarta != 3)
-			carta = cartas[indicecarta];
+		ICarta carta = null;
+		if (indicecarta != 3) {
+			if (this.getCantidadHechizos() == 0)
+				throw new CantidadHechizosExcedidosException();
+			else
+				carta = cartas[indicecarta];
+		}
 		return carta;
 	}
 

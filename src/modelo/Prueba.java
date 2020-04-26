@@ -74,7 +74,6 @@ public class Prueba {
 						e1.agregarPokemon(PokemonFactory.fabricaPokemon(nombreP, tipoP, true));
 					else
 						e1.agregarPokemon(PokemonFactory.fabricaPokemon(nombreP, tipoP, false));
-
 				}
 				torneo.agregarEntrenador(e1);
 			}

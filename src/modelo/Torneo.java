@@ -77,12 +77,7 @@ public class Torneo {
 			e1=this.clasificados.get(i);
 			e2=this.clasificados.get(i+1);
 			Enfrentamiento n = new Enfrentamiento(e1, e2);
-			//Enfrentamiento n = new Enfrentamiento(this.clasificados.get(i), this.clasificados.get(i+1));
-			try { // PARA PROBAR NOMAS // esto no va aca
-				n.batalla(e1, e2);
-			} catch (CantidadHechizosExcedidosException e) {
-				System.out.println("cantidad de hechizos excedidos");
-			} 
+			n.batalla(e1, e2);
 			enfrentamientos.add(n);
 			perdedor = n.getPerdedor(); // no esta seteando al perdedor
 			this.clasificados.remove(perdedor);

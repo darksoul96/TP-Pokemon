@@ -26,19 +26,19 @@ public class Enfrentamiento {
 		int atacaprimero = r.nextInt(11); // flip a coin, de 0 a 4 ataca primero E1, sino ataca primero E2.
 		ICarta hechizo1 = e1.elegirCarta();
 		ICarta hechizo2 = e2.elegirCarta();
-		// int p1 = r.nextInt(e1.getPokemones().size());
-		// int p2 = r.nextInt(e2.getPokemones().size());
-		int p1 = 0;
-		int p2 = 0;
+		int p1 = r.nextInt(e1.getPokemones().size());
+		int p2 = r.nextInt(e2.getPokemones().size());
 		Pokemon pokemon1;
 		Pokemon pokemon2;
 		pokemon1 = e1.getPokemones().get(p1);
 		pokemon2 = e2.getPokemones().get(p2);
 		if (hechizo1 != null) {
 			pokemon2.serHechizado(hechizo1);
+			e1.setCantidadHechizos(e1.getCantidadHechizos()-1);
 		}
 		if (hechizo2 != null) {
 			pokemon1.serHechizado(hechizo2);
+			e2.setCantidadHechizos(e2.getCantidadHechizos()-1);
 		}
 		if (atacaprimero <= 4)
 			pokemon1.atacar(pokemon2);
