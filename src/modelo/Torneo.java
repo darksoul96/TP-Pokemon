@@ -82,7 +82,7 @@ public class Torneo {
 			perdedor = n.getPerdedor();
 			this.clasificados.remove(perdedor);
 			System.out.println(n);
-			System.out.println(clasificados);
+			//System.out.println(clasificados);
 		}
 	}
 
