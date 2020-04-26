@@ -88,25 +88,35 @@ public abstract class Pokemon implements Cloneable, Atacable, Hechizable, Clasif
 	@Override
 	public void hechizarTormenta() {
 		this.vitalidad = this.vitalidad * 0.8;
+		System.out.println("El pokemon " + this.nombre + " ha sido hechizado por la carta Tormenta.");
 	}
 
 	@Override
 	public void hechizarNiebla() {
 		Random r = new Random();
 		int chanceDeFallar = r.nextInt(10);
-		if (chanceDeFallar < 2)
+		if (chanceDeFallar < 2) {
 			this.hechizadoPorNiebla = true;
+			System.out.println("El pokemon " + this.nombre + " ha sido hechizado por la carta Niebla.");
+		} else {
+			System.out.println("El pokemon " + this.nombre + " ha resistido el hechizo de la carta Niebla.");
+		}
 	}
 
 	@Override
 	public void hechizarViento() {
 		Random r = new Random();
 		int chanceDeReducirVida = r.nextInt(10);
-		if (chanceDeReducirVida < 2)
+		if (chanceDeReducirVida < 2) {
 			this.vitalidad = this.vitalidad * 85;
+			System.out.println("El pokemon " + this.nombre + " ha sido hechizado por la carta Viento.");
+		}
+		else
+			System.out.println("El pokemon " + this.nombre + " ha resisitido el hechizo de la carta Viento.");
 	}
 
 	public void fallar() {
+		System.out.println("El pokemon " + this.nombre + " ha fallado su ataque inicial!");
 	}
 
 	@Override
@@ -127,8 +137,8 @@ public abstract class Pokemon implements Cloneable, Atacable, Hechizable, Clasif
 
 	public void buffear() {
 		// TODO Auto-generated method stub
-		this.vitalidad*=1.1;
-		this.ataque*=1.1;
-		this.escudo*=1.1;
+		this.vitalidad *= 1.1;
+		this.ataque *= 1.1;
+		this.escudo *= 1.1;
 	}
 }
