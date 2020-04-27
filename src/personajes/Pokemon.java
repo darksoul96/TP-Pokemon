@@ -125,7 +125,7 @@ public abstract class Pokemon implements Cloneable, Atacable, Hechizable, Clasif
 		Random r = new Random();
 		int chanceDeReducirVida = r.nextInt(10);
 		if (chanceDeReducirVida < 2) {
-			this.vitalidad = this.vitalidad * 85;
+			this.vitalidad = this.vitalidad * 0.85;
 			System.out.println("El pokemon " + this.nombre + " ha sido hechizado por la carta Viento.");
 		} else
 			System.out.println("El pokemon " + this.nombre + " ha resisitido el hechizo de la carta Viento.");

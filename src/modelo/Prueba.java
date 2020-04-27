@@ -74,7 +74,7 @@ public class Prueba {
 			e12.agregarPokemon(PokemonFactory.fabricaPokemon("Tails", "Agua", true));
 			Entrenador e13 = new Entrenador("Master Chief", cartas);
 			e13.agregarPokemon(PokemonFactory.fabricaPokemon("Alakazam", "Psiquico", true));
-			e13.agregarPokemon(PokemonFactory.fabricaPokemon("Pichu", "Electricidad", true));
+			e13.agregarPokemon(PokemonFactory.fabricaPokemon("Rayo", "Electricidad", true));
 			Entrenador e14 = new Entrenador("Geralt", cartas);
 			e14.agregarPokemon(PokemonFactory.fabricaPokemon("Arceus", "Tierra", true));
 			e14.agregarPokemon(PokemonFactory.fabricaPokemon("Psyduck", "Psiquico", true));

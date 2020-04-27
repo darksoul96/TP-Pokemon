@@ -37,15 +37,19 @@ public class Enfrentamiento {
 		Random r = new Random();
 		int atacaprimero = r.nextInt(11); // flip a coin, de 0 a 4 ataca primero E1, sino ataca primero E2.
 		ICarta hechizo1;
+		System.out.println("Enfrentamiento: \n");
+		System.out.println(e1.getNombre() + " se enfrenta a " + e2.getNombre());
 		try {
 			hechizo1 = e1.elegirCarta();
 		} catch (CantidadHechizosExcedidosException e) {
+			System.out.println("El entrenador: "+e1.getNombre() + " se ha quedado sin hechizos, no puede utilizar carta");
 			hechizo1 = null;
 		}
 		ICarta hechizo2;
 		try {
 			hechizo2 = e2.elegirCarta();
 		} catch (CantidadHechizosExcedidosException e) {
+			System.out.println("El entrenador: "+e2.getNombre() + " se ha quedado sin hechizos, no puede utilizar carta");
 			hechizo2 = null;
 		}
 		int p1 = r.nextInt(e1.getPokemones().size());
@@ -54,8 +58,6 @@ public class Enfrentamiento {
 		Pokemon pokemon2;
 		pokemon1 = e1.getPokemones().get(p1);
 		pokemon2 = e2.getPokemones().get(p2);
-		System.out.println("Enfrentamiento: \n");
-		System.out.println(e1.getNombre() + " se enfrenta a " + e2.getNombre());
 		if (hechizo1 != null) {
 			System.out.println("El entrenador " + e1.getNombre() + " ha utilizado una carta.");
 			pokemon2.serHechizado(hechizo1);

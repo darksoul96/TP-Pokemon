@@ -72,7 +72,9 @@ public class Entrenador implements Cloneable, Clasificable {
 
 	/**
 	 * @return Una carta para utilizar en un combate
-	 * @throws Si ya se excedio la cantida de cartas para usar, sale una excepcion.
+	 * @throws CantidadHechizosExcedidosException Si ya se excedio la cantida de
+	 *                                            cartas para usar, sale una
+	 *                                            excepcion.
 	 */
 	public ICarta elegirCarta() throws CantidadHechizosExcedidosException {
 		int indicecarta;
