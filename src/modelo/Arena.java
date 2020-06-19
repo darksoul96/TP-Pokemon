@@ -2,7 +2,7 @@ package modelo;
 
 import interfaces.IStateArena;
 
-public class Arena {
+public class Arena extends Thread {
 	
 	private String nombreArena;
 	private IStateArena estado;
@@ -29,5 +29,9 @@ public class Arena {
 	public String getNombreArena() {
 		return nombreArena;
 	}
-
+	
+	@Override
+	public void run() {
+		
+	}
 }

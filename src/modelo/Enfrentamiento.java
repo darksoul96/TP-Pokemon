@@ -12,7 +12,7 @@ import personajes.Pokemon;
  * entrenador. Dos participantes y ganador y perdedor.
  *
  */
-public class Enfrentamiento extends Thread {
+public class Enfrentamiento {
 
 	private Entrenador entrenadorUno;
 	private Entrenador entrenadorDos;
@@ -130,11 +130,5 @@ public class Enfrentamiento extends Thread {
 	public String toString() {
 		return "Participante 1 :" + this.entrenadorUno.getNombre() + " Participante 2: "
 				+ this.entrenadorDos.getNombre() + ", Ganador: " + this.ganador.getNombre() + "\n";
-	}
-
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		super.run();
 	}
 }
