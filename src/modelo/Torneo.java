@@ -1,6 +1,7 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import exceptions.CantidadHechizosExcedidosException;
 import exceptions.PokemonInvalidoException;
@@ -16,6 +17,7 @@ public class Torneo {
 	private static Torneo torneo;
 	private ArrayList<Entrenador> participantes;
 	private ArrayList<Entrenador> clasificados;
+	private ArrayList<Grupo> grupos;
 	private ArrayList<Enfrentamiento> enfrentamientos;
 	private int cantidadDeParticipantes;
 
@@ -43,6 +45,59 @@ public class Torneo {
 
 	public void agregarEntrenador(Entrenador entrenador) {
 		this.participantes.add(entrenador);
+	}
+
+	public void generaGrupos(Entrenador[] participantes) { // Cree la clase grupo y hago un arraylist de grupos
+		Grupo g1 = new Grupo(); // Cada grupo tiene dentro de si, un arraylist de 4 entrenadores.
+		Grupo g2 = new Grupo();
+		Grupo g3 = new Grupo();
+		Grupo g4 = new Grupo();
+		Grupo g5 = new Grupo();
+		Grupo g6 = new Grupo();
+		Grupo g7 = new Grupo();
+		Grupo g8 = new Grupo();
+		Random r = new Random();
+		int i = 0;
+		while (this.participantes.size() != 0) {
+			i = r.nextInt(this.participantes.size());
+			if (g1.isLleno() != true) {
+				g1.agregarEntrenador(this.participantes.get(i));
+				this.participantes.remove(i);
+			} else if (g2.isLleno() != true) {
+				g2.agregarEntrenador(this.participantes.get(i));
+				this.participantes.remove(i);
+			} else if (g3.isLleno() != true) {
+				g3.agregarEntrenador(this.participantes.get(i));
+				this.participantes.remove(i);
+			} else if (g4.isLleno() != true) {
+				g4.agregarEntrenador(this.participantes.get(i));
+				this.participantes.remove(i);
+			} else if (g4.isLleno() != true) {
+				g4.agregarEntrenador(this.participantes.get(i));
+				this.participantes.remove(i);
+			} else if (g5.isLleno() != true) {
+				g5.agregarEntrenador(this.participantes.get(i));
+				this.participantes.remove(i);
+			} else if (g6.isLleno() != true) {
+				g6.agregarEntrenador(this.participantes.get(i));
+				this.participantes.remove(i);
+			} else if (g7.isLleno() != true) {
+				g7.agregarEntrenador(this.participantes.get(i));
+				this.participantes.remove(i);
+			} else if (g8.isLleno() != true) {
+				g8.agregarEntrenador(this.participantes.get(i));
+				this.participantes.remove(i);
+			}
+
+		}
+		this.grupos.add(g1);
+		this.grupos.add(g2);
+		this.grupos.add(g3);
+		this.grupos.add(g4);
+		this.grupos.add(g5);
+		this.grupos.add(g6);
+		this.grupos.add(g7);
+		this.grupos.add(g8);
 	}
 
 	/**
@@ -110,7 +165,8 @@ public class Torneo {
 	/**
 	 * @param tipo String con el texto que debera chequear si es un pokemon
 	 * @return Falso si no es un tipo valido de Pokemon, verdadero si lo es
-	 * @throws PokemonInvalidoException excepcion que avisa que no se ha ingresado correctamente un pokemon.
+	 * @throws PokemonInvalidoException excepcion que avisa que no se ha ingresado
+	 *                                  correctamente un pokemon.
 	 */
 	public boolean validaPokemon(String tipo) throws PokemonInvalidoException {
 		boolean respuesta = false;
