@@ -4,5 +4,5 @@ import modelo.Enfrentamiento;
 
 public interface IStateArena {
 
-	void comenzar();
+	void comenzar(Enfrentamiento enfrentamiento);
 }

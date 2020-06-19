@@ -14,7 +14,7 @@ public class Arena {
 	}
 	
 	public void comenzar(Enfrentamiento enfrentamiento) {
-		
+		this.estado.comenzar(enfrentamiento);
 	}
 
 	

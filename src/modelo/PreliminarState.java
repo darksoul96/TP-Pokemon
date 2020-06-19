@@ -12,7 +12,7 @@ public class PreliminarState implements IStateArena {
 
 
 	@Override
-	public void comenzar() {
+	public void comenzar(Enfrentamiento enfrentamiento) {
 		// TODO Auto-generated method stub
 		
 	}
