@@ -11,13 +11,7 @@ public class BatallaState implements IStateArena {
 	}
 
 	@Override
-	public void comenzarArena() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void agregarEnfrentamiento(Enfrentamiento enfrentamiento) {
+	public void comenzar() {
 		// TODO Auto-generated method stub
 		
 	}

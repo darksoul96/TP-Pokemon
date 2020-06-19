@@ -13,13 +13,10 @@ public class Arena {
 		this.estado=new PreliminarState(this);
 	}
 	
-	public void comenzarArena(Enfrentamiento enfrentamiento) {
+	public void comenzar(Enfrentamiento enfrentamiento) {
 		
 	}
 
-	public void agregarEnfrentamiento(Enfrentamiento enfrentamiento) {
-		this.estado.agregarEnfrentamiento(enfrentamiento);
-	}
 	
 	public IStateArena getEstado() {
 		return estado;
