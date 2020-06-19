@@ -20,6 +20,7 @@ public class Torneo {
 	private ArrayList<Grupo> grupos;
 	private ArrayList<Enfrentamiento> enfrentamientos;
 	private int cantidadDeParticipantes;
+	private Arena[] arenas;
 
 	private Torneo() {
 		this.participantes = new ArrayList<Entrenador>();
@@ -107,11 +108,17 @@ public class Torneo {
 	public void arrancaTorneo() {
 		this.clasificados = (ArrayList<Entrenador>) this.participantes.clone();
 		if (clasificados.size() == this.cantidadDeParticipantes) {
+			faseDeGrupo();
 			while (clasificados.size() != 1) {
 				this.juegaRonda(clasificados.size());
 			}
 			System.out.println("El campeon es " + this.clasificados.get(0));
 		}
+	}
+
+	private void faseDeGrupo() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	public void setCantidadDeParticipantes(int cantidadDeParticipantes) {
@@ -145,7 +152,7 @@ public class Torneo {
 			e1 = this.clasificados.get(i);
 			e2 = this.clasificados.get(i + 1);
 			Enfrentamiento n = new Enfrentamiento(e1, e2);
-			n.batalla(e1, e2);
+			n.batalla();
 			enfrentamientos.add(n);
 			perdedor = n.getPerdedor();
 			this.clasificados.remove(perdedor);
