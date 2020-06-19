@@ -6,7 +6,7 @@ import personajes.Entrenador;
 
 public class Grupo {
 	private ArrayList<Entrenador> integrantes;
-	private String Nunero;
+	private String Numero;
 	private boolean lleno = false;
 	boolean grupoFinalizado = false;
 	int cantidadEf =0;
