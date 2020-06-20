@@ -129,25 +129,22 @@ public class Torneo {
 	}
 
 	private void faseDeGrupo() {
-		boolean FaseDeGruposFinalizada = false;
-		Enfrentamiento [] enfrentamientos = null;
+		boolean faseDeGruposFinalizada = false;
+		Enfrentamiento [] enfrentamientos=new Enfrentamiento[8];
 		Random r = new Random();
-		while(FaseDeGruposFinalizada != true) {
-			for(int i =0;i<8;i++) {
+		while(faseDeGruposFinalizada == false) {
+			for(int i=0;i<8;i++) {
 				enfrentamientos[i] = grupos.get(i).generaEnfrentamiento();
 				if(enfrentamientos[i]!=null)
 					enfrentamientos[i].setRecursoCompartido(arenas[r.nextInt(3)]);
 				if(grupos.get(i).isGrupoFinalizado()==true)
-					FaseDeGruposFinalizada = true;
+					faseDeGruposFinalizada = true;
 				else
-					FaseDeGruposFinalizada = false;
+					faseDeGruposFinalizada = false;
 			}
-			for(int i=0;i<8;i++) {
+			for(int i=0;i<8;i++)
 				enfrentamientos[i].start();
-			}
 		}
-
-		
 	}
 
 	public void setCantidadDeParticipantes(int cantidadDeParticipantes) {
