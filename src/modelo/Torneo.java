@@ -108,6 +108,7 @@ public class Torneo {
 	public void arrancaTorneo() {
 		this.clasificados = (ArrayList<Entrenador>) this.participantes.clone();
 		inicializarArenas();
+		faseDeGrupo();
 		if (clasificados.size() == this.cantidadDeParticipantes) {
 			faseDeGrupo();
 			while (clasificados.size() != 1) {
