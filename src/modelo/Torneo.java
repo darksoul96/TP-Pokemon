@@ -129,7 +129,9 @@ public class Torneo {
 	}
 
 	private void faseDeGrupo() {
-		// TODO Auto-generated method stub
+		for(int i =0;i<8;i++) {
+			grupos.get(i).generaEnfrentamiento().setRecursoCompartido(recursoCompartido);
+		}
 		
 	}
 
