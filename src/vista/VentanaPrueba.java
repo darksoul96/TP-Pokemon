@@ -1,6 +1,7 @@
 package vista;
 
 import java.awt.BorderLayout;
+import java.awt.Button;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -15,6 +16,7 @@ import javax.swing.JScrollPane;
 import java.awt.FlowLayout;
 import javax.swing.border.TitledBorder;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -81,14 +83,15 @@ public class VentanaPrueba extends JFrame implements ActionListener {
 	 * Create the frame.
 	 */
 	public VentanaPrueba() {
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1030, 682);
 		this.contentPane = new JPanel();
 		this.contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		this.contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(this.contentPane);
-		Dimension defaultSize = new Dimension(1030,682);
-		
+		Dimension defaultSize = new Dimension(1030, 682);
+
 		this.contentPane.setMaximumSize(defaultSize);
 		this.contentPane.setMinimumSize(defaultSize);
 
@@ -196,11 +199,12 @@ public class VentanaPrueba extends JFrame implements ActionListener {
 		this.panelBotones.add(this.panelBotonOpciones);
 
 		this.btnSortear = new JButton("Sortear");
+		this.btnSortear.addActionListener(this);
 		this.panelBotonOpciones.add(this.btnSortear);
-		
+
 		this.btnNewButton_1 = new JButton("Importar Entrenadores");
 		this.panelBotonOpciones.add(this.btnNewButton_1);
-		
+
 		this.btnNewButton_2 = new JButton("Exportar entrenadores");
 		this.panelBotonOpciones.add(this.btnNewButton_2);
 
@@ -222,20 +226,25 @@ public class VentanaPrueba extends JFrame implements ActionListener {
 		this.contentPane.add(this.panelSur, BorderLayout.SOUTH);
 		this.panelSur.setPreferredSize(new Dimension(50, 50));
 		this.panelSur.setLayout(new BorderLayout(0, 0));
-		
+
 		this.scrollPane_3 = new JScrollPane();
 		this.panelSur.add(this.scrollPane_3, BorderLayout.CENTER);
-		
+
 		this.list = new JList();
 		this.scrollPane_3.setViewportView(this.list);
 
 		// this.btnNewButton.setVisible(false);
+		this.btnSortear.addActionListener(this);
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand().equals("Agregar Entrenador")) {
-			VentanaEntrenador nwe = new VentanaEntrenador();
-			nwe.NewScreen();
+		if (e.getActionCommand().equals("Sortear")) {
+			Component c = (Component) e.getSource();
+			c.setVisible(false);
+			c.repaint();
+			((JPanel) c.getParent()).revalidate();
+			// JButton b=btnAgregarEntrenador;
+			// b.setVisible(false);
 		}
 	}
 }
