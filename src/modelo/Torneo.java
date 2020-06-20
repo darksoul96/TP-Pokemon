@@ -123,9 +123,9 @@ public class Torneo {
 		arenas[1]=new Arena("Arena 2");
 		arenas[2]=new Arena("Arena 3");
 		arenas[3]=new Arena("Arena 4");
-		arenas[4]=new Arena("Arena 5");
-		arenas[5]=new Arena("Arena 6");
-		arenas[6]=new Arena("Arena 7");
+		//arenas[4]=new Arena("Arena 5");
+		//arenas[5]=new Arena("Arena 6");
+		//arenas[6]=new Arena("Arena 7");
 	}
 
 	private void faseDeGrupo() {
