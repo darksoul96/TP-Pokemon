@@ -55,4 +55,9 @@ public class Grupo {
 		return lleno;
 	}
 
+	public boolean isGrupoFinalizado() {
+		return grupoFinalizado;
+	}
+	
+
 }
