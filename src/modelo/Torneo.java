@@ -48,7 +48,7 @@ public class Torneo {
 		this.participantes.add(entrenador);
 	}
 
-	public void generaGrupos(Entrenador[] participantes) { // Cree la clase grupo y hago un arraylist de grupos
+	public void generaGrupos(ArrayList <Entrenador> participantes) { // Cree la clase grupo y hago un arraylist de grupos
 		Grupo g1 = new Grupo("Grupo 1");			 // Cada grupo tiene dentro de si, un arraylist de 4 entrenadores.
 		Grupo g2 = new Grupo("Grupo 2");
 		Grupo g3 = new Grupo("Grupo 3");
@@ -108,6 +108,7 @@ public class Torneo {
 	public void arrancaTorneo() {
 		this.clasificados = (ArrayList<Entrenador>) this.participantes.clone();
 		inicializarArenas();
+		generaGrupos(participantes);
 		faseDeGrupo();
 		if (clasificados.size() == this.cantidadDeParticipantes) {
 			faseDeGrupo();
