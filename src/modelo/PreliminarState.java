@@ -1,5 +1,6 @@
 package modelo;
 
+import java.util.concurrent.TimeUnit;
 import interfaces.IStateArena;
 
 public class PreliminarState implements IStateArena {
@@ -13,7 +14,13 @@ public class PreliminarState implements IStateArena {
 
 	@Override
 	public void comenzar(Enfrentamiento enfrentamiento) {
-		// TODO Auto-generated method stub
+		try {
+			TimeUnit.SECONDS.sleep(2);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		BatallaState n = new BatallaState(arena);
+		arena.setEstado(n);
 		
 	}
 	
