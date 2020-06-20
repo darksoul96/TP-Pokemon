@@ -19,6 +19,9 @@ public class Enfrentamiento extends Thread {
 	private Entrenador ganador;
 	private Entrenador perdedor;
 	private Arena recursoCompartido;
+	private String logPreliminar = "";
+	private String logBatalla = "";
+	private String logDefinicion = "";
 
 	public Enfrentamiento(Entrenador entrenadorUno, Entrenador entrenadorDos) {
 		super();
@@ -34,74 +37,94 @@ public class Enfrentamiento extends Thread {
 	 *           batalla.
 	 * @return Devuelve un tipo Entrenador, el ganador de ambos.
 	 */
-	public Entrenador batalla() {
-		double puntaje1, puntaje2;
+	public Entrenador batallsa() {
+
+		return this.ganador;
+	}
+
+	public void preparacionEntrenadores() {
+
 		Random r = new Random();
-		int atacaprimero = r.nextInt(11); // flip a coin, de 0 a 4 ataca primero E1, sino ataca primero E2.
-		ICarta hechizo1;
-		System.out.println("Enfrentamiento: \n");
-		System.out.println(this.entrenadorUno.getNombre() + " se enfrenta a " + this.entrenadorDos.getNombre());
 		try {
-			hechizo1 = this.entrenadorUno.elegirCarta();
+			this.entrenadorUno.setHechizoActivo(this.entrenadorUno.elegirCarta());
 		} catch (CantidadHechizosExcedidosException e) {
-			System.out.println("El entrenador: "+this.entrenadorUno.getNombre() + " se ha quedado sin hechizos, no puede utilizar carta");
-			hechizo1 = null;
-		}
-		ICarta hechizo2;
-		try {
-			hechizo2 = this.entrenadorDos.elegirCarta();
-		} catch (CantidadHechizosExcedidosException e) {
-			System.out.println("El entrenador: "+this.entrenadorDos.getNombre() + " se ha quedado sin hechizos, no puede utilizar carta");
-			hechizo2 = null;
-		}
-		int p1 = r.nextInt(this.entrenadorUno.getPokemones().size());
-		int p2 = r.nextInt(this.entrenadorDos.getPokemones().size());
-		Pokemon pokemon1;
-		Pokemon pokemon2;
-		pokemon1 = this.entrenadorUno.getPokemones().get(p1);
-		pokemon2 = this.entrenadorDos.getPokemones().get(p2);
-		if (hechizo1 != null) {
-			System.out.println("El entrenador " + this.entrenadorUno.getNombre() + " ha utilizado una carta.");
-			pokemon2.serHechizado(hechizo1);
-			this.entrenadorUno.setCantidadHechizos(this.entrenadorUno.getCantidadHechizos() - 1);
-		}
-		if (hechizo2 != null) {
-			System.out.println("El entrenador " + this.entrenadorDos.getNombre() + " ha utilizado una carta.");
-			pokemon1.serHechizado(hechizo2);
-			this.entrenadorDos.setCantidadHechizos(this.entrenadorDos.getCantidadHechizos() - 1);
-		}
-		if (atacaprimero <= 4) {
-			System.out.println(pokemon1.getNombre() + " realiza sus ataques");
-			pokemon1.atacar(pokemon2);
-			System.out.println(pokemon2.getNombre() + " realiza sus ataques");
-			pokemon2.atacar(pokemon1);
-		} else {
-			System.out.println(pokemon2.getNombre() + " realiza sus ataques");
-			pokemon2.atacar(pokemon1);
-			System.out.println(pokemon1.getNombre() + " realiza sus ataques");
-			pokemon1.atacar(pokemon2);
+			this.entrenadorUno.setHechizoActivo(null);
 		}
 
-		puntaje1 = calculaPuntaje(pokemon1);
-		System.out.println("Puntaje de " + pokemon1.getNombre() + " : " + (int) puntaje1);
-		puntaje2 = calculaPuntaje(pokemon2);
-		System.out.println("Puntaje de " + pokemon2.getNombre() + " : " + (int) puntaje2);
+		try {
+			this.entrenadorDos.setHechizoActivo(this.entrenadorDos.elegirCarta());
+		} catch (CantidadHechizosExcedidosException e) {
+			this.entrenadorDos.setHechizoActivo(null);
+		}
+
+		this.entrenadorUno.setPokemonActivo(
+				this.entrenadorUno.getPokemones().get(r.nextInt(this.entrenadorUno.getPokemones().size())));
+		this.entrenadorDos.setPokemonActivo(
+				this.entrenadorDos.getPokemones().get(r.nextInt(this.entrenadorDos.getPokemones().size())));
+
+		this.appendLogPreliminar(this.entrenadorUno + " va a pelear con " + this.entrenadorDos + "\n");
+		this.appendLogPreliminar(this.entrenadorUno + "elige a " + this.entrenadorUno.getPokemonActivo() + "\n");
+		this.appendLogPreliminar(this.entrenadorDos + "elige a " + this.entrenadorDos.getPokemonActivo() + "\n");
+	}
+
+	public void batalla() {
+		Random r = new Random();
+		int atacaprimero = r.nextInt(11);
+
+		if (this.entrenadorUno.getHechizoActivo() != null) {
+			this.appendLogBatalla("El entrenador " + this.entrenadorUno + " utilizo una carta\n");
+			this.entrenadorDos.getPokemonActivo().serHechizado(this.entrenadorUno.getHechizoActivo());
+			this.entrenadorUno.setCantidadHechizos(this.entrenadorUno.getCantidadHechizos() - 1);
+		}
+		if (this.entrenadorDos.getHechizoActivo() != null) {
+			this.appendLogBatalla("El entrenador " + this.entrenadorDos + " utilizo una carta\n");
+			this.entrenadorUno.getPokemonActivo().serHechizado(this.entrenadorDos.getHechizoActivo());
+			this.entrenadorDos.setCantidadHechizos(this.entrenadorDos.getCantidadHechizos() - 1);
+		}
+
+		if (atacaprimero <= 4) {
+			this.appendLogBatalla("El pokemon " + this.entrenadorUno.getPokemonActivo() + " realiza sus ataques\n");
+			this.entrenadorUno.getPokemonActivo().atacar(this.entrenadorDos.getPokemonActivo());
+			this.appendLogBatalla("El pokemon " + this.entrenadorDos.getPokemonActivo() + " realiza sus ataques\n");
+			this.entrenadorDos.getPokemonActivo().atacar(this.entrenadorUno.getPokemonActivo());
+		} else {
+			this.appendLogBatalla("El pokemon " + this.entrenadorDos.getPokemonActivo() + " realiza sus ataques\n");
+			this.entrenadorDos.getPokemonActivo().atacar(this.entrenadorUno.getPokemonActivo());
+			this.appendLogBatalla("El pokemon " + this.entrenadorUno.getPokemonActivo() + " realiza sus ataques\n");
+			this.entrenadorUno.getPokemonActivo().atacar(this.entrenadorDos.getPokemonActivo());
+		}
+	}
+
+	public void definicion() {
+
+		double puntaje1, puntaje2;
+
+		puntaje1 = calculaPuntaje(this.entrenadorUno.getPokemonActivo());
+		this.appendLogDefinicion(
+				"Puntaje de " + this.entrenadorUno.getPokemonActivo().getNombre() + ": " + (int) puntaje1 + "\n");
+
+		puntaje2 = calculaPuntaje(this.entrenadorDos.getPokemonActivo());
+		this.appendLogDefinicion(
+				"Puntaje de " + this.entrenadorDos.getPokemonActivo().getNombre() + ": " + (int) puntaje2 + "\n");
 		if (puntaje1 > puntaje2) {
 			this.ganador = this.entrenadorUno;
 			this.perdedor = this.entrenadorDos;
-			pokemon1.setExperiencia(pokemon1.getExperiencia() + 3);
-			pokemon2.setExperiencia(pokemon2.getExperiencia() + 1);
+			this.entrenadorUno.getPokemonActivo()
+					.setExperiencia(this.entrenadorUno.getPokemonActivo().getExperiencia() + 3);
+			this.entrenadorDos.getPokemonActivo()
+					.setExperiencia(this.entrenadorDos.getPokemonActivo().getExperiencia() + 1);
 			this.entrenadorUno.premio();
 		} else {
 			this.ganador = this.entrenadorDos;
 			this.perdedor = this.entrenadorUno;
-			pokemon2.setExperiencia(pokemon2.getExperiencia() + 3);
-			pokemon1.setExperiencia(pokemon1.getExperiencia() + 1);
+			this.entrenadorDos.getPokemonActivo()
+					.setExperiencia(this.entrenadorDos.getPokemonActivo().getExperiencia() + 3);
+			this.entrenadorUno.getPokemonActivo()
+					.setExperiencia(this.entrenadorUno.getPokemonActivo().getExperiencia() + 1);
 			this.entrenadorDos.premio();
 		}
-		pokemon1.reiniciaStats();
-		pokemon2.reiniciaStats();
-		return this.ganador;
+		this.entrenadorUno.getPokemonActivo().reiniciaStats();
+		this.entrenadorDos.getPokemonActivo().reiniciaStats();
 	}
 
 	/**
@@ -127,8 +150,6 @@ public class Enfrentamiento extends Thread {
 	public Entrenador getEntrenadorDos() {
 		return entrenadorDos;
 	}
-	
-	
 
 	public void setRecursoCompartido(Arena recursoCompartido) {
 		this.recursoCompartido = recursoCompartido;
@@ -143,8 +164,17 @@ public class Enfrentamiento extends Thread {
 	@Override
 	public void run() {
 		this.recursoCompartido.comenzar(this);
-		
 	}
-	
-	
+
+	public void appendLogPreliminar(String cadena) {
+		this.logPreliminar += cadena;
+	}
+
+	public void appendLogBatalla(String cadena) {
+		this.logBatalla += cadena;
+	}
+
+	public void appendLogDefinicion(String cadena) {
+		this.logDefinicion += cadena;
+	}
 }

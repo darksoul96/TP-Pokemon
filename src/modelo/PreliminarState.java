@@ -19,11 +19,11 @@ public class PreliminarState implements IStateArena {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		
 		arena.setEstado(new BatallaState(arena));
 		arena.comenzar(enfrentamiento);
 		
 	}
 	
 	
-
 }

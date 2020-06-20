@@ -21,6 +21,8 @@ public class Entrenador implements Cloneable, Clasificable {
 	private ArrayList<Pokemon> pokemones = new ArrayList<Pokemon>();
 	private int cantidadHechizos;
 	private ICarta[] cartas = new ICarta[3];
+	private ICarta hechizoActivo;
+	private Pokemon pokemonActivo;
 
 	public Entrenador(String nombre, ICarta[] cartas) {
 		this.nombre = nombre;
@@ -132,6 +134,22 @@ public class Entrenador implements Cloneable, Clasificable {
 	public void premio() {
 		for (Pokemon p : this.pokemones)
 			p.buffear();
+	}
+
+	public ICarta getHechizoActivo() {
+		return hechizoActivo;
+	}
+
+	public void setHechizoActivo(ICarta hechizoActivo) {
+		this.hechizoActivo = hechizoActivo;
+	}
+
+	public Pokemon getPokemonActivo() {
+		return pokemonActivo;
+	}
+
+	public void setPokemonActivo(Pokemon pokemonActivo) {
+		this.pokemonActivo = pokemonActivo;
 	}
 
 }
