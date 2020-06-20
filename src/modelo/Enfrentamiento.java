@@ -18,11 +18,13 @@ public class Enfrentamiento extends Thread {
 	private Entrenador entrenadorDos;
 	private Entrenador ganador;
 	private Entrenador perdedor;
+	private Arena recursoCompartido;
 
 	public Enfrentamiento(Entrenador entrenadorUno, Entrenador entrenadorDos) {
 		super();
 		this.entrenadorUno = entrenadorUno;
 		this.entrenadorDos = entrenadorDos;
+		this.recursoCompartido = null;
 	}
 
 	/**
@@ -125,6 +127,12 @@ public class Enfrentamiento extends Thread {
 	public Entrenador getEntrenadorDos() {
 		return entrenadorDos;
 	}
+	
+	
+
+	public void setRecursoCompartido(Arena recursoCompartido) {
+		this.recursoCompartido = recursoCompartido;
+	}
 
 	@Override
 	public String toString() {
@@ -134,7 +142,7 @@ public class Enfrentamiento extends Thread {
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
+		this.recursoCompartido.comenzar(this);
 		
 	}
 	
