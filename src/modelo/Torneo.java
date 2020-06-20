@@ -49,14 +49,14 @@ public class Torneo {
 	}
 
 	public void generaGrupos(Entrenador[] participantes) { // Cree la clase grupo y hago un arraylist de grupos
-		Grupo g1 = new Grupo(); // Cada grupo tiene dentro de si, un arraylist de 4 entrenadores.
-		Grupo g2 = new Grupo();
-		Grupo g3 = new Grupo();
-		Grupo g4 = new Grupo();
-		Grupo g5 = new Grupo();
-		Grupo g6 = new Grupo();
-		Grupo g7 = new Grupo();
-		Grupo g8 = new Grupo();
+		Grupo g1 = new Grupo("Grupo 1");			 // Cada grupo tiene dentro de si, un arraylist de 4 entrenadores.
+		Grupo g2 = new Grupo("Grupo 2");
+		Grupo g3 = new Grupo("Grupo 3");
+		Grupo g4 = new Grupo("Grupo 4");
+		Grupo g5 = new Grupo("Grupo 5");
+		Grupo g6 = new Grupo("Grupo 6");
+		Grupo g7 = new Grupo("Grupo 7");
+		Grupo g8 = new Grupo("Grupo 8");
 		Random r = new Random();
 		int i = 0;
 		while (this.participantes.size() != 0) {
@@ -119,14 +119,10 @@ public class Torneo {
 	}
 
 	private void inicializarArenas() {
-		// TODO Auto-generated method stub
 		arenas[0]=new Arena("Arena 1");
 		arenas[1]=new Arena("Arena 2");
 		arenas[2]=new Arena("Arena 3");
 		arenas[3]=new Arena("Arena 4");
-		//arenas[4]=new Arena("Arena 5");
-		//arenas[5]=new Arena("Arena 6");
-		//arenas[6]=new Arena("Arena 7");
 	}
 
 	private void faseDeGrupo() {
