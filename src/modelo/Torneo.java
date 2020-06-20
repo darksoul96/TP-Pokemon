@@ -107,6 +107,7 @@ public class Torneo {
 	 */
 	public void arrancaTorneo() {
 		this.clasificados = (ArrayList<Entrenador>) this.participantes.clone();
+		inicializarArenas();
 		if (clasificados.size() == this.cantidadDeParticipantes) {
 			faseDeGrupo();
 			while (clasificados.size() != 1) {
@@ -114,6 +115,18 @@ public class Torneo {
 			}
 			System.out.println("El campeon es " + this.clasificados.get(0));
 		}
+	}
+
+	private void inicializarArenas() {
+		// TODO Auto-generated method stub
+		arenas[0]=new Arena("Arena 1");
+		arenas[1]=new Arena("Arena 2");
+		arenas[2]=new Arena("Arena 3");
+		arenas[3]=new Arena("Arena 4");
+		arenas[4]=new Arena("Arena 5");
+		arenas[5]=new Arena("Arena 6");
+		arenas[6]=new Arena("Arena 7");
+		arenas[7]=new Arena("Arena 8");
 	}
 
 	private void faseDeGrupo() {
