@@ -20,6 +20,7 @@ public class PreliminarState implements IStateArena {
 			e.printStackTrace();
 		}
 		
+		enfrentamiento.preparacionEntrenadores();
 		arena.setEstado(new BatallaState(arena));
 		arena.comenzar(enfrentamiento);
 		

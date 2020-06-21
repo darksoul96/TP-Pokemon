@@ -67,7 +67,7 @@ public class Grupo {
 		}
 		return e;
 	}
-
+	
 	public ArrayList<Entrenador> getPosiciones() {
 		int n = enfrentamientos.size();
 		ArrayList<Entrenador> posiciones = new ArrayList<Entrenador>();
