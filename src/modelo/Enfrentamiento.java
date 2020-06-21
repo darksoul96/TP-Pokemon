@@ -30,17 +30,6 @@ public class Enfrentamiento extends Thread {
 		this.recursoCompartido = null;
 	}
 
-	/**
-	 * @param e1 Entrenador e1, pasado desde torneo. Primer participante de la
-	 *           batalla
-	 * @param e2 Entrenador e2, pasado desde torneo. Segundo participante de la
-	 *           batalla.
-	 * @return Devuelve un tipo Entrenador, el ganador de ambos.
-	 */
-	public Entrenador batallsa() {
-
-		return this.ganador;
-	}
 
 	public void preparacionEntrenadores() {
 

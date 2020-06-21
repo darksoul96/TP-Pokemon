@@ -63,7 +63,7 @@ public class Grupo {
 		}
 		return e;
 	}
-
+	
 	public ArrayList<Entrenador> getPosiciones() {
 		int n = enfrentamientos.size();
 		int e1 = 0;
