@@ -1,8 +1,11 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.SortedMap;
 
 import personajes.Entrenador;
+import java.util.SortedSet;
 
 public class Grupo {
 	private ArrayList<Entrenador> integrantes;
@@ -12,6 +15,7 @@ public class Grupo {
 	private boolean lleno = false;
 	boolean grupoFinalizado = false;
 	int cantidadEf = 0;
+	private Object SortedList;
 
 	public Grupo(String nombre) {
 		super();
@@ -66,6 +70,8 @@ public class Grupo {
 
 	public ArrayList<Entrenador> getPosiciones() {
 		int n = enfrentamientos.size();
+		ArrayList<Entrenador> posiciones = new ArrayList<Entrenador>();
+		ArrayList<Integer> victorias = new ArrayList<Integer>();
 		int e1 = 0;
 		int e2 = 0;
 		int e3 = 0;
