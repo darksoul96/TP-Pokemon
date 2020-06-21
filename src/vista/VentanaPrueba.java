@@ -24,8 +24,10 @@ import javax.swing.JTextField;
 import java.awt.Choice;
 import java.awt.Panel;
 import java.awt.Checkbox;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseEvent;
 
-public class VentanaPrueba extends JFrame implements IVista {
+public class VentanaPrueba extends JFrame implements IVista, MouseListener {
 
 	private JPanel contentPane;
 	private JPanel panelCentral;
@@ -232,6 +234,7 @@ public class VentanaPrueba extends JFrame implements IVista {
 		this.panelCMPokemon.add(this.checkbox);
 
 		this.btnNewButton_5 = new JButton("Modificar");
+		this.btnNewButton_5.addMouseListener(this);
 		this.btnNewButton_5.setEnabled(false);
 		this.btnNewButton_5.setBounds(39, 89, 89, 23);
 		this.panelCMPokemon.add(this.btnNewButton_5);
@@ -320,5 +323,15 @@ public class VentanaPrueba extends JFrame implements IVista {
 	public void agregarEntrenador() {
 		// TODO Auto-generated method stub
 
+	}
+	public void mouseClicked(MouseEvent arg0) {
+	}
+	public void mouseEntered(MouseEvent arg0) {
+	}
+	public void mouseExited(MouseEvent arg0) {
+	}
+	public void mousePressed(MouseEvent arg0) {
+	}
+	public void mouseReleased(MouseEvent arg0) {
 	}
 }
