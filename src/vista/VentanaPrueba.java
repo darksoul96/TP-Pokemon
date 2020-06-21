@@ -20,14 +20,18 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+import java.awt.Choice;
+import java.awt.Panel;
+import java.awt.Checkbox;
 
-public class VentanaPrueba extends JFrame implements ActionListener {
+public class VentanaPrueba extends JFrame implements IVista {
 
 	private JPanel contentPane;
 	private JPanel panelCentral;
 	private JPanel panelEntrenadoresPokemones;
 	private JPanel panelMedio;
-	private JPanel panelBatallas;
+	private JPanel panelCreacionModificacion;
 	private JPanel panelPokemones;
 	private JPanel panelEntrenadores;
 	private JScrollPane scrollPane;
@@ -36,9 +40,6 @@ public class VentanaPrueba extends JFrame implements ActionListener {
 	private JScrollPane scrollPane_1;
 	private JLabel lblEntrenadores;
 	private JList listEntrenadores;
-	private JScrollPane scrollPane_2;
-	private JLabel lblNewLabel;
-	private JList listBatallas;
 	private JPanel panelSur;
 	private JPanel panelBotones;
 	private JPanel panelEtapaGrupos;
@@ -53,7 +54,7 @@ public class VentanaPrueba extends JFrame implements ActionListener {
 	private JButton btnEliminarPokemon;
 	private JButton btnModificarPokemon;
 	private JButton btnSortear;
-	private JPanel panel_1;
+	private JPanel panelCM;
 	private JPanel panel;
 	private JPanel panel_2;
 	private JLabel lblNewLabel_1;
@@ -62,6 +63,20 @@ public class VentanaPrueba extends JFrame implements ActionListener {
 	private JList list;
 	private JButton btnNewButton_1;
 	private JButton btnNewButton_2;
+	private JPanel panelCMPokemon;
+	private JPanel panelCMEntrenador;
+	private JLabel lblNewLabel;
+	private JTextField textField;
+	private JButton btnNewButton_3;
+	private JButton btnNewButton_4;
+	private JLabel lblNewLabel_2;
+	private JTextField textField_1;
+	private JLabel lblNewLabel_3;
+	private Choice choice;
+	private Checkbox checkbox;
+	private JButton btnNewButton_5;
+	private JButton btnNewButton_6;
+	private ActionListener actionListener;
 
 	/**
 	 * Launch the application.
@@ -86,6 +101,7 @@ public class VentanaPrueba extends JFrame implements ActionListener {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1030, 682);
+		// setBounds(100, 100, 832, 741);
 		this.contentPane = new JPanel();
 		this.contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		this.contentPane.setLayout(new BorderLayout(0, 0));
@@ -97,7 +113,7 @@ public class VentanaPrueba extends JFrame implements ActionListener {
 
 		this.panelCentral = new JPanel();
 		this.contentPane.add(this.panelCentral, BorderLayout.CENTER);
-		this.panelCentral.setLayout(new GridLayout(0, 3, 0, 0));
+		this.panelCentral.setLayout(new GridLayout(0, 3, 0, 0)); // columnas central
 
 		this.panelEntrenadoresPokemones = new JPanel();
 		this.panelCentral.add(this.panelEntrenadoresPokemones);
@@ -159,8 +175,71 @@ public class VentanaPrueba extends JFrame implements ActionListener {
 		this.btnNewButton.setBounds(22, 11, 121, 28);
 		this.panel_2.add(this.btnNewButton);
 
-		this.panel_1 = new JPanel();
-		this.panelEtapaGrupos.add(this.panel_1, BorderLayout.CENTER);
+		this.panelCM = new JPanel();
+		this.panelEtapaGrupos.add(this.panelCM, BorderLayout.CENTER);
+		this.panelCM.setLayout(new GridLayout(2, 1, 0, 0));
+
+		this.panelCMEntrenador = new JPanel();
+		this.panelCM.add(this.panelCMEntrenador);
+		this.panelCMEntrenador.setLayout(null);
+
+		this.lblNewLabel = new JLabel("Nombre Entrenador: ");
+		this.lblNewLabel.setBounds(38, 44, 107, 14);
+		this.panelCMEntrenador.add(this.lblNewLabel);
+
+		this.textField = new JTextField();
+		this.textField.setEditable(false);
+		this.textField.setColumns(10);
+		this.textField.setBounds(182, 43, 86, 20);
+		this.panelCMEntrenador.add(this.textField);
+
+		this.btnNewButton_3 = new JButton("Crear");
+		this.btnNewButton_3.setEnabled(false);
+		this.btnNewButton_3.setBounds(179, 75, 89, 23);
+		this.panelCMEntrenador.add(this.btnNewButton_3);
+
+		this.btnNewButton_4 = new JButton("Modificar");
+		this.btnNewButton_4.setEnabled(false);
+		this.btnNewButton_4.setBounds(46, 76, 89, 23);
+		this.panelCMEntrenador.add(this.btnNewButton_4);
+
+		this.panelCMPokemon = new JPanel();
+		this.panelCM.add(this.panelCMPokemon);
+		this.panelCMPokemon.setLayout(null);
+
+		this.lblNewLabel_2 = new JLabel("Nombre Pokemon:");
+		this.lblNewLabel_2.setBounds(41, 11, 101, 14);
+		this.panelCMPokemon.add(this.lblNewLabel_2);
+
+		this.textField_1 = new JTextField();
+		this.textField_1.setEditable(false);
+		this.textField_1.setBounds(183, 8, 86, 20);
+		this.panelCMPokemon.add(this.textField_1);
+		this.textField_1.setColumns(10);
+
+		this.lblNewLabel_3 = new JLabel("Tipo:");
+		this.lblNewLabel_3.setBounds(65, 36, 46, 14);
+		this.panelCMPokemon.add(this.lblNewLabel_3);
+
+		this.choice = new Choice();
+		this.choice.setEnabled(false);
+		this.choice.setBounds(183, 34, 86, 20);
+		this.panelCMPokemon.add(this.choice);
+
+		this.checkbox = new Checkbox("Gran Recarga");
+		this.checkbox.setEnabled(false);
+		this.checkbox.setBounds(183, 60, 95, 22);
+		this.panelCMPokemon.add(this.checkbox);
+
+		this.btnNewButton_5 = new JButton("Modificar");
+		this.btnNewButton_5.setEnabled(false);
+		this.btnNewButton_5.setBounds(39, 89, 89, 23);
+		this.panelCMPokemon.add(this.btnNewButton_5);
+
+		this.btnNewButton_6 = new JButton("Crear");
+		this.btnNewButton_6.setEnabled(false);
+		this.btnNewButton_6.setBounds(180, 88, 89, 23);
+		this.panelCMPokemon.add(this.btnNewButton_6);
 
 		this.panelBotones = new JPanel();
 		this.panelBotones
@@ -173,11 +252,10 @@ public class VentanaPrueba extends JFrame implements ActionListener {
 		this.panelBotonEntrenador.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		this.btnAgregarEntrenador = new JButton("Agregar Entrenador");
-		this.btnAgregarEntrenador.addActionListener(this);
+
 		this.panelBotonEntrenador.add(this.btnAgregarEntrenador);
 
 		this.btnEliminarEntrenador = new JButton("Eliminar Entrenador");
-		this.btnEliminarEntrenador.addActionListener(this);
 		this.panelBotonEntrenador.add(this.btnEliminarEntrenador);
 
 		this.btnModificarEntrenador = new JButton("Modificar Entrenador");
@@ -199,7 +277,6 @@ public class VentanaPrueba extends JFrame implements ActionListener {
 		this.panelBotones.add(this.panelBotonOpciones);
 
 		this.btnSortear = new JButton("Sortear");
-		this.btnSortear.addActionListener(this);
 		this.panelBotonOpciones.add(this.btnSortear);
 
 		this.btnNewButton_1 = new JButton("Importar Entrenadores");
@@ -207,19 +284,10 @@ public class VentanaPrueba extends JFrame implements ActionListener {
 
 		this.btnNewButton_2 = new JButton("Exportar entrenadores");
 		this.panelBotonOpciones.add(this.btnNewButton_2);
-
-		this.panelBatallas = new JPanel();
-		this.panelCentral.add(this.panelBatallas);
-		this.panelBatallas.setLayout(new BorderLayout(0, 0));
-
-		this.scrollPane_2 = new JScrollPane();
-		this.panelBatallas.add(this.scrollPane_2, BorderLayout.CENTER);
-
-		this.lblNewLabel = new JLabel("Batallas");
-		this.scrollPane_2.setColumnHeaderView(this.lblNewLabel);
-
-		this.listBatallas = new JList();
-		this.scrollPane_2.setViewportView(this.listBatallas);
+//
+		this.panelCreacionModificacion = new JPanel();
+		this.panelCentral.add(this.panelCreacionModificacion);
+		this.panelCreacionModificacion.setLayout(new GridLayout(2, 1, 0, 0));
 
 		this.panelSur = new JPanel();
 		this.panelSur.setBackground(Color.WHITE);
@@ -234,17 +302,23 @@ public class VentanaPrueba extends JFrame implements ActionListener {
 		this.scrollPane_3.setViewportView(this.list);
 
 		// this.btnNewButton.setVisible(false);
-		this.btnSortear.addActionListener(this);
 	}
 
-	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand().equals("Sortear")) {
-			Component c = (Component) e.getSource();
-			c.setVisible(false);
-			c.repaint();
-			((JPanel) c.getParent()).revalidate();
-			// JButton b=btnAgregarEntrenador;
-			// b.setVisible(false);
-		}
+	@Override
+	public void setActionListener(ActionListener actionListener) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void sortear() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void agregarEntrenador() {
+		// TODO Auto-generated method stub
+
 	}
 }
