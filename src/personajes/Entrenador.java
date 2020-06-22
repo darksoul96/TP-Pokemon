@@ -7,6 +7,8 @@ import java.util.Random;
 
 import exceptions.CantidadHechizosExcedidosException;
 import hechizos.Niebla;
+import hechizos.Tormenta;
+import hechizos.Viento;
 import interfaces.Clasificable;
 import interfaces.ICarta;
 
@@ -26,9 +28,13 @@ public class Entrenador implements Cloneable, Clasificable {
 
 	public Entrenador(String nombre, ICarta[] cartas) {
 		this.nombre = nombre;
-		this.cantidadHechizos = 2;
+		this.cantidadHechizos = 2; 
+		cartas[0] = new Viento();
+		cartas[1] = new Tormenta();
+		cartas[2] = new Niebla();
 		this.cartas = cartas;
 	}
+	
 
 	public String getNombre() {
 		return nombre;
