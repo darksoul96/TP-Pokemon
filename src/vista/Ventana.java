@@ -88,7 +88,7 @@ public class Ventana extends JFrame implements IVista, MouseListener {
 
 	/**
 	 * Launch the application.
-	 */
+	 *//*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -104,7 +104,7 @@ public class Ventana extends JFrame implements IVista, MouseListener {
 
 	/**
 	 * Create the frame.
-	 */
+	 */ 
 	public Ventana() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -180,6 +180,7 @@ public class Ventana extends JFrame implements IVista, MouseListener {
 		this.panel_2.setLayout(null);
 
 		this.btnSiguienteEtapa = new JButton("Siguiente etapa");
+		this.btnSiguienteEtapa.setActionCommand("SIGUIENTE_ETAPA");
 		this.btnSiguienteEtapa.setBounds(22, 11, 121, 28);
 		this.panel_2.add(this.btnSiguienteEtapa);
 
@@ -202,11 +203,13 @@ public class Ventana extends JFrame implements IVista, MouseListener {
 		this.panelCMEntrenador.add(this.textFieldNombreEntrenador);
 
 		this.btnCrearE = new JButton("Crear");
+		this.btnCrearE.setActionCommand("CREAR_POKEMON");
 		this.btnCrearE.setEnabled(false);
-		this.btnCrearE.setBounds(179, 75, 89, 23);
+		this.btnCrearE.setBounds(182, 74, 89, 23);
 		this.panelCMEntrenador.add(this.btnCrearE);
 
 		this.btnModificarE = new JButton("Modificar");
+		this.btnModificarE.setActionCommand("MODIFICAR_ENTRENADOR");
 		this.btnModificarE.setEnabled(false);
 		this.btnModificarE.setBounds(46, 76, 89, 23);
 		this.panelCMEntrenador.add(this.btnModificarE);
@@ -240,12 +243,14 @@ public class Ventana extends JFrame implements IVista, MouseListener {
 		this.panelCMPokemon.add(this.checkboxGranRecarga);
 
 		this.btnModificarP = new JButton("Modificar");
+		this.btnModificarP.setActionCommand("MODIFICAR_POKEMON");
 		this.btnModificarP.addMouseListener(this);
 		this.btnModificarP.setEnabled(false);
 		this.btnModificarP.setBounds(39, 89, 89, 23);
 		this.panelCMPokemon.add(this.btnModificarP);
 
 		this.btnCrearP = new JButton("Crear");
+		this.btnCrearP.setActionCommand("CREAR_POKEMON");
 		this.btnCrearP.setEnabled(false);
 		this.btnCrearP.setBounds(180, 88, 89, 23);
 		this.panelCMPokemon.add(this.btnCrearP);
@@ -261,37 +266,46 @@ public class Ventana extends JFrame implements IVista, MouseListener {
 		this.panelBotonEntrenador.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		this.btnAgregarEntrenador = new JButton("Agregar Entrenador");
+		this.btnAgregarEntrenador.setActionCommand("PRE_AGREGAR_ENTRENADOR");
 
 		this.panelBotonEntrenador.add(this.btnAgregarEntrenador);
 
 		this.btnEliminarEntrenador = new JButton("Eliminar Entrenador");
+		this.btnEliminarEntrenador.setActionCommand("ELIMINAR_POKEMON");
 		this.panelBotonEntrenador.add(this.btnEliminarEntrenador);
 
 		this.btnModificarEntrenador = new JButton("Modificar Entrenador");
+		this.btnModificarEntrenador.setActionCommand("PRE_MODIFICAR_ENTRENADOR");
 		this.panelBotonEntrenador.add(this.btnModificarEntrenador);
 
 		this.panelBotonPokemon = new JPanel();
 		this.panelBotones.add(this.panelBotonPokemon);
 
 		this.btnAgregarPokemon = new JButton("Agregar Pokemon");
+		this.btnAgregarPokemon.setActionCommand("PRE_AGREGAR_POKEMON");
 		this.panelBotonPokemon.add(this.btnAgregarPokemon);
 
 		this.btnEliminarPokemon = new JButton("Eliminar Pokemon");
+		this.btnEliminarPokemon.setActionCommand("ELIMINAR_POKEMON");
 		this.panelBotonPokemon.add(this.btnEliminarPokemon);
 
 		this.btnModificarPokemon = new JButton("Modificar Pokemon");
+		this.btnModificarPokemon.setActionCommand("PRE_MODIFICAR_POKEMON");
 		this.panelBotonPokemon.add(this.btnModificarPokemon);
 
 		this.panelBotonOpciones = new JPanel();
 		this.panelBotones.add(this.panelBotonOpciones);
 
 		this.btnSortear = new JButton("Sortear");
+		this.btnSortear.setActionCommand("SORTEAR");
 		this.panelBotonOpciones.add(this.btnSortear);
 
 		this.btnImportarEntrenadores = new JButton("Importar Entrenadores");
+		this.btnImportarEntrenadores.setActionCommand("IMPORTAR_ENTRENADORES");
 		this.panelBotonOpciones.add(this.btnImportarEntrenadores);
 
 		this.btnExportarEntrenadores = new JButton("Exportar entrenadores");
+		this.btnExportarEntrenadores.setActionCommand("EXPORTAR_ENTRENADORES");
 		this.panelBotonOpciones.add(this.btnExportarEntrenadores);
 //
 		this.panelFaseBatalla = new JPanel();
@@ -362,8 +376,7 @@ public class Ventana extends JFrame implements IVista, MouseListener {
 
 	@Override
 	public void agregarEntrenador() {
-		// TODO Auto-generated method stub
-
+		this.textFieldNombreEntrenador.setEditable(true);
 	}
 
 	public void mouseClicked(MouseEvent arg0) {
@@ -384,18 +397,18 @@ public class Ventana extends JFrame implements IVista, MouseListener {
 	@Override
 	public String getNombreEntrenador() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.textFieldNombreEntrenador.getText();
 	}
 
 	@Override
 	public String getNombrePokemon() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.textFieldNombrePokemon.getText();
 	}
 
 	@Override
 	public boolean getGranRecarga() {
 		// TODO Auto-generated method stub
-		return false;
+		return this.checkboxGranRecarga.getState();
 	}
 }
