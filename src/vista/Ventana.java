@@ -161,7 +161,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.panelMedio = new JPanel();
 		this.panelCentral.add(this.panelMedio);
 		this.panelMedio.setLayout(new GridLayout(2, 0, 0, 0));
-
+		
 		this.panelEtapaGrupos = new JPanel();
 		this.panelMedio.add(this.panelEtapaGrupos);
 		this.panelEtapaGrupos.setLayout(new BorderLayout(0, 0));
