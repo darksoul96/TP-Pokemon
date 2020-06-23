@@ -1,6 +1,7 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Observable;
 import java.util.Random;
 
@@ -212,5 +213,9 @@ public class Torneo extends Observable {
 		else
 			throw new PokemonInvalidoException("Tipo de pokemon invalido, ingrese un tipo correcto");
 		return respuesta;
+	}
+	
+	public Iterator devuelveIterator() {
+		return this.clasificados.iterator();
 	}
 }
