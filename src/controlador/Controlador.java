@@ -86,8 +86,13 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
+<<<<<<< HEAD
 		
 	}
+=======
+		}
+	
+>>>>>>> branch 'master' of https://github.com/darksoul96/TP-Pokemon
 
 
 	@Override
@@ -107,8 +112,13 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 	@Override
 	public void mousePressed(MouseEvent arg0) {
 		// TODO Auto-generated method stub
+<<<<<<< HEAD
 		
 	}
+=======
+		}
+	
+>>>>>>> branch 'master' of https://github.com/darksoul96/TP-Pokemon
 
 
 	@Override
@@ -116,9 +126,18 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 		// TODO Auto-generated method stub
 		JList lista=(JList) arg0.getSource();
 		Iterator <Pokemon> it;
+<<<<<<< HEAD
 		if (lista.getName()=="listEntrenadores") {
 			Entrenador e=(Entrenador) lista.getSelectedValue();
 			it=this.torneo.devuelveIteratorPokemon(e);
+=======
+		//hasta aca llega
+		System.out.println(c.getName());
+		if (c.getName()=="listEntrenadores") {
+			System.out.println("LLEGO");
+			JList lista=(JList) arg0.getSource();
+			it=this.torneo.devuelveIteratorPokemon((Entrenador) lista.getSelectedValue());
+>>>>>>> branch 'master' of https://github.com/darksoul96/TP-Pokemon
 			this.vista.actualizarListaPokemon(it);
 			System.out.println("Hola");
 		}

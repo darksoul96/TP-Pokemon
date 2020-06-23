@@ -377,6 +377,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.btnModificarPokemon.addActionListener(actionListener);
 		this.btnSiguienteEtapa.addActionListener(actionListener);
 		this.btnSortear.addActionListener(actionListener);
+		this.listEntrenadores.addMouseListener((MouseListener) actionListener); // OJO ACA
 
 	}
 
