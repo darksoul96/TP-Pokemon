@@ -86,14 +86,7 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		Component c=arg0.getComponent();
-		Iterator <Pokemon> it;
-		if (c.getName()=="listEntrenadores") {
-			JList lista=(JList) arg0.getSource();
-			it=this.torneo.devuelveIteratorPokemon((Entrenador) lista.getSelectedValue());
-			this.vista.actualizarListaPokemon(it);
-			System.out.println("Hola");
-		}
+		
 	}
 
 
@@ -114,25 +107,18 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 	@Override
 	public void mousePressed(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		Component c=arg0.getComponent();
-		Iterator <Pokemon> it;
-		if (c.getName()=="listEntrenadores") {
-			JList lista=(JList) arg0.getSource();
-			it=this.torneo.devuelveIteratorPokemon((Entrenador) lista.getSelectedValue());
-			this.vista.actualizarListaPokemon(it);
-			System.out.println("Hola");
-		}
+		
 	}
 
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		Component c=arg0.getComponent();
+		JList lista=(JList) arg0.getSource();
 		Iterator <Pokemon> it;
-		if (c.getName()=="listEntrenadores") {
-			JList lista=(JList) arg0.getSource();
-			it=this.torneo.devuelveIteratorPokemon((Entrenador) lista.getSelectedValue());
+		if (lista.getName()=="listEntrenadores") {
+			Entrenador e=(Entrenador) lista.getSelectedValue();
+			it=this.torneo.devuelveIteratorPokemon(e);
 			this.vista.actualizarListaPokemon(it);
 			System.out.println("Hola");
 		}

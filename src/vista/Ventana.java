@@ -465,6 +465,4 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.repaint();
 	}
 	
-	
-
 }
