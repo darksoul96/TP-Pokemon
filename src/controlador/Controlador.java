@@ -33,7 +33,7 @@ public class Controlador implements ActionListener, Observer, KeyListener {
 				this.vista.agregarEntrenador();
 			else {
 				torneo.agregarEntrenador(new Entrenador(this.vista.getNombreEntrenador()));
-				this.vista.actualizarListaEntrenador("Se agrego a "+this.vista.getNombreEntrenador());
+				this.vista.actualizarListaEntrenador(this.torneo.devuelveIterator());
 			}
 		} else if (comando.contentEquals("SORTEAR")) {
 			System.out.println("Sortear");
