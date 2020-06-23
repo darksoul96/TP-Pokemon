@@ -2,6 +2,8 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -10,7 +12,7 @@ import personajes.Entrenador;
 import vista.IVista;
 import vista.Ventana;
 
-public class Controlador implements ActionListener, Observer {
+public class Controlador implements ActionListener, Observer, KeyListener {
 
 	private Torneo torneo;
 	private IVista vista;
@@ -31,8 +33,10 @@ public class Controlador implements ActionListener, Observer {
 				torneo.agregarEntrenador(new Entrenador());
 		}
 		else if(comando.contentEquals("SORTEAR")){
-			
+			System.out.println("Sortear");
 		}
+		
+		
 	}
 
 	
@@ -47,6 +51,24 @@ public class Controlador implements ActionListener, Observer {
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
 		// TODO Auto-generated method stub
 		
 	}

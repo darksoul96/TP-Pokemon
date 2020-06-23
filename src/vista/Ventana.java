@@ -7,6 +7,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.GridLayout;
 import java.awt.GridBagLayout;
@@ -28,8 +29,10 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.ContainerListener;
+import java.awt.event.ContainerEvent;
 
-public class Ventana extends JFrame implements IVista, MouseListener, KeyListener {
+public class Ventana extends JFrame implements IVista, MouseListener, KeyListener, ContainerListener, ActionListener {
 
 	private JPanel contentPane;
 	private JPanel panelCentral;
@@ -139,7 +142,10 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.lblEntrenadores = new JLabel("Entrenadores");
 		this.scrollPane_1.setColumnHeaderView(this.lblEntrenadores);
 
+		DefaultListModel<String> listModel=new DefaultListModel<String>();
 		this.listEntrenadores = new JList();
+		this.listEntrenadores.setModel(listModel);
+		
 		this.scrollPane_1.setViewportView(this.listEntrenadores);
 
 		this.panelPokemones = new JPanel();
@@ -199,6 +205,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.panelCMEntrenador.add(this.lblNewLabel);
 
 		this.textFieldNombreEntrenador = new JTextField();
+		this.textFieldNombreEntrenador.addContainerListener(this);
 		this.textFieldNombreEntrenador.setEditable(false);
 		this.textFieldNombreEntrenador.addKeyListener(this);
 		this.textFieldNombreEntrenador.setColumns(10);
@@ -206,12 +213,14 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.panelCMEntrenador.add(this.textFieldNombreEntrenador);
 
 		this.btnCrearE = new JButton("Crear");
+		this.btnCrearE.addActionListener(this);
 		this.btnCrearE.setActionCommand("CREAR_ENTRENADOR");
 		this.btnCrearE.setEnabled(false);
 		this.btnCrearE.setBounds(182, 74, 89, 23);
 		this.panelCMEntrenador.add(this.btnCrearE);
 
 		this.btnModificarE = new JButton("Modificar");
+		this.btnModificarE.addKeyListener(this);
 		this.btnModificarE.setActionCommand("MODIFICAR_ENTRENADOR");
 		this.btnModificarE.setEnabled(false);
 		this.btnModificarE.setBounds(46, 76, 89, 23);
@@ -348,6 +357,8 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.list = new JList();
 		this.scrollPane_3.setViewportView(this.list);
 
+		
+		
 		this.setVisible(true);
 		// this.btnNewButton.setVisible(false);
 	}
@@ -423,9 +434,40 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		return null;
 	}
 	public void keyPressed(KeyEvent arg0) {
+		
 	}
 	public void keyReleased(KeyEvent arg0) {
+		if (!this.textFieldNombreEntrenador.getText().equals("")) {
+			this.btnCrearE.setEnabled(true);
+		}
+		else if (this.listEntrenadores.getComponentCount()!=0) {
+			this.btnModificarE.setEnabled(true);
+		}
 	}
 	public void keyTyped(KeyEvent arg0) {
 	}
+	
+	public void componentRemoved(ContainerEvent arg0) {
+	}
+
+	@Override
+	public void componentAdded(ContainerEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void actionPerformed(ActionEvent e) {
+		
+		if (e.getActionCommand().contentEquals("CREAR_ENTRENADOR")) {
+		
+			
+		}
+	}
+
+	@Override
+	public void actualizarListas() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
 }

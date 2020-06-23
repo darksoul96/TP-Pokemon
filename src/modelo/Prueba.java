@@ -1,4 +1,4 @@
-package modelo;
+/*package modelo;
 
 import java.util.Scanner;
 
@@ -15,6 +15,7 @@ import personajes.PokemonFactory;
  * ingresados por teclado. Se debe tener en cuenta a la hora de ingresar datos a
  * mano el lanzamiento de exceptions para datos no validos.
  */
+/*
 public class Prueba {
 
 	public static void main(String[] args) {
@@ -155,3 +156,4 @@ public class Prueba {
 	}
 
 }
+*/
