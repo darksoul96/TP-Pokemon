@@ -26,8 +26,10 @@ import java.awt.Panel;
 import java.awt.Checkbox;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
 
-public class Ventana extends JFrame implements IVista, MouseListener {
+public class Ventana extends JFrame implements IVista, MouseListener, KeyListener {
 
 	private JPanel contentPane;
 	private JPanel panelCentral;
@@ -198,12 +200,13 @@ public class Ventana extends JFrame implements IVista, MouseListener {
 
 		this.textFieldNombreEntrenador = new JTextField();
 		this.textFieldNombreEntrenador.setEditable(false);
+		this.textFieldNombreEntrenador.addKeyListener(this);
 		this.textFieldNombreEntrenador.setColumns(10);
 		this.textFieldNombreEntrenador.setBounds(182, 43, 86, 20);
 		this.panelCMEntrenador.add(this.textFieldNombreEntrenador);
 
 		this.btnCrearE = new JButton("Crear");
-		this.btnCrearE.setActionCommand("CREAR_POKEMON");
+		this.btnCrearE.setActionCommand("CREAR_ENTRENADOR");
 		this.btnCrearE.setEnabled(false);
 		this.btnCrearE.setBounds(182, 74, 89, 23);
 		this.panelCMEntrenador.add(this.btnCrearE);
@@ -266,6 +269,7 @@ public class Ventana extends JFrame implements IVista, MouseListener {
 		this.panelBotonEntrenador.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		this.btnAgregarEntrenador = new JButton("Agregar Entrenador");
+		this.btnAgregarEntrenador.addKeyListener(this);
 		this.btnAgregarEntrenador.setActionCommand("PRE_AGREGAR_ENTRENADOR");
 
 		this.panelBotonEntrenador.add(this.btnAgregarEntrenador);
@@ -344,6 +348,7 @@ public class Ventana extends JFrame implements IVista, MouseListener {
 		this.list = new JList();
 		this.scrollPane_3.setViewportView(this.list);
 
+		this.setVisible(true);
 		// this.btnNewButton.setVisible(false);
 	}
 
@@ -410,5 +415,17 @@ public class Ventana extends JFrame implements IVista, MouseListener {
 	public boolean getGranRecarga() {
 		// TODO Auto-generated method stub
 		return this.checkboxGranRecarga.getState();
+	}
+
+	@Override
+	public String crearEntrenador() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public void keyPressed(KeyEvent arg0) {
+	}
+	public void keyReleased(KeyEvent arg0) {
+	}
+	public void keyTyped(KeyEvent arg0) {
 	}
 }

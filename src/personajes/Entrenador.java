@@ -26,7 +26,7 @@ public class Entrenador implements Cloneable, Clasificable {
 	private ICarta hechizoActivo;
 	private Pokemon pokemonActivo;
 
-	public Entrenador(String nombre, ICarta[] cartas) {
+	public Entrenador(String nombre) {
 		this.nombre = nombre;
 		this.cantidadHechizos = 2; 
 		cartas[0] = new Viento();
@@ -34,6 +34,8 @@ public class Entrenador implements Cloneable, Clasificable {
 		cartas[2] = new Niebla();
 		this.cartas = cartas;
 	}
+	
+	public Entrenador() {}
 	
 
 	public String getNombre() {

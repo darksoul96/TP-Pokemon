@@ -1,8 +1,10 @@
 package modelo;
 
+import java.io.Serializable;
+
 import interfaces.IStateArena;
 
-public class Arena {
+public class Arena implements Serializable {
 	
 	private String nombreArena;
 	private IStateArena estado;
@@ -12,6 +14,8 @@ public class Arena {
 		this.nombreArena=nombre;
 		this.estado=new PreliminarState(this);
 	}
+	
+	public Arena() {}
 	
 	public void comenzar(Enfrentamiento enfrentamiento) {
 		this.estado.comenzar(enfrentamiento);
@@ -29,5 +33,10 @@ public class Arena {
 	public String getNombreArena() {
 		return nombreArena;
 	}
+
+	public void setNombreArena(String nombreArena) {
+		this.nombreArena = nombreArena;
+	}
+	
 	
 }

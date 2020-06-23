@@ -2,13 +2,15 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
+import java.util.Observer;
 
 import modelo.Torneo;
 import personajes.Entrenador;
 import vista.IVista;
 import vista.Ventana;
 
-public class Controlador implements ActionListener {
+public class Controlador implements ActionListener, Observer {
 
 	private Torneo torneo;
 	private IVista vista;
@@ -27,9 +29,26 @@ public class Controlador implements ActionListener {
 				this.vista.agregarEntrenador();
 			else
 				torneo.agregarEntrenador(new Entrenador());
-		}else if(comando.contentEquals("SORTEAR")){
+		}
+		else if(comando.contentEquals("SORTEAR")){
 			
 		}
+	}
+
+	
+	public IVista getVista() {
+		return vista;
+	}
+
+	public void setVista(IVista vista) {
+		this.vista = vista;
+		this.vista.setActionListener(this);
+	}
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

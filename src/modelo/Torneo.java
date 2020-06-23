@@ -1,6 +1,7 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.Observable;
 import java.util.Random;
 
 import exceptions.CantidadHechizosExcedidosException;
@@ -12,7 +13,7 @@ import personajes.Entrenador;
  * metodos de competicion del Torneo.
  *
  */
-public class Torneo {
+public class Torneo extends Observable {
 
 	private static Torneo torneo;
 	private ArrayList<Entrenador> participantes;

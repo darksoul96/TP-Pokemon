@@ -1,8 +1,10 @@
 package modelo;
 
+import java.io.Serializable;
+
 import interfaces.IStateArena;
 
-public class BatallaState implements IStateArena {
+public class BatallaState implements IStateArena, Serializable {
 
 	private Arena arena;
 	
