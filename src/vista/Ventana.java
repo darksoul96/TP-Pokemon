@@ -36,7 +36,7 @@ import java.awt.event.ContainerListener;
 import java.awt.event.ContainerEvent;
 
 public class Ventana extends JFrame implements IVista, MouseListener, KeyListener {
-
+	
 	private JPanel contentPane;
 	private JPanel panelCentral;
 	private JPanel panelEntrenadoresPokemones;
