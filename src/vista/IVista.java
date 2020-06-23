@@ -11,5 +11,5 @@ public interface IVista {
 	String getNombreEntrenador();
 	String getNombrePokemon();
 	boolean getGranRecarga();
-	void actualizarListas();
+	void actualizarListaEntrenador(Object o);
 }

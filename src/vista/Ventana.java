@@ -16,6 +16,9 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import java.awt.FlowLayout;
 import javax.swing.border.TitledBorder;
+
+import personajes.Pokemon;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -32,7 +35,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.ContainerListener;
 import java.awt.event.ContainerEvent;
 
-public class Ventana extends JFrame implements IVista, MouseListener, KeyListener, ContainerListener, ActionListener {
+public class Ventana extends JFrame implements IVista, MouseListener, KeyListener {
 
 	private JPanel contentPane;
 	private JPanel panelCentral;
@@ -42,11 +45,13 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	private JPanel panelPokemones;
 	private JPanel panelEntrenadores;
 	private JScrollPane scrollPane;
-	private JList listPokemones;
+	private JList<Object> listPokemones;
+	private DefaultListModel<Object> listModelPokemones = new DefaultListModel<Object>();
 	private JLabel lblPokemones;
 	private JScrollPane scrollPane_1;
 	private JLabel lblEntrenadores;
-	private JList listEntrenadores;
+	private JList<Object> listEntrenadores;
+	private DefaultListModel<Object> listModelEntrenadores = new DefaultListModel<Object>();
 	private JPanel panelSur;
 	private JPanel panelBotones;
 	private JPanel panelEtapaGrupos;
@@ -144,7 +149,6 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 
 		DefaultListModel<String> listModel=new DefaultListModel<String>();
 		this.listEntrenadores = new JList();
-		this.listEntrenadores.setModel(listModel);
 		
 		this.scrollPane_1.setViewportView(this.listEntrenadores);
 
@@ -205,7 +209,6 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.panelCMEntrenador.add(this.lblNewLabel);
 
 		this.textFieldNombreEntrenador = new JTextField();
-		this.textFieldNombreEntrenador.addContainerListener(this);
 		this.textFieldNombreEntrenador.setEditable(false);
 		this.textFieldNombreEntrenador.addKeyListener(this);
 		this.textFieldNombreEntrenador.setColumns(10);
@@ -213,7 +216,6 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.panelCMEntrenador.add(this.textFieldNombreEntrenador);
 
 		this.btnCrearE = new JButton("Crear");
-		this.btnCrearE.addActionListener(this);
 		this.btnCrearE.setActionCommand("CREAR_ENTRENADOR");
 		this.btnCrearE.setEnabled(false);
 		this.btnCrearE.setBounds(182, 74, 89, 23);
@@ -357,6 +359,8 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.list = new JList();
 		this.scrollPane_3.setViewportView(this.list);
 
+		this.listEntrenadores.setModel(listModelEntrenadores);
+		this.listEntrenadores.setModel(listModelPokemones);
 		
 		
 		this.setVisible(true);
@@ -446,28 +450,17 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	}
 	public void keyTyped(KeyEvent arg0) {
 	}
+
+	@Override
+	public void actualizarListaEntrenador(Object o) {
+		// TODO Auto-generated method stub
+		this.listModelEntrenadores.addElement(o);
+		this.repaint();
+	}
 	
-	public void componentRemoved(ContainerEvent arg0) {
-	}
 
-	@Override
-	public void componentAdded(ContainerEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-	public void actionPerformed(ActionEvent e) {
-		
-		if (e.getActionCommand().contentEquals("CREAR_ENTRENADOR")) {
-		
-			
-		}
-	}
 
-	@Override
-	public void actualizarListas() {
-		// TODO Auto-generated method stub
-		
-	}
+
 	
 	
 }

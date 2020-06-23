@@ -20,26 +20,27 @@ public class Controlador implements ActionListener, Observer, KeyListener {
 	public Controlador() {
 		this.vista = new Ventana();
 		this.vista.setActionListener(this);
+		this.torneo = torneo.getInstanceSingleton();
+		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 		String comando = arg0.getActionCommand();
-		if (comando.contentEquals("AGREGAR_ENTRENADOR") || comando.contentEquals("PRE_AGREGAR_ENTRENADOR")) {
-			if(comando.contentEquals("PRE_AGREGAR_ENTRENADOR"))
+		if (comando.contentEquals("CREAR_ENTRENADOR") || comando.contentEquals("PRE_AGREGAR_ENTRENADOR")) {
+			if (comando.contentEquals("PRE_AGREGAR_ENTRENADOR"))
 				this.vista.agregarEntrenador();
-			else
-				torneo.agregarEntrenador(new Entrenador());
-		}
-		else if(comando.contentEquals("SORTEAR")){
+			else {
+				torneo.agregarEntrenador(new Entrenador(this.vista.getNombreEntrenador()));
+				this.vista.actualizarListaEntrenador("Se agrego a "+this.vista.getNombreEntrenador());
+			}
+		} else if (comando.contentEquals("SORTEAR")) {
 			System.out.println("Sortear");
 		}
-		
-		
+
 	}
 
-	
 	public IVista getVista() {
 		return vista;
 	}
@@ -52,25 +53,25 @@ public class Controlador implements ActionListener, Observer, KeyListener {
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void keyPressed(KeyEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
