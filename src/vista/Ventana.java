@@ -141,6 +141,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.scrollPane_1.setColumnHeaderView(this.lblEntrenadores);
 
 		this.listEntrenadores = new JList();
+		this.listEntrenadores.addMouseListener(this);
 
 		this.scrollPane_1.setViewportView(this.listEntrenadores);
 
@@ -453,5 +454,17 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		}
 		this.repaint();
 	}
+
+	@Override
+	public void actualizarListaPokemon(Iterator<Pokemon> it) {
+		// TODO Auto-generated method stub
+		this.listModelPokemones.clear();
+		while (it.hasNext()) {
+				this.listModelPokemones.addElement(it.next());
+		}
+		this.repaint();
+	}
+	
+	
 
 }

@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 import java.util.Iterator;
 
 import personajes.Entrenador;
+import personajes.Pokemon;
 
 public interface IVista {
 	
@@ -15,4 +16,5 @@ public interface IVista {
 	String getNombrePokemon();
 	boolean getGranRecarga();
 	void actualizarListaEntrenador(Iterator<Entrenador> it);
+	void actualizarListaPokemon(Iterator<Pokemon> it);
 }

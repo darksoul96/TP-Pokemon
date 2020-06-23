@@ -215,7 +215,11 @@ public class Torneo extends Observable {
 		return respuesta;
 	}
 	
-	public Iterator devuelveIterator() {
+	public Iterator devuelveIteratorEntrenador() {
 		return this.participantes.iterator();
+	}
+	
+	public Iterator devuelveIteratorPokemon(Entrenador entrenador) {
+		return entrenador.getPokemones().iterator();
 	}
 }
