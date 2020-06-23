@@ -1,6 +1,9 @@
 package vista;
 
 import java.awt.event.ActionListener;
+import java.util.Iterator;
+
+import personajes.Entrenador;
 
 public interface IVista {
 	
@@ -11,5 +14,5 @@ public interface IVista {
 	String getNombreEntrenador();
 	String getNombrePokemon();
 	boolean getGranRecarga();
-	void actualizarListaEntrenador(Object o);
+	void actualizarListaEntrenador(Iterator<Entrenador> it);
 }

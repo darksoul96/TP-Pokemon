@@ -216,6 +216,6 @@ public class Torneo extends Observable {
 	}
 	
 	public Iterator devuelveIterator() {
-		return this.clasificados.iterator();
+		return this.participantes.iterator();
 	}
 }

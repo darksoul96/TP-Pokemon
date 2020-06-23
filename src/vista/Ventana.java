@@ -17,6 +17,7 @@ import javax.swing.JScrollPane;
 import java.awt.FlowLayout;
 import javax.swing.border.TitledBorder;
 
+import personajes.Entrenador;
 import personajes.Pokemon;
 
 import java.awt.Color;
@@ -29,6 +30,7 @@ import java.awt.Choice;
 import java.awt.Panel;
 import java.awt.Checkbox;
 import java.awt.event.MouseListener;
+import java.util.Iterator;
 import java.awt.event.MouseEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
@@ -45,13 +47,13 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	private JPanel panelPokemones;
 	private JPanel panelEntrenadores;
 	private JScrollPane scrollPane;
-	private JList<Object> listPokemones;
-	private DefaultListModel<Object> listModelPokemones = new DefaultListModel<Object>();
+	private JList<Pokemon> listPokemones;
+	private DefaultListModel<Pokemon> listModelPokemones = new DefaultListModel<Pokemon>();
 	private JLabel lblPokemones;
 	private JScrollPane scrollPane_1;
 	private JLabel lblEntrenadores;
-	private JList<Object> listEntrenadores;
-	private DefaultListModel<Object> listModelEntrenadores = new DefaultListModel<Object>();
+	private JList<Entrenador> listEntrenadores;
+	private DefaultListModel<Entrenador> listModelEntrenadores = new DefaultListModel<Entrenador>();
 	private JPanel panelSur;
 	private JPanel panelBotones;
 	private JPanel panelEtapaGrupos;
@@ -99,22 +101,13 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	/**
 	 * Launch the application.
 	 *//*
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Ventana frame = new Ventana();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */ 
+		 * public static void main(String[] args) { EventQueue.invokeLater(new
+		 * Runnable() { public void run() { try { Ventana frame = new Ventana();
+		 * frame.setVisible(true); } catch (Exception e) { e.printStackTrace(); } } });
+		 * }
+		 * 
+		 * /** Create the frame.
+		 */
 	public Ventana() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -147,9 +140,8 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.lblEntrenadores = new JLabel("Entrenadores");
 		this.scrollPane_1.setColumnHeaderView(this.lblEntrenadores);
 
-		DefaultListModel<String> listModel=new DefaultListModel<String>();
 		this.listEntrenadores = new JList();
-		
+
 		this.scrollPane_1.setViewportView(this.listEntrenadores);
 
 		this.panelPokemones = new JPanel();
@@ -360,9 +352,8 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.scrollPane_3.setViewportView(this.list);
 
 		this.listEntrenadores.setModel(listModelEntrenadores);
-		this.listEntrenadores.setModel(listModelPokemones);
-		
-		
+		this.listPokemones.setModel(listModelPokemones);
+
 		this.setVisible(true);
 		// this.btnNewButton.setVisible(false);
 	}
@@ -437,30 +428,30 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 	public void keyPressed(KeyEvent arg0) {
-		
+
 	}
+
 	public void keyReleased(KeyEvent arg0) {
 		if (!this.textFieldNombreEntrenador.getText().equals("")) {
 			this.btnCrearE.setEnabled(true);
-		}
-		else if (this.listEntrenadores.getComponentCount()!=0) {
+		} else if (this.listEntrenadores.getComponentCount() != 0) {
 			this.btnModificarE.setEnabled(true);
 		}
 	}
+
 	public void keyTyped(KeyEvent arg0) {
 	}
 
 	@Override
-	public void actualizarListaEntrenador(Object o) {
+	public void actualizarListaEntrenador(Iterator<Entrenador> it) {
 		// TODO Auto-generated method stub
-		this.listModelEntrenadores.addElement(o);
+		this.listModelEntrenadores.clear();
+		while (it.hasNext()) {
+				this.listModelEntrenadores.addElement(it.next());
+		}
 		this.repaint();
 	}
-	
 
-
-
-	
-	
 }
