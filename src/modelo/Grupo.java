@@ -1,6 +1,7 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.SortedMap;
 
@@ -15,7 +16,6 @@ public class Grupo {
 	private boolean lleno = false;
 	boolean grupoFinalizado = false;
 	int cantidadEf = 0;
-	private Object SortedList;
 
 	public Grupo(String nombre) {
 		super();
@@ -88,6 +88,10 @@ public class Grupo {
 			else if(e.equals(integrantes.get(3)))
 				e4++;
 		}
+		victorias.add(e1);
+		victorias.add(e2);
+		victorias.add(e3);
+		victorias.add(e4);
 		return ganadores;
 	}
 

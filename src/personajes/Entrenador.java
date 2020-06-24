@@ -17,7 +17,7 @@ import interfaces.ICarta;
  * con hechizos, y una lista con sus pokemones.
  *
  */
-public class Entrenador implements Cloneable, Clasificable {
+public class Entrenador implements Comparable<Entrenador>, Cloneable, Clasificable {
 
 	private String nombre;
 	private ArrayList<Pokemon> pokemones = new ArrayList<Pokemon>();
@@ -28,15 +28,15 @@ public class Entrenador implements Cloneable, Clasificable {
 
 	public Entrenador(String nombre) {
 		this.nombre = nombre;
-		this.cantidadHechizos = 2; 
+		this.cantidadHechizos = 2;
 		cartas[0] = new Viento();
 		cartas[1] = new Tormenta();
 		cartas[2] = new Niebla();
 		this.cartas = cartas;
 	}
-	
-	public Entrenador() {}
-	
+
+	public Entrenador() {
+	}
 
 	public String getNombre() {
 		return nombre;
@@ -158,6 +158,23 @@ public class Entrenador implements Cloneable, Clasificable {
 
 	public void setPokemonActivo(Pokemon pokemonActivo) {
 		this.pokemonActivo = pokemonActivo;
+	}
+
+	@Override
+	public int compareTo(Entrenador otro) {
+		// TODO Auto-generated method stub
+		int resultado;
+		if (this.calculaClasificacion() < otro.calculaClasificacion())
+			resultado = -1;
+		else {
+			if (this.calculaClasificacion() == otro.calculaClasificacion())
+				resultado = 0;
+			else {
+				resultado = 1;
+			}
+		}
+
+		return resultado;
 	}
 
 }
