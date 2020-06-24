@@ -1,6 +1,7 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.Observable;
 import java.util.Random;
@@ -50,8 +51,15 @@ public class Torneo extends Observable {
 		this.participantes.add(entrenador);
 	}
 
-	public void generaGrupos(ArrayList <Entrenador> participantes) { // Cree la clase grupo y hago un arraylist de grupos
-		Grupo g1 = new Grupo("Grupo 1");			 // Cada grupo tiene dentro de si, un arraylist de 4 entrenadores.
+	private void inicializarArenas() {
+		arenas[0] = new Arena("Arena 1");
+		arenas[1] = new Arena("Arena 2");
+		arenas[2] = new Arena("Arena 3");
+		arenas[3] = new Arena("Arena 4");
+	}
+	
+	public void generaGrupos(ArrayList<Entrenador> participantes) {
+		Grupo g1 = new Grupo("Grupo 1");
 		Grupo g2 = new Grupo("Grupo 2");
 		Grupo g3 = new Grupo("Grupo 3");
 		Grupo g4 = new Grupo("Grupo 4");
@@ -103,52 +111,44 @@ public class Torneo extends Observable {
 		this.grupos.add(g8);
 	}
 
-	/**
-	 * Inicia el motor de competicion. Posee un arraylist de participantes. Mientras
-	 * haya mas de 1 clasificado seguira jugando rondas entre los participantes
-	 */
-	public void arrancaTorneo() {
-		this.clasificados = (ArrayList<Entrenador>) this.participantes.clone();
+	public void faseDeSorteo() {
 		inicializarArenas();
 		generaGrupos(participantes);
-		faseDeGrupo();
-		if (clasificados.size() == this.cantidadDeParticipantes) {
-			faseDeGrupo();
-			while (clasificados.size() != 1) {
-				this.juegaRonda(clasificados.size());
-			}
-			System.out.println("El campeon es " + this.clasificados.get(0));
-		}
 	}
 
-	private void inicializarArenas() {
-		arenas[0]=new Arena("Arena 1");
-		arenas[1]=new Arena("Arena 2");
-		arenas[2]=new Arena("Arena 3");
-		arenas[3]=new Arena("Arena 4");
-	}
-
-	private void faseDeGrupo() {
+	public void faseDeGrupos() {
 		boolean faseDeGruposFinalizada = false;
-		Enfrentamiento [] enfrentamientos=new Enfrentamiento[8];
+		Enfrentamiento[] enfrentamientos = new Enfrentamiento[8];
 		Random r = new Random();
-		int contador =0;
-		while(faseDeGruposFinalizada == false) {
-			for(int i=0;i<8;i++) {
+		int contador = 0;
+		while (faseDeGruposFinalizada == false) {
+			for (int i = 0; i < 8; i++) {
 				enfrentamientos[i] = grupos.get(i).generaEnfrentamiento();
-				if(enfrentamientos[i]!=null)
+				if (enfrentamientos[i] != null)
 					enfrentamientos[i].setRecursoCompartido(arenas[r.nextInt(3)]);
-				if(grupos.get(i).isGrupoFinalizado()==true) {
+				if (grupos.get(i).isGrupoFinalizado() == true) {
 					contador++;
-					if(contador == 8 ) {
+					if (contador == 8) {
 						faseDeGruposFinalizada = true;
 					}
 				}
 			}
-			contador = 0 ;
-			for(int i=0;i<8;i++)
+			contador = 0;
+			for (int i = 0; i < 8; i++)
 				enfrentamientos[i].start();
 		}
+		for(int i =0; i<8 ; i++) {
+			this.clasificados.add(this.grupos.get(i).getIntegrantes().get(0));
+			this.clasificados.add(this.grupos.get(i).getIntegrantes().get(1));
+		}
+		Collections.shuffle(clasificados);
+	}
+
+	public void faseEliminatoriaSiguiente() {
+		if (clasificados.size() != 1) {
+			this.juegaRonda(clasificados.size());
+		}
+		System.out.println("El campeon es " + this.clasificados.get(0));
 	}
 
 	public void setCantidadDeParticipantes(int cantidadDeParticipantes) {
@@ -214,11 +214,11 @@ public class Torneo extends Observable {
 			throw new PokemonInvalidoException("Tipo de pokemon invalido, ingrese un tipo correcto");
 		return respuesta;
 	}
-	
+
 	public Iterator devuelveIteratorEntrenador() {
 		return this.participantes.iterator();
 	}
-	
+
 	public Iterator devuelveIteratorPokemon(Entrenador entrenador) {
 		return entrenador.getPokemones().iterator();
 	}
