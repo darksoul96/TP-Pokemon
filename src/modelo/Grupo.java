@@ -11,7 +11,6 @@ import java.util.SortedSet;
 public class Grupo {
 	private ArrayList<Entrenador> integrantes;
 	private ArrayList<Enfrentamiento> enfrentamientos;
-	private ArrayList<Entrenador> ganadores;
 	private String nombre;
 	private boolean lleno = false;
 	boolean grupoFinalizado = false;
@@ -68,31 +67,12 @@ public class Grupo {
 		return e;
 	}
 	
-	public ArrayList<Entrenador> getPosiciones() {
-		int n = enfrentamientos.size();
-		ArrayList<Entrenador> posiciones = new ArrayList<Entrenador>();
-		ArrayList<Integer> victorias = new ArrayList<Integer>();
-		int e1 = 0;
-		int e2 = 0;
-		int e3 = 0;
-		int e4 = 0;
-		Entrenador e;
-		for (int i = 0; i < n; i++) {
-			e = enfrentamientos.get(i).getGanador();
-			if(e.equals(integrantes.get(0)))
-				e1++;
-			else if(e.equals(integrantes.get(1)))
-				e2++;
-			else if(e.equals(integrantes.get(2)))
-				e3++;
-			else if(e.equals(integrantes.get(3)))
-				e4++;
-		}
-		victorias.add(e1);
-		victorias.add(e2);
-		victorias.add(e3);
-		victorias.add(e4);
-		return ganadores;
+	public void actualizaPosiciones() {
+		Collections.sort(this.integrantes);
+	}
+
+	public ArrayList<Entrenador> getIntegrantes() {
+		return integrantes;
 	}
 
 	public boolean isLleno() {
