@@ -24,7 +24,7 @@ public class PokemonFactory {
 			pokemon = new Tierra(nombre,recarga);
 		return pokemon;
 	}
-	// CACA PERO NO ME GUSTA TAMPOCO PASAR POR PARAMETRO GRANRECARGA A LOS OTROS QUE NI LA USAN.
+	
 	public static Pokemon fabricaPokemon(String nombre,String tipo, boolean recarga, boolean granRecarga) {
 		Pokemon pokemon = null;
 		if(tipo==null)
