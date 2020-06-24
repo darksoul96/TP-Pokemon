@@ -37,8 +37,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.ContainerListener;
 import java.awt.event.ContainerEvent;
 
-public class Ventana extends JFrame implements IVista, MouseListener, KeyListener {
-	
+public class Ventana extends JFrame implements IVista, MouseListener, KeyListener, ActionListener {
+
 	private JPanel contentPane;
 	private JPanel panelCentral;
 	private JPanel panelEntrenadoresPokemones;
@@ -161,7 +161,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.panelMedio = new JPanel();
 		this.panelCentral.add(this.panelMedio);
 		this.panelMedio.setLayout(new GridLayout(2, 0, 0, 0));
-		
+
 		this.panelEtapaGrupos = new JPanel();
 		this.panelMedio.add(this.panelEtapaGrupos);
 		this.panelEtapaGrupos.setLayout(new BorderLayout(0, 0));
@@ -230,6 +230,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.panelCMPokemon.add(this.lblNewLabel_2);
 
 		this.textFieldNombrePokemon = new JTextField();
+		this.textFieldNombrePokemon.addKeyListener(this);
 		this.textFieldNombrePokemon.setEditable(false);
 		this.textFieldNombrePokemon.setBounds(183, 8, 86, 20);
 		this.panelCMPokemon.add(this.textFieldNombrePokemon);
@@ -257,6 +258,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.panelCMPokemon.add(this.btnModificarP);
 
 		this.btnCrearP = new JButton("Crear");
+		this.btnCrearP.addActionListener(this);
 		this.btnCrearP.setActionCommand("CREAR_POKEMON");
 		this.btnCrearP.setEnabled(false);
 		this.btnCrearP.setBounds(180, 88, 89, 23);
@@ -273,6 +275,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.panelBotonEntrenador.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		this.btnAgregarEntrenador = new JButton("Agregar Entrenador");
+		this.btnAgregarEntrenador.addActionListener(this);
 		this.btnAgregarEntrenador.addKeyListener(this);
 		this.btnAgregarEntrenador.setActionCommand("PRE_AGREGAR_ENTRENADOR");
 
@@ -290,6 +293,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.panelBotones.add(this.panelBotonPokemon);
 
 		this.btnAgregarPokemon = new JButton("Agregar Pokemon");
+		this.btnAgregarPokemon.addActionListener(this);
 		this.btnAgregarPokemon.setActionCommand("PRE_AGREGAR_POKEMON");
 		this.panelBotonPokemon.add(this.btnAgregarPokemon);
 
@@ -436,11 +440,12 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	}
 
 	public void keyReleased(KeyEvent arg0) {
-		if (!this.textFieldNombreEntrenador.getText().equals("")) {
+		if (!this.textFieldNombreEntrenador.getText().equals(""))
 			this.btnCrearE.setEnabled(true);
-		} else if (this.listEntrenadores.getComponentCount() != 0) {
+		if (this.listEntrenadores.getComponentCount() != 0)
 			this.btnModificarE.setEnabled(true);
-		}
+		if (!this.textFieldNombrePokemon.getText().equals(""))
+			this.btnCrearP.setEnabled(true);
 	}
 
 	public void keyTyped(KeyEvent arg0) {
@@ -451,7 +456,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		// TODO Auto-generated method stub
 		this.listModelEntrenadores.clear();
 		while (it.hasNext()) {
-				this.listModelEntrenadores.addElement(it.next());
+			this.listModelEntrenadores.addElement(it.next());
 		}
 		this.repaint();
 	}
@@ -461,9 +466,17 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		// TODO Auto-generated method stub
 		this.listModelPokemones.clear();
 		while (it.hasNext()) {
-				this.listModelPokemones.addElement(it.next());
+			this.listModelPokemones.addElement(it.next());
 		}
 		this.repaint();
 	}
-	
+
+	public void actionPerformed(ActionEvent arg0) {
+	}
+
+	@Override
+	public void agregarPokemon() {
+		// TODO Auto-generated method stub
+		this.textFieldNombrePokemon.setEditable(true);
+	}
 }

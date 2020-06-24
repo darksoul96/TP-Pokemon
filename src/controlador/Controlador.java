@@ -45,6 +45,13 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 		} else if (comando.contentEquals("SORTEAR")) {
 			System.out.println("Sortear");
 		}
+		else if (comando.contentEquals("PRE_AGREGAR_POKEMON") || comando.contentEquals("CREAR_POKEMON")) {
+			if (comando.contentEquals("PRE_AGREGAR_POKEMON"))
+				this.vista.agregarPokemon();
+			else {
+				
+			}
+		}
 
 	}
 
@@ -84,7 +91,7 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-	
+
 	}
 
 	@Override
@@ -108,17 +115,17 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		JList lista=(JList) arg0.getSource();
-		Iterator<Pokemon> it;
-		
-		int index = lista.locationToIndex(arg0.getPoint());
-		if(index >=0) {
-			Object item = lista.getModel().getElementAt(index);
-		    System.out.println(item.toString());
+		if (arg0.getSource().getClass() == JList.class) {
+			JList lista = (JList) arg0.getSource();
+			Iterator<Pokemon> it;
+			int index = lista.locationToIndex(arg0.getPoint());
+			if (index >= 0) {
+				Object item = lista.getModel().getElementAt(index);
+				System.out.println(item.toString());
+				it = this.torneo.devuelveIteratorPokemon((Entrenador) lista.getSelectedValue());
+				this.vista.actualizarListaPokemon(it);
+			}
 		}
-		it = this.torneo.devuelveIteratorPokemon((Entrenador) lista.getSelectedValue());
-		this.vista.actualizarListaPokemon(it);
-		
 	}
 
 }

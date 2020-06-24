@@ -11,6 +11,7 @@ public interface IVista {
 	void setActionListener(ActionListener actionListener);
 	void sortear();
 	void agregarEntrenador();
+	void agregarPokemon();
 	String crearEntrenador();
 	String getNombreEntrenador();
 	String getNombrePokemon();
