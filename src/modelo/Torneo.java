@@ -142,6 +142,7 @@ public class Torneo extends Observable {
 		if (clasificados.size() != 1) {
 			this.juegaRonda(clasificados.size());
 		}
+		this.notifyObservers("Ronda finalizada");
 	}
 
 	public void setCantidadDeParticipantes(int cantidadDeParticipantes) {
