@@ -57,7 +57,6 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 				}
 			}
 		}
-
 	}
 
 	public IVista getVista() {
