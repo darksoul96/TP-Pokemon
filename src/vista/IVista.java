@@ -18,4 +18,6 @@ public interface IVista {
 	boolean getGranRecarga();
 	void actualizarListaEntrenador(Iterator<Entrenador> it);
 	void actualizarListaPokemon(Iterator<Pokemon> it);
+	Entrenador devolverEntrenadorSeleccionado();
+	Pokemon devolverPokemon();
 }

@@ -49,7 +49,11 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 			if (comando.contentEquals("PRE_AGREGAR_POKEMON"))
 				this.vista.agregarPokemon();
 			else {
-				
+				Entrenador e=this.vista.devolverEntrenadorSeleccionado();
+				if (e!=null) {
+					Pokemon p=this.vista.devolverPokemon();
+					e.agregarPokemon(p);
+				}
 			}
 		}
 
