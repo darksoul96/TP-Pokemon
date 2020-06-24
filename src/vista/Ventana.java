@@ -506,6 +506,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	public void habilitarAgregarPokemon() {
 		// TODO Auto-generated method stub
 		this.textFieldNombrePokemon.setEditable(true);
+		this.checkboxGranRecarga.setEnabled(true);
 	}
 
 	@Override
