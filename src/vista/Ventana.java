@@ -246,7 +246,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.choicePokemon.setBounds(183, 34, 86, 20);
 		this.panelCMPokemon.add(this.choicePokemon);
 
-		this.checkboxGranRecarga = new Checkbox("Gran Recarga");
+		this.checkboxGranRecarga = new Checkbox("Recarga");
 		this.checkboxGranRecarga.setEnabled(false);
 		this.checkboxGranRecarga.setBounds(183, 60, 95, 22);
 		this.panelCMPokemon.add(this.checkboxGranRecarga);
