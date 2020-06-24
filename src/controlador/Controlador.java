@@ -53,6 +53,7 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 				if (e!=null) {
 					Pokemon p=this.vista.devolverPokemon();
 					e.agregarPokemon(p);
+					this.vista.actualizarListaPokemon(this.torneo.devuelveIteratorPokemon(e));
 				}
 			}
 		}

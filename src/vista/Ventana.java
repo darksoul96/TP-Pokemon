@@ -361,6 +361,13 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.listPokemones.setModel(listModelPokemones);
 
 		this.setVisible(true);
+		
+		this.choicePokemon.add("Agua");
+		this.choicePokemon.add("Electricidad");
+		this.choicePokemon.add("Fuego");
+		this.choicePokemon.add("Hielo");
+		this.choicePokemon.add("Psiquico");
+		this.choicePokemon.add("Tierra");
 		// this.btnNewButton.setVisible(false);
 	}
 
@@ -445,8 +452,11 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 			this.btnCrearE.setEnabled(true);
 		if (this.listEntrenadores.getComponentCount() != 0)
 			this.btnModificarE.setEnabled(true);
-		if (!this.textFieldNombrePokemon.getText().equals(""))
+		if (!this.textFieldNombrePokemon.getText().equals("")) {
 			this.btnCrearP.setEnabled(true);
+			this.choicePokemon.setEnabled(true);
+		}
+			
 	}
 
 	public void keyTyped(KeyEvent arg0) {
