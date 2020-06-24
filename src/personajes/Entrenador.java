@@ -42,6 +42,11 @@ public class Entrenador implements Comparable<Entrenador>, Cloneable, Clasificab
 		return nombre;
 	}
 
+	
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
 	public ArrayList<Pokemon> getPokemones() {
 		return pokemones;
 	}

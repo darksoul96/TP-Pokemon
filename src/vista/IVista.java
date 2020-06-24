@@ -10,8 +10,8 @@ public interface IVista {
 	
 	void setActionListener(ActionListener actionListener);
 	void sortear();
-	void agregarEntrenador();
-	void agregarPokemon();
+	void habilitarAgregarEntrenador();
+	void habilitarAgregarPokemon();
 	String crearEntrenador();
 	String getNombreEntrenador();
 	String getNombrePokemon();
@@ -20,4 +20,8 @@ public interface IVista {
 	void actualizarListaPokemon(Iterator<Pokemon> it);
 	Entrenador devolverEntrenadorSeleccionado();
 	Pokemon devolverPokemon();
+	Pokemon devolverPokemonSeleccionado();
+	void habilitarModificarEntrenador();
+	void habilitarModificarPokemon();
+	
 }

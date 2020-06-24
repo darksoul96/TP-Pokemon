@@ -287,6 +287,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.panelBotonEntrenador.add(this.btnEliminarEntrenador);
 
 		this.btnModificarEntrenador = new JButton("Modificar Entrenador");
+		this.btnModificarEntrenador.addActionListener(this);
 		this.btnModificarEntrenador.setActionCommand("PRE_MODIFICAR_ENTRENADOR");
 		this.panelBotonEntrenador.add(this.btnModificarEntrenador);
 
@@ -399,10 +400,6 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 
 	}
 
-	@Override
-	public void agregarEntrenador() {
-		this.textFieldNombreEntrenador.setEditable(true);
-	}
 
 	public void mouseClicked(MouseEvent arg0) {
 	}
@@ -417,6 +414,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	}
 
 	public void mouseReleased(MouseEvent arg0) {
+		
 	}
 
 	@Override
@@ -450,13 +448,10 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	public void keyReleased(KeyEvent arg0) {
 		if (!this.textFieldNombreEntrenador.getText().equals(""))
 			this.btnCrearE.setEnabled(true);
-		if (this.listEntrenadores.getComponentCount() != 0)
-			this.btnModificarE.setEnabled(true);
 		if (!this.textFieldNombrePokemon.getText().equals("")) {
 			this.btnCrearP.setEnabled(true);
 			this.choicePokemon.setEnabled(true);
 		}
-			
 	}
 
 	public void keyTyped(KeyEvent arg0) {
@@ -485,11 +480,6 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	public void actionPerformed(ActionEvent arg0) {
 	}
 
-	@Override
-	public void agregarPokemon() {
-		// TODO Auto-generated method stub
-		this.textFieldNombrePokemon.setEditable(true);
-	}
 
 	@Override
 	public Entrenador devolverEntrenadorSeleccionado() {
@@ -505,4 +495,36 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		String tipo=this.choicePokemon.getSelectedItem();
 		return PokemonFactory.fabricaPokemon(nombre, tipo, recarga);
 	}
+
+	@Override
+	public void habilitarAgregarEntrenador() {
+		// TODO Auto-generated method stub
+		this.textFieldNombreEntrenador.setEditable(true);
+	}
+
+	@Override
+	public void habilitarAgregarPokemon() {
+		// TODO Auto-generated method stub
+		this.textFieldNombrePokemon.setEditable(true);
+	}
+
+	@Override
+	public void habilitarModificarEntrenador() {
+		// TODO Auto-generated method stub
+		this.btnModificarE.setEnabled(true);
+	}
+
+	@Override
+	public void habilitarModificarPokemon() {
+		// TODO Auto-generated method stub
+		this.btnModificarP.setEnabled(true);
+	}
+
+	@Override
+	public Pokemon devolverPokemonSeleccionado() {
+		// TODO Auto-generated method stub
+		return this.listPokemones.getSelectedValue();
+	}
+	
+	
 }

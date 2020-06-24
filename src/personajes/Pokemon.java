@@ -36,6 +36,11 @@ public abstract class Pokemon implements Cloneable, Atacable, Hechizable, Clasif
 		return nombre;
 	}
 
+	
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
 	public double getExperiencia() {
 		return experiencia;
 	}

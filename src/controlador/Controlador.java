@@ -37,7 +37,7 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 		String comando = arg0.getActionCommand();
 		if (comando.contentEquals("CREAR_ENTRENADOR") || comando.contentEquals("PRE_AGREGAR_ENTRENADOR")) {
 			if (comando.contentEquals("PRE_AGREGAR_ENTRENADOR"))
-				this.vista.agregarEntrenador();
+				this.vista.habilitarAgregarEntrenador();
 			else {
 				torneo.agregarEntrenador(new Entrenador(this.vista.getNombreEntrenador()));
 				this.vista.actualizarListaEntrenador(this.torneo.devuelveIteratorEntrenador());
@@ -47,7 +47,7 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 		}
 		else if (comando.contentEquals("PRE_AGREGAR_POKEMON") || comando.contentEquals("CREAR_POKEMON")) {
 			if (comando.contentEquals("PRE_AGREGAR_POKEMON"))
-				this.vista.agregarPokemon();
+				this.vista.habilitarAgregarPokemon();
 			else {
 				Entrenador e=this.vista.devolverEntrenadorSeleccionado();
 				if (e!=null) {
@@ -55,6 +55,31 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 					e.agregarPokemon(p);
 					this.vista.actualizarListaPokemon(this.torneo.devuelveIteratorPokemon(e));
 				}
+			}
+		}
+		else if (comando.contentEquals("PRE_MODIFICAR_ENTRENADOR") || comando.contentEquals("MODIFICAR_ENTRENADOR")) {
+			if (comando.contentEquals("PRE_MODIFICAR_ENTRENADOR"))
+					this.vista.habilitarModificarEntrenador();
+			else {
+				Entrenador e=this.vista.devolverEntrenadorSeleccionado();
+				if (e!=null) {
+					e.setNombre(this.vista.getNombreEntrenador());
+					this.vista.actualizarListaEntrenador(this.torneo.devuelveIteratorEntrenador());
+				}
+					
+			}
+		}
+		else if (comando.contentEquals("PRE_MODIFICAR_POKEMON") || comando.contentEquals("MODIFICAR_POKEMON")) {
+			if (comando.contentEquals("PRE_MODIFICAR_POKEMON"))
+				this.vista.habilitarModificarPokemon();
+			else {
+				Pokemon p=this.vista.devolverPokemonSeleccionado();
+				if (p!=null) {
+					Entrenador e=this.vista.devolverEntrenadorSeleccionado();
+					p.setNombre(this.vista.getNombrePokemon());
+					this.vista.actualizarListaPokemon(this.torneo.devuelveIteratorPokemon(e));
+				}
+					
 			}
 		}
 	}
