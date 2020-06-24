@@ -28,7 +28,7 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 		this.vista = new Ventana();
 		this.vista.setActionListener(this);
 		this.torneo = torneo.getInstanceSingleton();
-
+		this.torneo.addObserver(this);
 	}
 
 	@Override

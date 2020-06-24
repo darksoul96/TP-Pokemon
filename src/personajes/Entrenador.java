@@ -124,15 +124,15 @@ public class Entrenador implements Comparable<Entrenador>, Cloneable, Clasificab
 		experiencia /= this.pokemones.size();
 
 		if (experiencia >= 12)
-			rango = 'S';
+			rango = '4';
 		else if (experiencia >= 10)
-			rango = 'A';
+			rango = '3';
 		else if (experiencia >= 4)
-			rango = 'B';
+			rango = '2';
 		else if (experiencia >= 1)
-			rango = 'C';
+			rango = '1';
 		else
-			rango = 'D';
+			rango = '0';
 		return rango;
 	}
 
