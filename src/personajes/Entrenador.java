@@ -80,6 +80,10 @@ public class Entrenador implements Comparable<Entrenador>, Cloneable, Clasificab
 		if (!this.pokemones.contains(pokemon))
 			this.pokemones.add(pokemon);
 	}
+	
+	public void eliminarPokemon(Pokemon p) {
+		this.pokemones.remove(p);
+	}
 
 	public ICarta[] getCartas() {
 		return cartas;

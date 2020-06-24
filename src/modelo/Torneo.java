@@ -41,6 +41,10 @@ public class Torneo extends Observable {
 		return participantes;
 	}
 
+	public void eliminarEntrenador(Entrenador e){
+		this.participantes.remove(e);
+	}
+	
 	public void agregarEntrenador(Entrenador entrenador) {
 		this.participantes.add(entrenador);
 	}

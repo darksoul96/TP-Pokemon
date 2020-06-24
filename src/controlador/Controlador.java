@@ -66,7 +66,6 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 					e.setNombre(this.vista.getNombreEntrenador());
 					this.vista.actualizarListaEntrenador(this.torneo.devuelveIteratorEntrenador());
 				}
-					
 			}
 		}
 		else if (comando.contentEquals("PRE_MODIFICAR_POKEMON") || comando.contentEquals("MODIFICAR_POKEMON")) {
@@ -78,8 +77,22 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 					Entrenador e=this.vista.devolverEntrenadorSeleccionado();
 					p.setNombre(this.vista.getNombrePokemon());
 					this.vista.actualizarListaPokemon(this.torneo.devuelveIteratorPokemon(e));
-				}
-					
+				}	
+			}
+		}
+		else if (comando.contentEquals("ELIMINAR_ENTRENADOR")) {
+			Entrenador e=this.vista.devolverEntrenadorSeleccionado();
+	
+			this.torneo.eliminarEntrenador(e);
+			this.vista.actualizarListaEntrenador(this.torneo.devuelveIteratorEntrenador());
+			
+		}
+		else if (comando.contentEquals("ELIMINAR_POKEMON")) {
+			Pokemon p=this.vista.devolverPokemonSeleccionado();
+			if (p!=null) {
+				Entrenador e=this.vista.devolverEntrenadorSeleccionado();
+				e.eliminarPokemon(p);
+				this.vista.actualizarListaPokemon(this.torneo.devuelveIteratorPokemon(e));
 			}
 		}
 	}

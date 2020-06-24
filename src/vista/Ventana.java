@@ -283,7 +283,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.panelBotonEntrenador.add(this.btnAgregarEntrenador);
 
 		this.btnEliminarEntrenador = new JButton("Eliminar Entrenador");
-		this.btnEliminarEntrenador.setActionCommand("ELIMINAR_POKEMON");
+		this.btnEliminarEntrenador.setActionCommand("ELIMINAR_ENTRENADOR");
 		this.panelBotonEntrenador.add(this.btnEliminarEntrenador);
 
 		this.btnModificarEntrenador = new JButton("Modificar Entrenador");
