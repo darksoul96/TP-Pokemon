@@ -21,14 +21,12 @@ public class Torneo extends Observable {
 	private ArrayList<Entrenador> participantes;
 	private ArrayList<Entrenador> clasificados;
 	private ArrayList<Grupo> grupos;
-	private ArrayList<Enfrentamiento> enfrentamientos;
 	private int cantidadDeParticipantes;
 	private Arena[] arenas;
 
 	private Torneo() {
 		this.participantes = new ArrayList<Entrenador>();
 		this.clasificados = new ArrayList<Entrenador>();
-		this.enfrentamientos = new ArrayList<Enfrentamiento>();
 	}
 
 	public static Torneo getInstanceSingleton() {
@@ -43,10 +41,6 @@ public class Torneo extends Observable {
 		return participantes;
 	}
 
-	public ArrayList<Enfrentamiento> getEnfrentamientos() {
-		return enfrentamientos;
-	}
-
 	public void agregarEntrenador(Entrenador entrenador) {
 		this.participantes.add(entrenador);
 	}
@@ -57,7 +51,7 @@ public class Torneo extends Observable {
 		arenas[2] = new Arena("Arena 3");
 		arenas[3] = new Arena("Arena 4");
 	}
-	
+
 	public void generaGrupos(ArrayList<Entrenador> participantes) {
 		Grupo g1 = new Grupo("Grupo 1");
 		Grupo g2 = new Grupo("Grupo 2");
@@ -137,7 +131,7 @@ public class Torneo extends Observable {
 			for (int i = 0; i < 8; i++)
 				enfrentamientos[i].start();
 		}
-		for(int i =0; i<8 ; i++) {
+		for (int i = 0; i < 8; i++) {
 			this.clasificados.add(this.grupos.get(i).getIntegrantes().get(0));
 			this.clasificados.add(this.grupos.get(i).getIntegrantes().get(1));
 		}
@@ -148,7 +142,6 @@ public class Torneo extends Observable {
 		if (clasificados.size() != 1) {
 			this.juegaRonda(clasificados.size());
 		}
-		System.out.println("El campeon es " + this.clasificados.get(0));
 	}
 
 	public void setCantidadDeParticipantes(int cantidadDeParticipantes) {
@@ -161,33 +154,38 @@ public class Torneo extends Observable {
 	private void juegaRonda(int ronda) {
 		switch (ronda) {
 		case 32:
-			System.out.println("Decisiesavos");
+			this.notifyObservers("Dieciseisavos");
 			break;
 		case 16:
-			System.out.println("Octavos");
+			this.notifyObservers("Octavos");
 			break;
 		case 8:
-			System.out.println("Cuartos");
+			this.notifyObservers("Cuartos");
 			break;
 		case 4:
-			System.out.println("Semis");
+			this.notifyObservers("Semis");
 			break;
 		case 2:
-			System.out.println("Final");
+			this.notifyObservers("Final");
 			break;
 		}
-
-		for (int i = 0; i < clasificados.size(); i++) {
-			Entrenador e1, e2, perdedor;
-			e1 = this.clasificados.get(i);
-			e2 = this.clasificados.get(i + 1);
+		Random r = new Random();
+		int batallas = this.clasificados.size() /2;
+		ArrayList <Enfrentamiento> enfrentamientos = new ArrayList<Enfrentamiento>();
+		for (int i = 0; i < batallas ; i=i+2) {
+			Entrenador e1 = this.clasificados.get(i);
+			Entrenador e2 = this.clasificados.get(i + 1);
 			Enfrentamiento n = new Enfrentamiento(e1, e2);
-			n.batalla();
+			n.setRecursoCompartido(arenas[r.nextInt(3)]);
 			enfrentamientos.add(n);
-			perdedor = n.getPerdedor();
+		}
+		for(int i = 0; i<batallas ; i++) {
+			enfrentamientos.get(i).start();
+		}
+		Entrenador perdedor;
+		for(int i = 0; i<batallas;i++) {
+			perdedor = enfrentamientos.get(i).getPerdedor();
 			this.clasificados.remove(perdedor);
-			System.out.println(n);
-			// System.out.println(clasificados);
 		}
 	}
 
