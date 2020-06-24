@@ -26,7 +26,7 @@ public class Hielo extends Pokemon {
 		}
 
 	}
-
+	
 	@Override
 	public void recarga() {
 		if (this.recarga == true) {

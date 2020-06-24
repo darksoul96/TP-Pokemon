@@ -20,7 +20,7 @@ public class Fuego extends Pokemon {
 		}
 
 	}
-
+	
 	@Override
 	public void recarga() {
 		if (this.recarga == true) {

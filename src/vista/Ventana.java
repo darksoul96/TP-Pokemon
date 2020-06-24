@@ -19,6 +19,7 @@ import javax.swing.border.TitledBorder;
 
 import personajes.Entrenador;
 import personajes.Pokemon;
+import personajes.PokemonFactory;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -478,5 +479,20 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	public void agregarPokemon() {
 		// TODO Auto-generated method stub
 		this.textFieldNombrePokemon.setEditable(true);
+	}
+
+	@Override
+	public Entrenador devolverEntrenadorSeleccionado() {
+		// TODO Auto-generated method stub
+		return this.listEntrenadores.getSelectedValue();
+	}
+
+	@Override
+	public Pokemon devolverPokemon() {
+		// TODO Auto-generated method stub
+		String nombre=this.textFieldNombrePokemon.getText();
+		boolean recarga=this.checkboxGranRecarga.getState();
+		String tipo=this.choicePokemon.getSelectedItem();
+		return PokemonFactory.fabricaPokemon(nombre, tipo, recarga);
 	}
 }
