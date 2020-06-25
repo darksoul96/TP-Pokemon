@@ -109,6 +109,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	private JList listBatalla;
 	private JPanel panelBatalla;
 	private JPanel[][] grupos;
+	private JButton btnSortear;
 
 	/**
 	 * Launch the application.
@@ -609,6 +610,13 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.btnSiguienteEtapa.setBounds(22, 11, 121, 28);
 		this.btnSiguienteEtapa.setSize(5, 5);
 		rodeabotonsigetapa.add(this.btnSiguienteEtapa);
+		
+		this.btnSortear = new JButton("Sortear");
+		this.btnSortear.setActionCommand("SORTEAR");
+		this.btnSortear.setBounds(22, 11, 121, 28);
+		this.btnSortear.setSize(5, 5);
+		rodeabotonsigetapa.add(this.btnSortear);
+		
 
 		this.panelBatalla = new JPanel();
 		this.panelBatalla.setBounds(0, 0, 415, 573);

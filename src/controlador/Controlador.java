@@ -67,7 +67,10 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 				break;
 			}
 			
-		} 
+		}
+		else if(comando.contentEquals("SORTEAR")){
+			this.torneo.faseDeSorteo();
+		}
 		else if (comando.contentEquals("PRE_AGREGAR_POKEMON") || comando.contentEquals("CREAR_POKEMON")) {
 			if (comando.contentEquals("PRE_AGREGAR_POKEMON"))
 				this.vista.habilitarAgregarPokemon();
