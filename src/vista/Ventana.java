@@ -589,6 +589,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 
 				JLabel label = new JLabel("Grupo " + numerogrupo);
 				DefaultListModel<Entrenador> dlm = new DefaultListModel<Entrenador>();
+				
 				JList<Entrenador> lista = new JList<Entrenador>(dlm);
 				lista.setSize(new Dimension(0, 547));
 				lista.setMaximumSize(new Dimension(0, 547));
@@ -680,5 +681,15 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.panelCM.setVisible(false);
 		repaint();
 
+	}
+
+	@Override
+	public void repintarGrupos(ArrayList<Grupo> grupos) {
+		for(int i=0;i<grupos.size();i++) {
+			for(int j=0;j<2;j++) {
+				this.grupos[i][j].get
+			}
+		}
+		
 	}
 }

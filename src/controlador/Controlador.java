@@ -60,6 +60,7 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 				this.vista.creaArenas(4);
 				this.vista.creaGrupos(this.torneo.getGrupos(),this.cantidad);
 				this.vista.setActionListenerFaseGrupos(this);
+				this.vista.repintarGrupos();
 				this.torneo.setFase(this.torneo.getFase()+1);
 				break;
 			case 1:
