@@ -110,6 +110,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	private JPanel panelBatalla;
 	private JPanel[][] grupos;
 	private JButton btnSortear;
+	private JButton btnIniciar;
 
 	/**
 	 * Launch the application.
@@ -401,7 +402,13 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.btnModificarPokemon.addActionListener(actionListener);
 		this.btnSiguienteEtapa.addActionListener(actionListener);
 		this.listEntrenadores.addMouseListener((MouseListener) actionListener); // OJO ACA
-
+	}
+	
+	@Override
+	public void setActionListenerFaseGrupos(ActionListener actionListener) {
+		this.btnSiguienteEtapa.addActionListener(actionListener);
+		this.btnIniciar.addActionListener(actionListener);
+		this.btnSortear.addActionListener(actionListener);
 	}
 
 	@Override
@@ -603,6 +610,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 
 		JPanel rodeabotonsigetapa = new JPanel();
 		rodeabotonsigetapa.setSize(50, 50);
+		//rodeabotonsigetapa.setLayout(new GridLayout(3,0));
 		this.panelDerecho.add(rodeabotonsigetapa);
 
 		this.btnSiguienteEtapa = new JButton("Siguiente etapa");
@@ -616,6 +624,12 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.btnSortear.setBounds(22, 11, 121, 28);
 		this.btnSortear.setSize(5, 5);
 		rodeabotonsigetapa.add(this.btnSortear);
+		
+		this.btnIniciar = new JButton("Iniciar Combates");
+		this.btnIniciar.setActionCommand("INICIAR");
+		this.btnIniciar.setBounds(22, 11, 121, 28);
+		this.btnIniciar.setSize(5, 5);
+		rodeabotonsigetapa.add(this.btnIniciar);
 		
 
 		this.panelBatalla = new JPanel();

@@ -54,6 +54,7 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 				this.vista.pintarFase1();
 				this.vista.creaArenas(4);
 				this.vista.creaGrupos(this.torneo.getGrupos());
+				this.vista.setActionListenerFaseGrupos(this);
 				this.torneo.setFase(this.torneo.getFase()+1);
 				break;
 			case 1:
@@ -69,7 +70,8 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 			
 		}
 		else if(comando.contentEquals("SORTEAR")){
-			this.torneo.faseDeSorteo();
+			//this.torneo.faseDeSorteo();
+			System.out.println("SORTEAR");
 		}
 		else if (comando.contentEquals("PRE_AGREGAR_POKEMON") || comando.contentEquals("CREAR_POKEMON")) {
 			if (comando.contentEquals("PRE_AGREGAR_POKEMON"))

@@ -127,7 +127,6 @@ public class Torneo extends Observable implements Serializable {
 		inicializarArenas();
 		//Collections.shuffle(participantes);
 		generaGrupos(participantes);
-		this.fase =1;
 		this.notifyObservers(fase);
 	}
 
