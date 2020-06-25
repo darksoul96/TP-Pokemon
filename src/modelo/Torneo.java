@@ -133,7 +133,6 @@ public class Torneo extends Observable implements Serializable {
 			this.clasificados.add(this.grupos.get(i).getIntegrantes().get(1));
 		}
 		Collections.shuffle(clasificados);
-		this.fase = 2;
 		this.notifyObservers(fase);
 	}
 

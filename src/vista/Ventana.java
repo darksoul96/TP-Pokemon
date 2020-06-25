@@ -408,7 +408,6 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	public void setActionListenerFaseGrupos(ActionListener actionListener) {
 		this.btnSiguienteEtapa.addActionListener(actionListener);
 		this.btnIniciar.addActionListener(actionListener);
-		this.btnSortear.addActionListener(actionListener);
 	}
 
 	@Override
@@ -585,7 +584,6 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 				this.grupos[i][j].add(scrollpane);
 				scrollpane.setColumnHeaderView(lista);
 				for (int k = 0; k < 4; k++) {
-					System.out.println("NumeroGrupo:" + (numerogrupo-1));
 					dlm.addElement(grupo.get(numerogrupo-1).getIntegrantes().get(k));
 				}
 				this.grupos[i][j].add(label);
@@ -619,14 +617,8 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.btnSiguienteEtapa.setSize(5, 5);
 		rodeabotonsigetapa.add(this.btnSiguienteEtapa);
 
-		this.btnSortear = new JButton("Sortear");
-		this.btnSortear.setActionCommand("SORTEAR");
-		this.btnSortear.setBounds(22, 11, 121, 28);
-		this.btnSortear.setSize(5, 5);
-		rodeabotonsigetapa.add(this.btnSortear);
-
 		this.btnIniciar = new JButton("Iniciar Combates");
-		this.btnIniciar.setActionCommand("INICIAR");
+		this.btnIniciar.setActionCommand("INICIAR_COMBATES");
 		this.btnIniciar.setBounds(22, 11, 121, 28);
 		this.btnIniciar.setSize(5, 5);
 		rodeabotonsigetapa.add(this.btnIniciar);
