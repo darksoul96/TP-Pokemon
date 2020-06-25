@@ -113,6 +113,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	private JButton btnSortear;
 	private JButton btnIniciar;
 	private JComboBox comboParticipantes;
+	private PanelFaseEliminatoria fase;
 
 	/**
 	 * Launch the application.
@@ -617,8 +618,12 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 
 	@Override
 	public void faseSiguiente(ArrayList<Entrenador> clasificados) {
+		for(int i=0; i<clasificados.size();i++)
+			System.out.println(clasificados.get(i).toString());
+		this.panelCentral.hide();
 		this.panelCentral.removeAll();
-		PanelFaseEliminatoria fase = new PanelFaseEliminatoria(clasificados);
+		this.fase = new PanelFaseEliminatoria(clasificados);
+		this.panelCentral.setLayout(new FlowLayout());
 		this.panelCentral.add(fase);
 		this.revalidate();
 	}

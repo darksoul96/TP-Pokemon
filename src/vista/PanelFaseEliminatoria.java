@@ -76,6 +76,8 @@ public class PanelFaseEliminatoria extends JPanel {
 				contador++;
 			}
 		}
+		this.repaint();
+		this.revalidate();
 	}
 
 }
