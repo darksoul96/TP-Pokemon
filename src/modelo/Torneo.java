@@ -160,7 +160,6 @@ public class Torneo extends Observable implements Serializable {
 		if (clasificados.size() != 1) {
 			this.juegaRonda(clasificados.size());
 		}
-		this.fase++;
 		this.notifyObservers(fase);
 	}
 
