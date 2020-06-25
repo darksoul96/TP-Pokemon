@@ -32,7 +32,7 @@ public class PanelFaseEliminatoria extends JPanel {
 		
 		this.panelNorte = new JPanel();
 		add(this.panelNorte, BorderLayout.NORTH);
-		this.panelNorte.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		this.panelNorte.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
 		
 		this.lblSiguienteRonda = new JLabel("Siguiente Ronda:");
 		
@@ -60,7 +60,7 @@ public class PanelFaseEliminatoria extends JPanel {
 				this.llaves[i][j].setBorder(new BevelBorder(BevelBorder.RAISED));
 				this.panelCentral.add(this.llaves[i][j]);
 				this.llaves[i][j].setLayout(new FlowLayout());
-				this.llaves[i][j].setLayout(new GridLayout(0, 1));
+				//this.llaves[i][j].setLayout(new GridLayout(0, 1));
 
 				DefaultListModel<Entrenador> dlm = new DefaultListModel<Entrenador>();
 				JList<Entrenador> lista = new JList<Entrenador>(dlm);
