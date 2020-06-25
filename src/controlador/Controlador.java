@@ -66,6 +66,7 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 			case 1:
 				this.vista.faseSiguiente(this.torneo.getClasificados());
 				this.torneo.setFase(this.torneo.getFase() + 1);
+				this.torneo.faseEliminatoriaSiguiente();
 				break;
 			case 2:
 				this.torneo.setFase(this.torneo.getFase() + 1);
@@ -84,15 +85,24 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 					e.printStackTrace();
 				}
 				this.vista.repintarGrupos(this.torneo.getGrupos());
-				for(int i =0;i< this.torneo.getGrupos().size();i++) {
-					this.vista.repintarBatalla(this.torneo.getGrupos().get(i).getEnfrentamientos());	
+				for (int i = 0; i < this.torneo.getGrupos().size(); i++) {
+					this.vista.repintarBatalla(this.torneo.getGrupos().get(i).getEnfrentamientos());
 				}
 				try {
-					TimeUnit.SECONDS.sleep(5);
+					TimeUnit.SECONDS.sleep(2);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+			} else if (this.torneo.getFase() == 2) {
+				this.torneo.faseEliminatoriaSiguiente();
+				try {
+					TimeUnit.SECONDS.sleep(2);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 			}
 
 		} else if (comando.contentEquals("PRE_AGREGAR_POKEMON") || comando.contentEquals("CREAR_POKEMON")) {
