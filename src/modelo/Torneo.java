@@ -22,6 +22,7 @@ public class Torneo extends Observable implements Serializable,Observer {
 	private static Torneo torneo;
 	private ArrayList<Entrenador> participantes;
 	private ArrayList<Entrenador> clasificados;
+	private ArrayList<Enfrentamiento> enfrentamientos;
 	private ArrayList<Grupo> grupos;
 	private int cantidadDeParticipantes;
 	private Arena[] arenas;
@@ -30,6 +31,7 @@ public class Torneo extends Observable implements Serializable,Observer {
 	private Torneo() {
 		this.participantes = new ArrayList<Entrenador>();
 		this.clasificados = new ArrayList<Entrenador>();
+		this.enfrentamientos = new ArrayList<Enfrentamiento>();
 		this.fase = 0;
 	}
 
@@ -212,6 +214,7 @@ public class Torneo extends Observable implements Serializable,Observer {
 			Entrenador e1 = this.clasificados.get(i);
 			Entrenador e2 = this.clasificados.get(i + 1);
 			Enfrentamiento n = new Enfrentamiento(e1, e2);
+			this.enfrentamientos.add(n);
 			n.setRecursoCompartido(arenas[r.nextInt(3)]);
 			enfrentamientos.add(n);
 		}
@@ -271,7 +274,6 @@ public class Torneo extends Observable implements Serializable,Observer {
 		this.setChanged();
 		System.out.println("Notifico"+ arenaObservada.getNombreArena() + " " + arenaObservada.getEstado().getNombre());
 		this.notifyObservers(arenaObservada);
-		
 	}
 
 }

@@ -54,40 +54,48 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 				this.vista.actualizarListaEntrenador(this.torneo.devuelveIteratorEntrenador());
 			}
 		} else if (comando.contentEquals("SIGUIENTE_ETAPA")) {
-			switch(this.torneo.getFase())
-			{
+			switch (this.torneo.getFase()) {
 			case 0:
 				this.vista.pintarFase1();
 				this.torneo.faseDeSorteo();
 				this.vista.creaArenas(4);
-				this.vista.creaGrupos(this.torneo.getGrupos(),this.cantidad);
+				this.vista.creaGrupos(this.torneo.getGrupos(), this.cantidad);
 				this.vista.setActionListenerFaseGrupos(this);
-				this.torneo.setFase(this.torneo.getFase()+1);
+				this.torneo.setFase(this.torneo.getFase() + 1);
 				break;
 			case 1:
 				this.vista.faseSiguiente(this.torneo.getClasificados());
-				this.torneo.setFase(this.torneo.getFase()+1);
+				this.torneo.setFase(this.torneo.getFase() + 1);
 				break;
 			case 2:
-				this.torneo.setFase(this.torneo.getFase()+1);
+				this.torneo.setFase(this.torneo.getFase() + 1);
 				break;
 			case 3:
-				this.torneo.setFase(this.torneo.getFase()+1);
+				this.torneo.setFase(this.torneo.getFase() + 1);
 				break;
 			}
-			
-		}
-		else if(comando.contentEquals("INICIAR_COMBATES")){
-			this.torneo.faseDeGrupos();
-			try {
-				TimeUnit.SECONDS.sleep(5);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+
+		} else if (comando.contentEquals("INICIAR_COMBATES")) {
+			if (this.torneo.getFase() == 1) {
+				this.torneo.faseDeGrupos();
+				try {
+					TimeUnit.SECONDS.sleep(5);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				this.vista.repintarGrupos(this.torneo.getGrupos());
+				for(int i =0;i< this.torneo.getGrupos().size();i++) {
+					this.vista.repintarBatalla(this.torneo.getGrupos().get(i).getEnfrentamientos());	
+				}
+				try {
+					TimeUnit.SECONDS.sleep(5);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
-			this.vista.repintarGrupos(this.torneo.getGrupos());
-		}
-		else if (comando.contentEquals("PRE_AGREGAR_POKEMON") || comando.contentEquals("CREAR_POKEMON")) {
+
+		} else if (comando.contentEquals("PRE_AGREGAR_POKEMON") || comando.contentEquals("CREAR_POKEMON")) {
 			if (comando.contentEquals("PRE_AGREGAR_POKEMON"))
 				this.vista.habilitarAgregarPokemon();
 			else {
@@ -132,32 +140,26 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 				e.eliminarPokemon(p);
 				this.vista.actualizarListaPokemon(this.torneo.devuelveIteratorPokemon(e));
 			}
-		}
-		else if (comando.contentEquals("EXPORTAR_ENTRENADORES")) {
+		} else if (comando.contentEquals("EXPORTAR_ENTRENADORES")) {
 			try {
 				persistencia.abrirOutput("Entrenadores.bin");
 				persistencia.escribir(this.torneo.getParticipantes());
 				persistencia.cerrarOutput();
-			}catch (IOException e) {
+			} catch (IOException e) {
 				System.out.println(e.getLocalizedMessage());
 			}
-		}
-		else if (comando.contentEquals("IMPORTAR_ENTRENADORES")) {
-			try
-	        {
-	            persistencia.abrirInput("Entrenadores.bin");
-	            this.torneo.setParticipantes((ArrayList<Entrenador>) persistencia.leer());
-	            persistencia.cerrarInput();
-	            this.vista.actualizarListaEntrenador(this.torneo.devuelveIteratorEntrenador());
-	        } catch (IOException e)
-	        {
-	            System.out.println(e.getMessage());
-	        } catch (ClassNotFoundException e)
-	        {
-	            System.out.println(e.getMessage());
-	        }
-		}
-		else if (comando.contentEquals("IMPORTAR_FASE")) {
+		} else if (comando.contentEquals("IMPORTAR_ENTRENADORES")) {
+			try {
+				persistencia.abrirInput("Entrenadores.bin");
+				this.torneo.setParticipantes((ArrayList<Entrenador>) persistencia.leer());
+				persistencia.cerrarInput();
+				this.vista.actualizarListaEntrenador(this.torneo.devuelveIteratorEntrenador());
+			} catch (IOException e) {
+				System.out.println(e.getMessage());
+			} catch (ClassNotFoundException e) {
+				System.out.println(e.getMessage());
+			}
+		} else if (comando.contentEquals("IMPORTAR_FASE")) {
 			try {
 				persistencia.abrirInput("Torneo.bin");
 				this.torneo = (Torneo) persistencia.leer();
@@ -168,9 +170,8 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-		}
-		else if (comando.contentEquals("EXPORTAR_FASE")) {
+
+		} else if (comando.contentEquals("EXPORTAR_FASE")) {
 			try {
 				persistencia.abrirOutput("Torneo.bin");
 				persistencia.escribir(this.torneo);
@@ -178,7 +179,7 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			
+
 		}
 	}
 
@@ -194,18 +195,18 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		Arena arenaDesdeTorneo = (Arena) arg1;
-		switch(arenaDesdeTorneo.getNombreArena()) {
+		switch (arenaDesdeTorneo.getNombreArena()) {
 		case "Arena 1":
-			this.vista.modificaNombreArenas(0,arenaDesdeTorneo.getEstado().getNombre());
+			this.vista.modificaNombreArenas(0, arenaDesdeTorneo.getEstado().getNombre());
 			break;
 		case "Arena 2":
-			this.vista.modificaNombreArenas(1,arenaDesdeTorneo.getEstado().getNombre());
+			this.vista.modificaNombreArenas(1, arenaDesdeTorneo.getEstado().getNombre());
 			break;
 		case "Arena 3":
-			this.vista.modificaNombreArenas(3,arenaDesdeTorneo.getEstado().getNombre());
+			this.vista.modificaNombreArenas(3, arenaDesdeTorneo.getEstado().getNombre());
 			break;
 		case "Arena 4":
-			this.vista.modificaNombreArenas(4,arenaDesdeTorneo.getEstado().getNombre());
+			this.vista.modificaNombreArenas(4, arenaDesdeTorneo.getEstado().getNombre());
 			break;
 		}
 

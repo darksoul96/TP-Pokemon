@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import modelo.Enfrentamiento;
 import modelo.Grupo;
 import personajes.Entrenador;
 import personajes.Pokemon;
@@ -33,5 +34,6 @@ public interface IVista {
 	void modificaNombreArenas(int indice, String nombre);
 	void faseSiguiente(ArrayList<Entrenador> clasificados);
 	void repintarGrupos(ArrayList<Grupo> grupos);
+	void repintarBatalla(ArrayList<Enfrentamiento> enfrentamientos);
 	
 }

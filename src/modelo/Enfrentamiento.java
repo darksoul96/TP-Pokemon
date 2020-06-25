@@ -57,6 +57,38 @@ public class Enfrentamiento extends Thread implements Serializable {
 		this.appendLogPreliminar(this.entrenadorDos + "elige a " + this.entrenadorDos.getPokemonActivo() + "\n");
 	}
 
+	
+	
+	public String getLogPreliminar() {
+		return logPreliminar;
+	}
+
+
+	public void setLogPreliminar(String logPreliminar) {
+		this.logPreliminar = logPreliminar;
+	}
+
+
+	public String getLogBatalla() {
+		return logBatalla;
+	}
+
+
+	public void setLogBatalla(String logBatalla) {
+		this.logBatalla = logBatalla;
+	}
+
+
+	public String getLogDefinicion() {
+		return logDefinicion;
+	}
+
+
+	public void setLogDefinicion(String logDefinicion) {
+		this.logDefinicion = logDefinicion;
+	}
+
+
 	public void batalla() {
 		Random r = new Random();
 		int atacaprimero = r.nextInt(11);

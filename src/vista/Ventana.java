@@ -14,11 +14,13 @@ import javax.swing.JButton;
 import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import java.awt.FlowLayout;
 import javax.swing.border.TitledBorder;
 
+import modelo.Enfrentamiento;
 import modelo.Grupo;
 import personajes.Entrenador;
 import personajes.Pokemon;
@@ -117,6 +119,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	private JButton btnIniciar;
 	private JComboBox comboParticipantes;
 	private PanelFaseEliminatoria fase;
+	private DefaultListModel modelBatallas = new DefaultListModel();
 
 	/**
 	 * Launch the application.
@@ -670,10 +673,15 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.panelBatalla.add(this.scrollPane_2);
 		this.scrollPane_2.setPreferredSize(new Dimension(50, 2));
 
+		
+		
 		this.listBatalla = new JList();
 		this.listBatalla.setSize(new Dimension(0, 547));
 		this.listBatalla.setMaximumSize(new Dimension(0, 547));
 		this.scrollPane_2.setColumnHeaderView(this.listBatalla);
+				
+		this.listBatalla.setBounds(this.listBatalla.getX(), this.listBatalla.getY(), 200, 200);;
+		this.listBatalla.setModel(this.modelBatallas);
 
 		this.lblNewLabel_1 = new JLabel("Batallas");
 		this.lblNewLabel_1.setBounds(2, 0, 415, 25);
@@ -701,5 +709,17 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 			c.repaint();
 		}
 
+	}
+
+	@Override
+	public void repintarBatalla(ArrayList<Enfrentamiento> enfrentamientos) {
+		this.modelBatallas.clear();
+		System.out.println("-------------------------------------------------------");
+		for(int i=0;i<enfrentamientos.size();i++) {
+			this.modelBatallas.addElement(enfrentamientos.get(i).getLogBatalla());
+			System.out.println(enfrentamientos.get(i).getLogBatalla());
+			JOptionPane.showMessageDialog(this, enfrentamientos.get(i).getLogBatalla());
+		}
+		repaint();
 	}
 }
