@@ -35,9 +35,11 @@ public class PanelFaseEliminatoria extends JPanel {
 		this.panelNorte.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		this.lblSiguienteRonda = new JLabel("Siguiente Ronda:");
+		
 		this.panelNorte.add(this.lblSiguienteRonda);
 		
 		this.btnSiguienteRonda = new JButton("Siguiente");
+		
 		this.panelNorte.add(this.btnSiguienteRonda);
 		
 		this.panelSur = new JPanel();
@@ -76,6 +78,8 @@ public class PanelFaseEliminatoria extends JPanel {
 				contador++;
 			}
 		}
+		this.lblSiguienteRonda.setVisible(true);
+		this.btnSiguienteRonda.setVisible(true);
 		this.repaint();
 		this.revalidate();
 	}

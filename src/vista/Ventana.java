@@ -620,11 +620,12 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	public void faseSiguiente(ArrayList<Entrenador> clasificados) {
 		for(int i=0; i<clasificados.size();i++)
 			System.out.println(clasificados.get(i).toString());
-		this.panelCentral.hide();
+		this.panelCentral.setVisible(false);
 		this.panelCentral.removeAll();
 		this.fase = new PanelFaseEliminatoria(clasificados);
-		this.panelCentral.setLayout(new FlowLayout());
+		this.panelCentral.setLayout(new GridLayout());
 		this.panelCentral.add(fase);
+		this.panelCentral.setVisible(true);
 		this.revalidate();
 	}
 	
