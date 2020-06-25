@@ -110,7 +110,6 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 	        {
 	            persistencia.abrirInput("Entrenadores.bin");
 	            this.torneo.setParticipantes((ArrayList<Entrenador>) persistencia.leer());
-	            //comment;
 	            persistencia.cerrarInput();
 	            this.vista.actualizarListaEntrenador(this.torneo.devuelveIteratorEntrenador());
 	        } catch (IOException e)
@@ -122,9 +121,26 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 	        }
 		}
 		else if (comando.contentEquals("IMPORTAR_FASE")) {
+			try {
+				persistencia.abrirInput("Torneo.bin");
+				this.torneo = (Torneo) persistencia.leer();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 		}
 		else if (comando.contentEquals("EXPORTAR_FASE")) {
+			try {
+				persistencia.abrirOutput("Torneo.bin");
+				persistencia.escribir(this.torneo);
+				persistencia.cerrarOutput();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			
 		}
 	}
