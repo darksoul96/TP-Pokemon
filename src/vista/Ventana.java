@@ -684,10 +684,14 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	}
 
 	@Override
-	public void repintarGrupos(ArrayList<Grupo> grupos) {
-		for(int i=0;i<grupos.size();i++) {
-			for(int j=0;j<2;j++) {
-				this.grupos[i][j].get
+	public void repintarGrupos(ArrayList<Grupo> grupo) {
+		Component c;
+		for(int i=0;i<grupo.size();i++) {
+			for(int j=0;j<4;j++) {
+				this.listModelEntrenadores.addElement(this.grupo);
+				c=(JList)this.grupos[i][j].getComponent(0);
+				
+				c.repaint();
 			}
 		}
 		

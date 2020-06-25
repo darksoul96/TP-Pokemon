@@ -32,13 +32,13 @@ public class PanelFaseEliminatoria extends JPanel {
 
 		this.panelNorte = new JPanel();
 		add(this.panelNorte, BorderLayout.NORTH);
-<<<<<<< HEAD
+
 		this.panelNorte.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
 		
-=======
+
 		this.panelNorte.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
->>>>>>> branch 'master' of https://github.com/darksoul96/TP-Pokemon
+
 		this.lblSiguienteRonda = new JLabel("Siguiente Ronda:");
 
 		this.panelNorte.add(this.lblSiguienteRonda);
@@ -67,11 +67,10 @@ public class PanelFaseEliminatoria extends JPanel {
 				JLabel nombre = new JLabel(clasificados.get(contador).getNombre());
 				this.llaves[i][j].add(nombre);
 				this.panelCentral.add(this.llaves[i][j]);
-<<<<<<< HEAD
+
 				this.llaves[i][j].setLayout(new FlowLayout());
 				//this.llaves[i][j].setLayout(new GridLayout(0, 1));
-=======
->>>>>>> branch 'master' of https://github.com/darksoul96/TP-Pokemon
+
 
 				contador++;
 			}
