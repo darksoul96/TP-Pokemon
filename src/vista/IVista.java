@@ -1,8 +1,10 @@
 package vista;
 
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Iterator;
 
+import modelo.Grupo;
 import personajes.Entrenador;
 import personajes.Pokemon;
 
@@ -24,5 +26,7 @@ public interface IVista {
 	void habilitarModificarEntrenador();
 	void habilitarModificarPokemon();
 	void pintarFase1();
+	void creaArenas(int i);
+	void creaGrupos(ArrayList<Grupo> grupos);
 	
 }

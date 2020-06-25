@@ -46,6 +46,11 @@ public class Torneo extends Observable implements Serializable {
 	
 	
 
+	public ArrayList<Grupo> getGrupos() {
+		return grupos;
+	}
+
+
 	public void setParticipantes(ArrayList<Entrenador> participantes) {
 		this.participantes = participantes;
 	}

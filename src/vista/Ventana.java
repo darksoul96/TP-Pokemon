@@ -6,7 +6,9 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
+import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.GridLayout;
@@ -17,6 +19,7 @@ import javax.swing.JScrollPane;
 import java.awt.FlowLayout;
 import javax.swing.border.TitledBorder;
 
+import modelo.Grupo;
 import personajes.Entrenador;
 import personajes.Pokemon;
 import personajes.PokemonFactory;
@@ -33,6 +36,7 @@ import java.awt.Choice;
 import java.awt.Panel;
 import java.awt.Checkbox;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.awt.event.MouseEvent;
 import java.awt.event.KeyListener;
@@ -104,6 +108,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	private JLabel lblNewLabel_1;
 	private JList listBatalla;
 	private JPanel panelBatalla;
+	private JPanel[][] grupos;
 
 	/**
 	 * Launch the application.
@@ -199,7 +204,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 
 		this.btnSiguienteEtapa = new JButton("Siguiente etapa");
 		this.btnSiguienteEtapa.setActionCommand("SIGUIENTE_ETAPA");
-		this.btnSiguienteEtapa.setBounds(22, 11, 121, 28);
+		this.btnSiguienteEtapa.setBounds(54, 11, 121, 28);
 		this.panel_2.add(this.btnSiguienteEtapa);
 
 		this.panelCM = new JPanel();
@@ -375,7 +380,6 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.listEntrenadores.setPreferredSize(new Dimension(50, 37000));
 		this.listPokemones.setPreferredSize(new Dimension(50, 37000));
 
-		
 	}
 
 	@Override
@@ -529,7 +533,8 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		return this.listPokemones.getSelectedValue();
 	}
 
-	private void creaArenas(int cantidad) {
+	@Override
+	public void creaArenas(int cantidad) {
 
 		this.arenas = new JButton[cantidad];
 		this.panelPanelArenas.setLayout(new GridLayout(1, cantidad));
@@ -544,16 +549,67 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	}
 
 	@Override
+
+	public void creaGrupos(ArrayList<Grupo> grupos) {
+		int numerogrupo = 1;
+		this.grupos = new JPanel[4][2];
+		this.panelMedio.remove(this.panelEtapaGrupos);
+		this.panelMedio.remove(this.panelBotones);
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 2; j++) {
+				this.grupos[i][j] = new JPanel();
+				this.grupos[i][j].setBorder(new BevelBorder(BevelBorder.RAISED));
+				this.panelMedio.add(this.grupos[i][j]);
+				this.grupos[i][j].setLayout(new FlowLayout());
+				this.grupos[i][j].setLayout(new GridLayout(0, 1));
+
+				JLabel label = new JLabel("Grupo " + numerogrupo);
+				numerogrupo++;
+				this.grupos[i][j].add(label);
+
+				DefaultListModel<Entrenador> dlm = new DefaultListModel<Entrenador>();
+				JList<Entrenador> lista = new JList<Entrenador>(dlm);
+				lista.setSize(new Dimension(0, 547));
+				lista.setMaximumSize(new Dimension(0, 547));
+
+				JScrollPane scrollpane = new JScrollPane();
+				scrollpane.setBounds(0, 26, 415, 547);
+				scrollpane.setPreferredSize(new Dimension(50, 2));
+				scrollpane.setViewportView(lista);
+
+				this.grupos[i][j].add(scrollpane);
+				scrollpane.setColumnHeaderView(lista);
+			//	for (int k = 0; k < 4; k++) {
+			//		dlm.addElement(grupos.get(numerogrupo).getIntegrantes().get(k));
+			//	}
+
+			}
+		}
+		revalidate();
+		repaint();
+	}
+
+	@Override
 	public void pintarFase1() {
 
 		this.setBounds(this.getX(), this.getY(), 1100, 682);
-		
-		
+
 		this.panelDerecho = new JPanel();
 		this.panelDerecho.setBounds(679, 5, 415, 573);
 		this.contentPane.add(this.panelDerecho);
-		this.panelDerecho.setLayout(null);
-		
+		this.panelDerecho.setLayout(new GridLayout(0, 1));
+		// this.panelDerecho.setLayout(new FlowLayout());
+
+		JPanel rodeabotonsigetapa = new JPanel();
+		rodeabotonsigetapa.setSize(50, 50);
+		this.panelDerecho.add(rodeabotonsigetapa);
+
+		this.btnSiguienteEtapa = new JButton("Siguiente etapa");
+		this.btnSiguienteEtapa.setActionCommand("SIGUIENTE_ETAPA");
+		this.btnSiguienteEtapa.setBounds(22, 11, 121, 28);
+		this.btnSiguienteEtapa.setSize(5, 5);
+		rodeabotonsigetapa.add(this.btnSiguienteEtapa);
+
 		this.panelBatalla = new JPanel();
 		this.panelBatalla.setBounds(0, 0, 415, 573);
 		this.panelDerecho.add(this.panelBatalla);
@@ -572,12 +628,10 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.lblNewLabel_1 = new JLabel("Batallas");
 		this.lblNewLabel_1.setBounds(2, 0, 415, 25);
 		this.panelBatalla.add(this.lblNewLabel_1);
-		
+
 		this.panelBotones.setVisible(false);
 		this.panelCM.setVisible(false);
 		repaint();
-		
+
 	}
-	
-	
 }
