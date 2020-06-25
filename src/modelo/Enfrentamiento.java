@@ -1,5 +1,6 @@
 package modelo;
 
+import java.io.Serializable;
 import java.util.Random;
 
 import exceptions.CantidadHechizosExcedidosException;
@@ -12,7 +13,7 @@ import personajes.Pokemon;
  * entrenador. Dos participantes y ganador y perdedor.
  *
  */
-public class Enfrentamiento extends Thread {
+public class Enfrentamiento extends Thread implements Serializable {
 
 	private Entrenador entrenadorUno;
 	private Entrenador entrenadorDos;

@@ -1,5 +1,6 @@
 package personajes;
 
+import java.io.Serializable;
 import java.util.Random;
 
 import interfaces.Atacable;
@@ -7,7 +8,7 @@ import interfaces.Clasificable;
 import interfaces.Hechizable;
 import interfaces.ICarta;
 
-public abstract class Pokemon implements Cloneable, Atacable, Hechizable, Clasificable {
+public abstract class Pokemon implements Cloneable, Atacable, Hechizable, Clasificable,Serializable {
 	protected String nombre;
 	protected double experiencia = 0;
 	protected double escudo;

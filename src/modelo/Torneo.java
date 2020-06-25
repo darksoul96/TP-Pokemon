@@ -1,5 +1,6 @@
 package modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -15,7 +16,7 @@ import personajes.Entrenador;
  * metodos de competicion del Torneo.
  *
  */
-public class Torneo extends Observable {
+public class Torneo extends Observable implements Serializable {
 
 	private static Torneo torneo;
 	private ArrayList<Entrenador> participantes;
@@ -23,10 +24,12 @@ public class Torneo extends Observable {
 	private ArrayList<Grupo> grupos;
 	private int cantidadDeParticipantes;
 	private Arena[] arenas;
+	private int fase;
 
 	private Torneo() {
 		this.participantes = new ArrayList<Entrenador>();
 		this.clasificados = new ArrayList<Entrenador>();
+		this.fase =0;
 	}
 
 	public static Torneo getInstanceSingleton() {
@@ -113,6 +116,8 @@ public class Torneo extends Observable {
 		inicializarArenas();
 		//Collections.shuffle(participantes);
 		generaGrupos(participantes);
+		this.fase =1;
+		this.notifyObservers(fase);
 	}
 
 	public void faseDeGrupos() {
@@ -141,13 +146,16 @@ public class Torneo extends Observable {
 			this.clasificados.add(this.grupos.get(i).getIntegrantes().get(1));
 		}
 		Collections.shuffle(clasificados);
+		this.fase = 2;
+		this.notifyObservers(fase);
 	}
 
 	public void faseEliminatoriaSiguiente() {
 		if (clasificados.size() != 1) {
 			this.juegaRonda(clasificados.size());
 		}
-		this.notifyObservers("Ronda finalizada");
+		this.fase++;
+		this.notifyObservers(fase);
 	}
 
 	public void setCantidadDeParticipantes(int cantidadDeParticipantes) {

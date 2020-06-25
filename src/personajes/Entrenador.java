@@ -1,5 +1,6 @@
 package personajes;
 
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -17,7 +18,7 @@ import interfaces.ICarta;
  * con hechizos, y una lista con sus pokemones.
  *
  */
-public class Entrenador implements Comparable<Entrenador>, Cloneable, Clasificable {
+public class Entrenador implements Comparable<Entrenador>, Cloneable, Clasificable,Serializable {
 
 	private String nombre;
 	private ArrayList<Pokemon> pokemones = new ArrayList<Pokemon>();
