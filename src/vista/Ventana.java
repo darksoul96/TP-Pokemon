@@ -403,7 +403,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.btnSiguienteEtapa.addActionListener(actionListener);
 		this.listEntrenadores.addMouseListener((MouseListener) actionListener); // OJO ACA
 	}
-	
+
 	@Override
 	public void setActionListenerFaseGrupos(ActionListener actionListener) {
 		this.btnSiguienteEtapa.addActionListener(actionListener);
@@ -558,7 +558,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 
 	@Override
 
-	public void creaGrupos() {
+	public void creaGrupos(ArrayList<Grupo> grupo) {
 		int numerogrupo = 1;
 		this.grupos = new JPanel[4][2];
 		this.panelMedio.remove(this.panelEtapaGrupos);
@@ -572,9 +572,6 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 				this.grupos[i][j].setLayout(new GridLayout(0, 1));
 
 				JLabel label = new JLabel("Grupo " + numerogrupo);
-				numerogrupo++;
-				this.grupos[i][j].add(label);
-
 				DefaultListModel<Entrenador> dlm = new DefaultListModel<Entrenador>();
 				JList<Entrenador> lista = new JList<Entrenador>(dlm);
 				lista.setSize(new Dimension(0, 547));
@@ -587,19 +584,17 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 
 				this.grupos[i][j].add(scrollpane);
 				scrollpane.setColumnHeaderView(lista);
-			//	for (int k = 0; k < 4; k++) {
-			//		dlm.addElement(grupos.get(numerogrupo).getIntegrantes().get(k));
-			//	}
+				for (int k = 0; k < 4; k++) {
+					System.out.println("NumeroGrupo:" + (numerogrupo-1));
+					dlm.addElement(grupo.get(numerogrupo-1).getIntegrantes().get(k));
+				}
+				this.grupos[i][j].add(label);
+				numerogrupo++;
 
 			}
 		}
 		revalidate();
 		repaint();
-	}
-	
-	@Override
-	public void sortear(ArrayList<Grupo> grupos) {
-		
 	}
 
 	@Override
@@ -615,7 +610,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 
 		JPanel rodeabotonsigetapa = new JPanel();
 		rodeabotonsigetapa.setSize(50, 50);
-		//rodeabotonsigetapa.setLayout(new GridLayout(3,0));
+		// rodeabotonsigetapa.setLayout(new GridLayout(3,0));
 		this.panelDerecho.add(rodeabotonsigetapa);
 
 		this.btnSiguienteEtapa = new JButton("Siguiente etapa");
@@ -623,19 +618,18 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.btnSiguienteEtapa.setBounds(22, 11, 121, 28);
 		this.btnSiguienteEtapa.setSize(5, 5);
 		rodeabotonsigetapa.add(this.btnSiguienteEtapa);
-		
+
 		this.btnSortear = new JButton("Sortear");
 		this.btnSortear.setActionCommand("SORTEAR");
 		this.btnSortear.setBounds(22, 11, 121, 28);
 		this.btnSortear.setSize(5, 5);
 		rodeabotonsigetapa.add(this.btnSortear);
-		
+
 		this.btnIniciar = new JButton("Iniciar Combates");
 		this.btnIniciar.setActionCommand("INICIAR");
 		this.btnIniciar.setBounds(22, 11, 121, 28);
 		this.btnIniciar.setSize(5, 5);
 		rodeabotonsigetapa.add(this.btnIniciar);
-		
 
 		this.panelBatalla = new JPanel();
 		this.panelBatalla.setBounds(0, 0, 415, 573);

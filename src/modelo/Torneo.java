@@ -29,7 +29,7 @@ public class Torneo extends Observable implements Serializable {
 	private Torneo() {
 		this.participantes = new ArrayList<Entrenador>();
 		this.clasificados = new ArrayList<Entrenador>();
-		this.fase =0;
+		this.fase = 0;
 	}
 
 	public static Torneo getInstanceSingleton() {
@@ -43,22 +43,19 @@ public class Torneo extends Observable implements Serializable {
 	public ArrayList<Entrenador> getParticipantes() {
 		return participantes;
 	}
-	
-	
 
 	public ArrayList<Grupo> getGrupos() {
 		return grupos;
 	}
 
-
 	public void setParticipantes(ArrayList<Entrenador> participantes) {
 		this.participantes = participantes;
 	}
 
-	public void eliminarEntrenador(Entrenador e){
+	public void eliminarEntrenador(Entrenador e) {
 		this.participantes.remove(e);
 	}
-	
+
 	public void agregarEntrenador(Entrenador entrenador) {
 		this.participantes.add(entrenador);
 	}
@@ -81,40 +78,6 @@ public class Torneo extends Observable implements Serializable {
 		Grupo g6 = new Grupo("Grupo 6");
 		Grupo g7 = new Grupo("Grupo 7");
 		Grupo g8 = new Grupo("Grupo 8");
-		Random r = new Random();
-		int i = 0;
-		while (this.participantes.size() != 0) {
-			i = r.nextInt(this.participantes.size());
-			if (g1.isLleno() != true) {
-				g1.agregarEntrenador(this.participantes.get(i));
-				this.participantes.remove(i);
-			} else if (g2.isLleno() != true) {
-				g2.agregarEntrenador(this.participantes.get(i));
-				this.participantes.remove(i);
-			} else if (g3.isLleno() != true) {
-				g3.agregarEntrenador(this.participantes.get(i));
-				this.participantes.remove(i);
-			} else if (g4.isLleno() != true) {
-				g4.agregarEntrenador(this.participantes.get(i));
-				this.participantes.remove(i);
-			} else if (g4.isLleno() != true) {
-				g4.agregarEntrenador(this.participantes.get(i));
-				this.participantes.remove(i);
-			} else if (g5.isLleno() != true) {
-				g5.agregarEntrenador(this.participantes.get(i));
-				this.participantes.remove(i);
-			} else if (g6.isLleno() != true) {
-				g6.agregarEntrenador(this.participantes.get(i));
-				this.participantes.remove(i);
-			} else if (g7.isLleno() != true) {
-				g7.agregarEntrenador(this.participantes.get(i));
-				this.participantes.remove(i);
-			} else if (g8.isLleno() != true) {
-				g8.agregarEntrenador(this.participantes.get(i));
-				this.participantes.remove(i);
-			}
-
-		}
 		this.grupos.add(g1);
 		this.grupos.add(g2);
 		this.grupos.add(g3);
@@ -123,11 +86,23 @@ public class Torneo extends Observable implements Serializable {
 		this.grupos.add(g6);
 		this.grupos.add(g7);
 		this.grupos.add(g8);
+		int bandera = 0;
+		for (int i = 0; i < 8; i++) {
+			for (int k = 0; k < 4; k++) {
+				if (this.participantes.size() != 0) {
+					this.grupos.get(i).agregarEntrenador(this.participantes.get(0));
+					this.participantes.remove(0);
+				}
+				System.out.println(bandera);
+				bandera++;
+			}
+		}
 	}
 
 	public void faseDeSorteo() {
 		inicializarArenas();
-		//Collections.shuffle(participantes);
+		Collections.shuffle(this.participantes);
+		System.out.println(participantes.size());
 		generaGrupos(participantes);
 		this.notifyObservers(fase);
 	}
@@ -195,20 +170,20 @@ public class Torneo extends Observable implements Serializable {
 			break;
 		}
 		Random r = new Random();
-		int batallas = this.clasificados.size() /2;
-		ArrayList <Enfrentamiento> enfrentamientos = new ArrayList<Enfrentamiento>();
-		for (int i = 0; i < batallas ; i=i+2) {
+		int batallas = this.clasificados.size() / 2;
+		ArrayList<Enfrentamiento> enfrentamientos = new ArrayList<Enfrentamiento>();
+		for (int i = 0; i < batallas; i = i + 2) {
 			Entrenador e1 = this.clasificados.get(i);
 			Entrenador e2 = this.clasificados.get(i + 1);
 			Enfrentamiento n = new Enfrentamiento(e1, e2);
 			n.setRecursoCompartido(arenas[r.nextInt(3)]);
 			enfrentamientos.add(n);
 		}
-		for(int i = 0; i<batallas ; i++) {
+		for (int i = 0; i < batallas; i++) {
 			enfrentamientos.get(i).start();
 		}
 		Entrenador perdedor;
-		for(int i = 0; i<batallas;i++) {
+		for (int i = 0; i < batallas; i++) {
 			perdedor = enfrentamientos.get(i).getPerdedor();
 			this.clasificados.remove(perdedor);
 		}
@@ -253,6 +228,5 @@ public class Torneo extends Observable implements Serializable {
 	public void setFase(int fase) {
 		this.fase = fase;
 	}
-	
-	
+
 }
