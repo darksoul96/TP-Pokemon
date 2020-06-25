@@ -47,9 +47,10 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 				torneo.agregarEntrenador(new Entrenador(this.vista.getNombreEntrenador()));
 				this.vista.actualizarListaEntrenador(this.torneo.devuelveIteratorEntrenador());
 			}
-		} else if (comando.contentEquals("SORTEAR")) {
-			this.vista.sortear();
-		} else if (comando.contentEquals("PRE_AGREGAR_POKEMON") || comando.contentEquals("CREAR_POKEMON")) {
+		} else if (comando.contentEquals("SIGUIENTE_ETAPA")) {
+			this.vista.creaListaBatallas();
+		} 
+		else if (comando.contentEquals("PRE_AGREGAR_POKEMON") || comando.contentEquals("CREAR_POKEMON")) {
 			if (comando.contentEquals("PRE_AGREGAR_POKEMON"))
 				this.vista.habilitarAgregarPokemon();
 			else {
@@ -120,7 +121,12 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 	            System.out.println(e.getMessage());
 	        }
 		}
-
+		else if (comando.contentEquals("IMPORTAR_FASE")) {
+			
+		}
+		else if (comando.contentEquals("EXPORTAR_FASE")) {
+			
+		}
 	}
 
 	public IVista getVista() {

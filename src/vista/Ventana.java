@@ -27,6 +27,8 @@ import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+
 import java.awt.Choice;
 import java.awt.Panel;
 import java.awt.Checkbox;
@@ -68,14 +70,11 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	private JButton btnAgregarPokemon;
 	private JButton btnEliminarPokemon;
 	private JButton btnModificarPokemon;
-	private JButton btnSortear;
 	private JPanel panelCM;
 	private JPanel panel;
 	private JPanel panel_2;
 	private JLabel lblEtapa;
 	private JButton btnSiguienteEtapa;
-	private JScrollPane scrollPane_3;
-	private JList list;
 	private JButton btnImportarEntrenadores;
 	private JButton btnExportarEntrenadores;
 	private JPanel panelCMPokemon;
@@ -92,15 +91,16 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	private JButton btnModificarP;
 	private JButton btnCrearP;
 	private ActionListener actionListener;
-	private JScrollPane scrollPaneFases;
 	private JScrollPane scrollPaneBatallas;
-	private JList listFases;
 	private JList listBatallas;
-	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel_4;
 	private JPanel panelPanelArenas;
 	private JButton btnArena1;
 	private JButton[] arenas;
+	private JButton btnExportarFase;
+	private JButton btnImportarFase;
+	private JPanel panelDerecho;
+	private JScrollPane scrollPane_2;
 
 	/**
 	 * Launch the application.
@@ -115,19 +115,20 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	public Ventana() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1030, 682);
+		setBounds(100, 100, 739, 682);
 		// setBounds(100, 100, 832, 741);
 		this.contentPane = new JPanel();
 		this.contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		this.contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(this.contentPane);
 		Dimension defaultSize = new Dimension(1030, 682);
 
 		this.contentPane.setMaximumSize(defaultSize);
 		this.contentPane.setMinimumSize(defaultSize);
+		this.contentPane.setLayout(null);
 
 		this.panelCentral = new JPanel();
-		this.contentPane.add(this.panelCentral, BorderLayout.CENTER);
+		this.panelCentral.setBounds(5, 5, 676, 573);
+		this.contentPane.add(this.panelCentral);
 		this.panelCentral.setLayout(null);
 
 		this.panelEntrenadoresPokemones = new JPanel();
@@ -166,17 +167,18 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.scrollPane.setColumnHeaderView(this.lblPokemones);
 
 		this.panelMedio = new JPanel();
-		this.panelMedio.setBounds(315, 0, 361, 573);
+		this.panelMedio.setBounds(216, 0, 460, 573);
 		this.panelCentral.add(this.panelMedio);
 		this.panelMedio.setLayout(new GridLayout(2, 0, 0, 0));
 
 		this.panelEtapaGrupos = new JPanel();
 		this.panelMedio.add(this.panelEtapaGrupos);
-		this.panelEtapaGrupos.setLayout(new BorderLayout(0, 0));
+		this.panelEtapaGrupos.setLayout(null);
 
 		this.panelPasarEtapa = new JPanel();
+		this.panelPasarEtapa.setBounds(0, 0, 460, 50);
 		this.panelPasarEtapa.setBackground(Color.WHITE);
-		this.panelEtapaGrupos.add(this.panelPasarEtapa, BorderLayout.NORTH);
+		this.panelEtapaGrupos.add(this.panelPasarEtapa);
 		this.panelPasarEtapa.setLayout(new GridLayout(0, 2, 0, 0));
 		this.panelPasarEtapa.setPreferredSize(new Dimension(50, 50));
 
@@ -198,7 +200,8 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.panel_2.add(this.btnSiguienteEtapa);
 
 		this.panelCM = new JPanel();
-		this.panelEtapaGrupos.add(this.panelCM, BorderLayout.CENTER);
+		this.panelCM.setBounds(0, 50, 460, 236);
+		this.panelEtapaGrupos.add(this.panelCM);
 		this.panelCM.setLayout(new GridLayout(2, 1, 0, 0));
 
 		this.panelCMEntrenador = new JPanel();
@@ -276,9 +279,10 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.panelBotones
 				.setBorder(new TitledBorder(null, "Opciones", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		this.panelMedio.add(this.panelBotones);
-		this.panelBotones.setLayout(new GridLayout(3, 0, 0, 0));
+		this.panelBotones.setLayout(null);
 
 		this.panelBotonEntrenador = new JPanel();
+		this.panelBotonEntrenador.setBounds(6, 17, 448, 87);
 		this.panelBotones.add(this.panelBotonEntrenador);
 		this.panelBotonEntrenador.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
@@ -299,6 +303,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.panelBotonEntrenador.add(this.btnModificarEntrenador);
 
 		this.panelBotonPokemon = new JPanel();
+		this.panelBotonPokemon.setBounds(6, 104, 448, 87);
 		this.panelBotones.add(this.panelBotonPokemon);
 
 		this.btnAgregarPokemon = new JButton("Agregar Pokemon");
@@ -315,11 +320,8 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.panelBotonPokemon.add(this.btnModificarPokemon);
 
 		this.panelBotonOpciones = new JPanel();
+		this.panelBotonOpciones.setBounds(6, 191, 448, 87);
 		this.panelBotones.add(this.panelBotonOpciones);
-
-		this.btnSortear = new JButton("Sortear");
-		this.btnSortear.setActionCommand("SORTEAR");
-		this.panelBotonOpciones.add(this.btnSortear);
 
 		this.btnImportarEntrenadores = new JButton("Importar Entrenadores");
 		this.btnImportarEntrenadores.addActionListener(this);
@@ -330,45 +332,26 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.btnExportarEntrenadores.addActionListener(this);
 		this.btnExportarEntrenadores.setActionCommand("EXPORTAR_ENTRENADORES");
 		this.panelBotonOpciones.add(this.btnExportarEntrenadores);
-//
-		this.panelFaseBatalla = new JPanel();
-		this.panelFaseBatalla.setBounds(676, 0, 338, 573);
-		this.panelCentral.add(this.panelFaseBatalla);
-		this.panelFaseBatalla.setLayout(new GridLayout(2, 1, 0, 0));
-
-		this.scrollPaneFases = new JScrollPane();
-		this.panelFaseBatalla.add(this.scrollPaneFases);
-
-		this.listFases = new JList();
-		this.listFases.setEnabled(false);
-		this.scrollPaneFases.setViewportView(this.listFases);
-
-		this.lblNewLabel_1 = new JLabel("Fases:");
-		this.scrollPaneFases.setColumnHeaderView(this.lblNewLabel_1);
-
-		this.scrollPaneBatallas = new JScrollPane();
-		this.panelFaseBatalla.add(this.scrollPaneBatallas);
-
-		this.listBatallas = new JList();
-		this.listBatallas.setEnabled(false);
-		this.scrollPaneBatallas.setViewportView(this.listBatallas);
-
-		this.lblNewLabel_4 = new JLabel("Batallas");
-		this.scrollPaneBatallas.setColumnHeaderView(this.lblNewLabel_4);
+		
+		this.btnImportarFase = new JButton("Importar Fase");
+		this.btnImportarFase.addActionListener(this);
+		this.btnImportarFase.setActionCommand("IMPORTAR_FASE");
+		this.panelBotonOpciones.add(this.btnImportarFase);
+		
+		this.btnExportarFase = new JButton("Exportar Fase");
+		this.btnExportarFase.addActionListener(this);
+		this.panelBotonOpciones.add(this.btnExportarFase);
 
 		this.panelSur = new JPanel();
+		this.panelSur.setBounds(5, 578, 1014, 70);
 		this.panelSur.setBackground(Color.WHITE);
-		this.contentPane.add(this.panelSur, BorderLayout.SOUTH);
+		this.contentPane.add(this.panelSur);
 		this.panelSur.setPreferredSize(new Dimension(50, 70));
-		this.panelSur.setLayout(new GridLayout(0, 2, 0, 0));
-
-		this.scrollPane_3 = new JScrollPane();
-		this.panelSur.add(this.scrollPane_3);
-
-		this.list = new JList();
-		this.scrollPane_3.setViewportView(this.list);
+		this.panelSur.setLayout(null);
 
 		this.panelPanelArenas = new JPanel();
+		this.panelPanelArenas.setPreferredSize(new Dimension(37000, 10));
+		this.panelPanelArenas.setBounds(0, 0, 1014, 70);
 		this.panelSur.add(this.panelPanelArenas);
 		this.panelPanelArenas.setLayout(null);
 
@@ -388,6 +371,16 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.panelEntrenadoresPokemones.setPreferredSize(new Dimension(50,37000));
 		this.listEntrenadores.setPreferredSize(new Dimension(50,37000));
 		this.listPokemones.setPreferredSize(new Dimension(50,37000));
+		
+		this.panelDerecho = new JPanel();
+		this.panelDerecho.setBounds(679, 5, 31, 573);
+		this.contentPane.add(this.panelDerecho);
+		this.panelDerecho.setLayout(null);
+		
+		this.scrollPane_2 = new JScrollPane();
+		this.scrollPane_2.setBounds(0, 0, 31, 573);
+		this.scrollPane_2.setPreferredSize(new Dimension(50, 2));
+		this.panelDerecho.add(this.scrollPane_2);
 	}
 
 	@Override
@@ -407,7 +400,6 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.btnModificarP.addActionListener(actionListener);
 		this.btnModificarPokemon.addActionListener(actionListener);
 		this.btnSiguienteEtapa.addActionListener(actionListener);
-		this.btnSortear.addActionListener(actionListener);
 		this.listEntrenadores.addMouseListener((MouseListener) actionListener); // OJO ACA
 
 	}
@@ -555,5 +547,28 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.validate();
 		this.repaint();
 	}
+	
+	@Override
+	public void creaListaBatallas() {
+		JPanel panelFaseBatalla = new JPanel();
+		panelFaseBatalla.setVisible(true);
+		panelFaseBatalla.setBounds(676, 0, 338, 573);
+		this.panelDerecho.add(panelFaseBatalla);
+		panelFaseBatalla.setLayout(null);
 
+		panelFaseBatalla.add(this.scrollPane_2);
+
+		JList listBatallas = new JList();
+		listBatallas.setVisible(true);
+		listBatallas.setEnabled(true);
+		this.scrollPane_2.setViewportView(listBatallas);
+
+		lblNewLabel_4 = new JLabel("Batallas");
+		lblNewLabel_4.setVisible(true);
+		this.scrollPane_2.setColumnHeaderView(lblNewLabel_4);
+		this.contentPane.setMaximumSize(new Dimension(1500,682));
+
+		this.setBounds(100, 80, 1100, 682);
+		repaint();
+	}
 }
