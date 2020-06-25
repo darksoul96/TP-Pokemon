@@ -43,6 +43,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.ContainerListener;
 import java.awt.event.ContainerEvent;
+import javax.swing.JComboBox;
 
 public class Ventana extends JFrame implements IVista, MouseListener, KeyListener, ActionListener {
 
@@ -77,7 +78,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	private JPanel panelCM;
 	private JPanel panel;
 	private JPanel panel_2;
-	private JLabel lblEtapa;
+	private JLabel lblNumeroDeParticipantes;
 	private JButton btnSiguienteEtapa;
 	private JButton btnImportarEntrenadores;
 	private JButton btnExportarEntrenadores;
@@ -111,6 +112,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	private JPanel[][] grupos;
 	private JButton btnSortear;
 	private JButton btnIniciar;
+	private JComboBox comboParticipantes;
 
 	/**
 	 * Launch the application.
@@ -196,9 +198,18 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.panelPasarEtapa.add(this.panel);
 		this.panel.setLayout(null);
 
-		this.lblEtapa = new JLabel("Etapa:");
-		this.lblEtapa.setBounds(73, 11, 71, 14);
-		this.panel.add(this.lblEtapa);
+		this.lblNumeroDeParticipantes = new JLabel("Participantes:");
+		this.lblNumeroDeParticipantes.setToolTipText("Cantidad de participantes");
+		this.lblNumeroDeParticipantes.setBounds(24, 11, 120, 14);
+		this.panel.add(this.lblNumeroDeParticipantes);
+		
+		this.comboParticipantes = new JComboBox();		
+		this.lblNumeroDeParticipantes.setLabelFor(this.comboParticipantes);
+		this.comboParticipantes.setBounds(116, 8, 53, 20);
+		this.panel.add(this.comboParticipantes);
+		this.comboParticipantes.addItem("8");
+		this.comboParticipantes.addItem("16");
+		this.comboParticipantes.addItem("32");
 
 		this.panel_2 = new JPanel();
 		this.panelPasarEtapa.add(this.panel_2);
@@ -206,7 +217,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 
 		this.btnSiguienteEtapa = new JButton("Siguiente etapa");
 		this.btnSiguienteEtapa.setActionCommand("SIGUIENTE_ETAPA");
-		this.btnSiguienteEtapa.setBounds(54, 11, 121, 28);
+		this.btnSiguienteEtapa.setBounds(37, 11, 138, 28);
 		this.panel_2.add(this.btnSiguienteEtapa);
 
 		this.panelCM = new JPanel();
@@ -510,6 +521,11 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	}
 
 	@Override
+	public int devuelveCantidadParticipantes() {
+		int cantidad = Integer.parseInt((String) this.comboParticipantes.getSelectedItem());
+		return cantidad;
+	}
+	@Override
 	public void habilitarAgregarEntrenador() {
 		// TODO Auto-generated method stub
 		this.textFieldNombreEntrenador.setEditable(true);
@@ -557,12 +573,12 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 
 	@Override
 
-	public void creaGrupos(ArrayList<Grupo> grupo) {
+	public void creaGrupos(ArrayList<Grupo> grupo, int cantidad) {
 		int numerogrupo = 1;
-		this.grupos = new JPanel[4][2];
+		this.grupos = new JPanel[cantidad/8][2];
 		this.panelMedio.remove(this.panelEtapaGrupos);
 		this.panelMedio.remove(this.panelBotones);
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < cantidad/8; i++) {
 			for (int j = 0; j < 2; j++) {
 				this.grupos[i][j] = new JPanel();
 				this.grupos[i][j].setBorder(new BevelBorder(BevelBorder.RAISED));

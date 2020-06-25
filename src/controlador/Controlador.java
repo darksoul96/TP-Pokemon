@@ -28,17 +28,19 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 	private Torneo torneo;
 	private IVista vista;
 	IPersistencia persistencia = new PersistenciaBIN();
+	int cantidad;
 
 	public Controlador() {
 		this.vista = new Ventana();
 		this.vista.setActionListener(this);
 		this.torneo = torneo.getInstanceSingleton();
 		this.torneo.addObserver(this);
+		this.torneo.setCantidadDeParticipantes(this.vista.devuelveCantidadParticipantes());
+		this.cantidad = this.vista.devuelveCantidadParticipantes();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
 		String comando = arg0.getActionCommand();
 		if (comando.contentEquals("CREAR_ENTRENADOR") || comando.contentEquals("PRE_AGREGAR_ENTRENADOR")) {
 			if (comando.contentEquals("PRE_AGREGAR_ENTRENADOR"))
@@ -55,7 +57,7 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 				this.vista.pintarFase1();
 				this.torneo.faseDeSorteo();
 				this.vista.creaArenas(4);
-				this.vista.creaGrupos(this.torneo.getGrupos());
+				this.vista.creaGrupos(this.torneo.getGrupos(),this.cantidad);
 				this.vista.setActionListenerFaseGrupos(this);
 				this.torneo.setFase(this.torneo.getFase()+1);
 				break;

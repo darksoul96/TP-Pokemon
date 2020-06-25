@@ -70,24 +70,43 @@ public class Torneo extends Observable implements Serializable {
 
 	public void generaGrupos(ArrayList<Entrenador> participantes) {
 		this.grupos = new ArrayList<Grupo>();
-		Grupo g1 = new Grupo("Grupo 1");
-		Grupo g2 = new Grupo("Grupo 2");
-		Grupo g3 = new Grupo("Grupo 3");
-		Grupo g4 = new Grupo("Grupo 4");
-		Grupo g5 = new Grupo("Grupo 5");
-		Grupo g6 = new Grupo("Grupo 6");
-		Grupo g7 = new Grupo("Grupo 7");
-		Grupo g8 = new Grupo("Grupo 8");
-		this.grupos.add(g1);
-		this.grupos.add(g2);
-		this.grupos.add(g3);
-		this.grupos.add(g4);
-		this.grupos.add(g5);
-		this.grupos.add(g6);
-		this.grupos.add(g7);
-		this.grupos.add(g8);
+		switch(this.cantidadDeParticipantes) {
+		case 8:
+			Grupo g1 = new Grupo("Grupo 1");
+			Grupo g2 = new Grupo("Grupo 2");
+			this.grupos.add(g1);
+			this.grupos.add(g2);
+			break;
+		case 16:
+			Grupo grupo1 = new Grupo("Grupo 1");
+			Grupo grupo2 = new Grupo("Grupo 2");
+			Grupo g3 = new Grupo("Grupo 3");
+			Grupo g4 = new Grupo("Grupo 4");
+			this.grupos.add(grupo1);
+			this.grupos.add(grupo2);
+			this.grupos.add(g3);
+			this.grupos.add(g4);
+			break;
+		case 32:
+			Grupo grupo_1 = new Grupo("Grupo 1");
+			Grupo grupo_2 = new Grupo("Grupo 2");
+			Grupo grupo_3 = new Grupo("Grupo 3");
+			Grupo grupo_4 = new Grupo("Grupo 4");
+			Grupo g5 = new Grupo("Grupo 5");
+			Grupo g6 = new Grupo("Grupo 6");
+			Grupo g7 = new Grupo("Grupo 7");
+			Grupo g8 = new Grupo("Grupo 8");
+			this.grupos.add(grupo_1);
+			this.grupos.add(grupo_2);
+			this.grupos.add(grupo_3);
+			this.grupos.add(grupo_4);
+			this.grupos.add(g5);
+			this.grupos.add(g6);
+			this.grupos.add(g7);
+			this.grupos.add(g8);
+		}
 		int bandera = 0;
-		for (int i = 0; i < 8; i++) {
+		for (int i = 0; i < this.cantidadDeParticipantes/4; i++) {
 			for (int k = 0; k < 4; k++) {
 				if (this.participantes.size() != 0) {
 					this.grupos.get(i).agregarEntrenador(this.participantes.get(0));
@@ -109,26 +128,26 @@ public class Torneo extends Observable implements Serializable {
 
 	public void faseDeGrupos() {
 		boolean faseDeGruposFinalizada = false;
-		Enfrentamiento[] enfrentamientos = new Enfrentamiento[8];
+		Enfrentamiento[] enfrentamientos = new Enfrentamiento[this.cantidadDeParticipantes/4];
 		Random r = new Random();
 		int contador = 0;
 		while (faseDeGruposFinalizada == false) {
-			for (int i = 0; i < 8; i++) {
+			for (int i = 0; i < this.cantidadDeParticipantes/4; i++) {
 				enfrentamientos[i] = grupos.get(i).generaEnfrentamiento();
 				if (enfrentamientos[i] != null)
 					enfrentamientos[i].setRecursoCompartido(arenas[r.nextInt(3)]);
 				if (grupos.get(i).isGrupoFinalizado() == true) {
 					contador++;
-					if (contador == 8) {
+					if (contador == this.cantidadDeParticipantes/4) {
 						faseDeGruposFinalizada = true;
 					}
 				}
 			}
 			contador = 0;
-			for (int i = 0; i < 8; i++)
+			for (int i = 0; i < this.cantidadDeParticipantes/4; i++)
 				enfrentamientos[i].start();
 		}
-		for (int i = 0; i < 8; i++) {
+		for (int i = 0; i < this.cantidadDeParticipantes/4; i++) {
 			this.clasificados.add(this.grupos.get(i).getIntegrantes().get(0));
 			this.clasificados.add(this.grupos.get(i).getIntegrantes().get(1));
 		}

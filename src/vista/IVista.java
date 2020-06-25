@@ -27,7 +27,8 @@ public interface IVista {
 	void habilitarModificarPokemon();
 	void pintarFase1();
 	void creaArenas(int i);
-	void creaGrupos(ArrayList<Grupo> grupos);
+	void creaGrupos(ArrayList<Grupo> grupos, int cantidad);
 	void setActionListenerFaseGrupos(ActionListener actionListener);
+	int devuelveCantidadParticipantes();
 	
 }
