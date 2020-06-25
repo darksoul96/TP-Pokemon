@@ -123,7 +123,6 @@ public class Torneo extends Observable implements Serializable,Observer {
 					this.grupos.get(i).agregarEntrenador(this.participantes.get(0));
 					this.participantes.remove(0);
 				}
-				System.out.println(bandera);
 				bandera++;
 			}
 		}
@@ -132,7 +131,6 @@ public class Torneo extends Observable implements Serializable,Observer {
 	public void faseDeSorteo() {
 		inicializarArenas();
 		Collections.shuffle(this.participantes);
-		System.out.println(participantes.size());
 		generaGrupos(participantes);
 		this.notifyObservers(fase);
 	}
@@ -262,6 +260,7 @@ public class Torneo extends Observable implements Serializable,Observer {
 	public void update(Observable o, Object arg1) {
 		Arena arenaObservada = (Arena) o;
 		this.setChanged();
+		System.out.println("Notifico"+ arenaObservada.getNombreArena() + " " + arenaObservada.getEstado().getNombre());
 		this.notifyObservers(arenaObservada);
 		
 	}

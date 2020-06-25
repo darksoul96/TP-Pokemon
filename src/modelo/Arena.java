@@ -2,6 +2,8 @@ package modelo;
 
 import java.io.Serializable;
 import java.util.Observable;
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import interfaces.IStateArena;
 
@@ -29,6 +31,13 @@ public class Arena extends Observable implements Serializable {
 
 	public void setEstado(IStateArena estado) {
 		this.estado = estado;
+		Random r = new Random();
+		try {
+			TimeUnit.SECONDS.sleep(r.nextInt(3));
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		this.setChanged();
 		this.notifyObservers(this);
 	}
