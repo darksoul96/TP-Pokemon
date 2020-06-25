@@ -32,5 +32,6 @@ public interface IVista {
 	int devuelveCantidadParticipantes();
 	void modificaNombreArenas(int indice, String nombre);
 	void faseSiguiente(ArrayList<Entrenador> clasificados);
+	void repintarGrupos(ArrayList<Grupo> grupos);
 	
 }
