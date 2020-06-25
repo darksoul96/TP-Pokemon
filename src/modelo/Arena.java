@@ -1,10 +1,11 @@
 package modelo;
 
 import java.io.Serializable;
+import java.util.Observable;
 
 import interfaces.IStateArena;
 
-public class Arena implements Serializable {
+public class Arena extends Observable implements Serializable {
 	
 	private String nombreArena;
 	private IStateArena estado;
@@ -17,7 +18,7 @@ public class Arena implements Serializable {
 	
 	public Arena() {}
 	
-	public void comenzar(Enfrentamiento enfrentamiento) {
+	public synchronized void comenzar(Enfrentamiento enfrentamiento) {
 		this.estado.comenzar(enfrentamiento);
 	}
 
@@ -27,6 +28,7 @@ public class Arena implements Serializable {
 	}
 
 	public void setEstado(IStateArena estado) {
+		this.notifyObservers(estado.getNombre());
 		this.estado = estado;
 	}
 

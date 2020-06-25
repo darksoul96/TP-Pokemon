@@ -6,9 +6,12 @@ import interfaces.IStateArena;
 public class PreliminarState implements IStateArena {
 
 	private Arena arena;
+	private String nombre;
 	
 	public PreliminarState(Arena arena) {
 		this.arena=arena;
+		this.nombre = "PreliminarState";
+		
 	}
 
 
@@ -19,11 +22,16 @@ public class PreliminarState implements IStateArena {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		
 		enfrentamiento.preparacionEntrenadores();
 		arena.setEstado(new BatallaState(arena));
 		arena.comenzar(enfrentamiento);
 		
+	}
+
+
+	@Override
+	public String getNombre() {
+		return this.nombre;
 	}
 	
 	
