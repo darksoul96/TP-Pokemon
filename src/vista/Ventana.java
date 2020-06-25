@@ -103,6 +103,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	private JScrollPane scrollPane_2;
 	private JLabel lblNewLabel_1;
 	private JList listBatalla;
+	private JPanel panelBatalla;
 
 	/**
 	 * Launch the application.
@@ -117,7 +118,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	public Ventana() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 739, 682);
+		setBounds(100, 100, 692, 682);
 		// setBounds(100, 100, 832, 741);
 		this.contentPane = new JPanel();
 		this.contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -334,12 +335,12 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.btnExportarEntrenadores.addActionListener(this);
 		this.btnExportarEntrenadores.setActionCommand("EXPORTAR_ENTRENADORES");
 		this.panelBotonOpciones.add(this.btnExportarEntrenadores);
-		
+
 		this.btnImportarFase = new JButton("Importar Fase");
 		this.btnImportarFase.addActionListener(this);
 		this.btnImportarFase.setActionCommand("IMPORTAR_FASE");
 		this.panelBotonOpciones.add(this.btnImportarFase);
-		
+
 		this.btnExportarFase = new JButton("Exportar Fase");
 		this.btnExportarFase.addActionListener(this);
 		this.panelBotonOpciones.add(this.btnExportarFase);
@@ -370,30 +371,11 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.choicePokemon.add("Tierra");
 		// this.btnNewButton.setVisible(false);
 
-		this.panelEntrenadoresPokemones.setPreferredSize(new Dimension(50,37000));
-		this.listEntrenadores.setPreferredSize(new Dimension(50,37000));
-		this.listPokemones.setPreferredSize(new Dimension(50,37000));
+		this.panelEntrenadoresPokemones.setPreferredSize(new Dimension(50, 37000));
+		this.listEntrenadores.setPreferredSize(new Dimension(50, 37000));
+		this.listPokemones.setPreferredSize(new Dimension(50, 37000));
+
 		
-		this.panelDerecho = new JPanel();
-		this.panelDerecho.setBounds(679, 5, 31, 573);
-		this.contentPane.add(this.panelDerecho);
-		this.panelDerecho.setLayout(null);
-		
-		this.scrollPane_2 = new JScrollPane();
-		this.scrollPane_2.setBounds(0, 26, 31, 547);
-		this.scrollPane_2.setPreferredSize(new Dimension(50, 2));
-		this.panelDerecho.add(this.scrollPane_2);
-		
-		this.listBatalla = new JList();
-		this.listBatalla.setVisible(false);
-		this.listBatalla.setSize(new Dimension(0, 682));
-		this.listBatalla.setMaximumSize(new Dimension(0, 682));
-		this.scrollPane_2.setColumnHeaderView(this.listBatalla);
-		
-		this.lblNewLabel_1 = new JLabel("Batallas");
-		this.lblNewLabel_1.setVisible(false);
-		this.lblNewLabel_1.setBounds(0, 0, 31, 25);
-		this.panelDerecho.add(this.lblNewLabel_1);
 	}
 
 	@Override
@@ -419,7 +401,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 
 	@Override
 	public void sortear() {
-		 this.creaArenas(5);
+		this.creaArenas(5);
 	}
 
 	public void mouseClicked(MouseEvent arg0) {
@@ -560,37 +542,68 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.validate();
 		this.repaint();
 	}
-	
+
 	@Override
 	public void creaListaBatallas() {
-		//JPanel panelFaseBatalla = new JPanel();
-		//panelFaseBatalla.setVisible(true);
-		//panelFaseBatalla.setBounds(676, 0, 338, 573);
-		//this.panelDerecho.add(panelFaseBatalla);
-		//panelFaseBatalla.setLayout(null);
+		// JPanel panelFaseBatalla = new JPanel();
+		// panelFaseBatalla.setVisible(true);
+		// panelFaseBatalla.setBounds(676, 0, 338, 573);
+		// this.panelDerecho.add(panelFaseBatalla);
+		// panelFaseBatalla.setLayout(null);
 
-		//panelFaseBatalla.add(this.scrollPane_2);
+		// panelFaseBatalla.add(this.scrollPane_2);
 
-		//JList listBatallas = new JList();
-		//listBatallas.setVisible(true);
-		//listBatallas.setEnabled(true);
-		//this.scrollPane_2.setViewportView(listBatallas);
+		// JList listBatallas = new JList();
+		// listBatallas.setVisible(true);
+		// listBatallas.setEnabled(true);
+		// this.scrollPane_2.setViewportView(listBatallas);
 
-		//lblNewLabel_4 = new JLabel("Batallas");
-		//lblNewLabel_4.setVisible(true);
-		//this.scrollPane_2.setColumnHeaderView(lblNewLabel_4);
-		//this.contentPane.setMaximumSize(new Dimension(1500,682));
+		// lblNewLabel_4 = new JLabel("Batallas");
+		// lblNewLabel_4.setVisible(true);
+		// this.scrollPane_2.setColumnHeaderView(lblNewLabel_4);
+		// this.contentPane.setMaximumSize(new Dimension(1500,682));
 
 		this.setBounds(this.getX(), this.getY(), 1100, 682);
-		this.panelDerecho.setBounds(this.panelDerecho.getX(), this.panelDerecho.getX(), this.panelDerecho.getWidth()+50, this.panelDerecho.getHeight() + 400);
-		this.scrollPane_2.setBounds(this.scrollPane_2.getX(), this.scrollPane_2.getX(), this.scrollPane_2.getWidth() + 50, this.scrollPane_2.getHeight()
-				+ 400);
-		this.listBatalla.setBounds(this.listBatalla.getX(), this.listBatalla.getX(), this.listBatalla.getWidth()+50, this.listBatalla.getHeight()+400);
-		this.lblNewLabel_1.setBounds(this.lblNewLabel_1.getX(), this.lblNewLabel_1.getY(), 10, 20);
-		this.scrollPane_2.setVisible(true);
-		this.lblNewLabel_1.setVisible(true);
-		this.listBatalla.setVisible(true);
+		//this.setPreferredSize(new Dimension(1100,682));
 		
+		this.panelDerecho = new JPanel();
+		this.panelDerecho.setBounds(679, 5, 415, 573);
+		this.contentPane.add(this.panelDerecho);
+		this.panelDerecho.setLayout(null);
+		
+		this.panelBatalla = new JPanel();
+		this.panelBatalla.setBounds(0, 0, 415, 573);
+		this.panelDerecho.add(this.panelBatalla);
+		this.panelBatalla.setLayout(null);
+
+		this.scrollPane_2 = new JScrollPane();
+		this.scrollPane_2.setBounds(0, 26, 415, 547);
+		this.panelBatalla.add(this.scrollPane_2);
+		this.scrollPane_2.setPreferredSize(new Dimension(50, 2));
+
+		this.listBatalla = new JList();
+		this.listBatalla.setSize(new Dimension(0, 682));
+		this.listBatalla.setMaximumSize(new Dimension(0, 682));
+		this.scrollPane_2.setColumnHeaderView(this.listBatalla);
+
+		this.lblNewLabel_1 = new JLabel("Batallas");
+		this.lblNewLabel_1.setBounds(2, 0, 415, 25);
+		this.panelBatalla.add(this.lblNewLabel_1);
+		//this.panelDerecho.setBounds(this.panelDerecho.getX(), this.panelDerecho.getX(),
+		//		this.panelDerecho.getWidth() + 50, this.panelDerecho.getHeight() + 400);
+		//this.panelBatalla.setBounds(this.panelBatalla.getX(), this.panelBatalla.getX(), this.panelBatalla.getWidth()+50, this.panelBatalla.getHeight()+400);
+		//this.lblNewLabel_1.setBounds(this.lblNewLabel_1.getX(), this.lblNewLabel_1.getY(), 10, 20);
+		//this.scrollPane_2.setBounds(this.scrollPane_2.getX(), this.scrollPane_2.getX(),
+		//		this.scrollPane_2.getWidth() + 50, this.scrollPane_2.getHeight() + 400);
+		//this.listBatalla.setBounds(this.listBatalla.getX(), this.listBatalla.getX(), this.listBatalla.getWidth() + 50,
+		//		this.listBatalla.getHeight() + 400);
+
+		//this.scrollPane_2.setVisible(true);
+		//this.lblNewLabel_1.setVisible(true);
+		//this.listBatalla.setVisible(true);
 		repaint();
+		
 	}
+	
+	
 }
