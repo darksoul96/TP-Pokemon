@@ -1,5 +1,7 @@
 package hechizos;
 
+import java.io.Serializable;
+
 import interfaces.Hechizable;
 import interfaces.ICarta;
 
@@ -9,7 +11,7 @@ import interfaces.ICarta;
 
  *
  */
-public class Niebla implements ICarta {
+public class Niebla implements ICarta,Serializable {
 
 	@Override
 	public void hechizar(Hechizable hechizable) {

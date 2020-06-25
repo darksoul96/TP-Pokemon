@@ -8,13 +8,13 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
 import persistencia.PersistenciaBIN;
 
 import javax.swing.JList;
-
 import modelo.Torneo;
 import interfaces.IPersistencia;
 import persistencia.PersistenciaBIN;
@@ -27,6 +27,7 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 
 	private Torneo torneo;
 	private IVista vista;
+	IPersistencia persistencia = new PersistenciaBIN();
 
 	public Controlador() {
 		this.vista = new Ventana();
@@ -95,16 +96,27 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 			}
 		}
 		else if (comando.contentEquals("EXPORTAR_ENTRENADORES")) {
-			IPersistencia persistencia = new PersistenciaBIN();
 			try {
 				persistencia.abrirOutput("Entrenadores.bin");
-				persistencia.escribir(this.torneo.getEntrenadores());
+				persistencia.escribir(this.torneo.getParticipantes());
+				persistencia.cerrarOutput();
 			}catch (IOException e) {
 				System.out.println(e.getLocalizedMessage());
 			}
 		}
 		else if (comando.contentEquals("IMPORTAR_ENTRENADORES")) {
-			
+			try
+	        {
+	            persistencia.abrirInput("Entrenadores.bin");
+	            this.torneo.setParticipantes((ArrayList<Entrenador>) persistencia.leer());
+	            persistencia.cerrarInput();
+	        } catch (IOException e)
+	        {
+	            System.out.println(e.getMessage());
+	        } catch (ClassNotFoundException e)
+	        {
+	            System.out.println(e.getMessage());
+	        }
 		}
 
 	}

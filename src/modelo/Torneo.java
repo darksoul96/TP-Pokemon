@@ -40,8 +40,14 @@ public class Torneo extends Observable implements Serializable {
 		return torneo;
 	}
 
-	public ArrayList<Entrenador> getEntrenadores() {
+	public ArrayList<Entrenador> getParticipantes() {
 		return participantes;
+	}
+	
+	
+
+	public void setParticipantes(ArrayList<Entrenador> participantes) {
+		this.participantes = participantes;
 	}
 
 	public void eliminarEntrenador(Entrenador e){
