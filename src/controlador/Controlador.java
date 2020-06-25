@@ -7,13 +7,17 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
+import persistencia.PersistenciaBIN;
 
 import javax.swing.JList;
 
 import modelo.Torneo;
+import interfaces.IPersistencia;
+import persistencia.PersistenciaBIN;
 import personajes.Entrenador;
 import personajes.Pokemon;
 import vista.IVista;
@@ -91,7 +95,13 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 			}
 		}
 		else if (comando.contentEquals("EXPORTAR_ENTRENADORES")) {
-			
+			IPersistencia persistencia = new PersistenciaBIN();
+			try {
+				persistencia.abrirOutput("Entrenadores.bin");
+				persistencia.escribir(this.torneo.getEntrenadores());
+			}catch (IOException e) {
+				System.out.println(e.getLocalizedMessage());
+			}
 		}
 
 	}
