@@ -3,10 +3,13 @@ package modelo;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
 import java.util.SortedMap;
 
 import personajes.Entrenador;
 import java.util.SortedSet;
+import java.util.TreeSet;
 
 public class Grupo {
 	private ArrayList<Entrenador> integrantes;

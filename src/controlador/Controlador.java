@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.concurrent.TimeUnit;
+
 import persistencia.PersistenciaBIN;
 
 import javax.swing.JList;
@@ -30,7 +32,7 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 	private Torneo torneo;
 	private IVista vista;
 	IPersistencia persistencia = new PersistenciaBIN();
-	int cantidad;
+	private int cantidad;
 
 	public Controlador() {
 		this.vista = new Ventana();
@@ -60,7 +62,6 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 				this.vista.creaArenas(4);
 				this.vista.creaGrupos(this.torneo.getGrupos(),this.cantidad);
 				this.vista.setActionListenerFaseGrupos(this);
-				this.vista.repintarGrupos(this.torneo.getGrupos());
 				this.torneo.setFase(this.torneo.getFase()+1);
 				break;
 			case 1:
@@ -78,7 +79,13 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 		}
 		else if(comando.contentEquals("INICIAR_COMBATES")){
 			this.torneo.faseDeGrupos();
-			
+			try {
+				TimeUnit.SECONDS.sleep(5);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			this.vista.repintarGrupos(this.torneo.getGrupos());
 		}
 		else if (comando.contentEquals("PRE_AGREGAR_POKEMON") || comando.contentEquals("CREAR_POKEMON")) {
 			if (comando.contentEquals("PRE_AGREGAR_POKEMON"))

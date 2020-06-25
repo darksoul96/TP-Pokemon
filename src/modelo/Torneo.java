@@ -162,6 +162,9 @@ public class Torneo extends Observable implements Serializable,Observer {
 			for (int i = 0; i < this.cantidadDeParticipantes/4; i++)
 				enfrentamientos[i].start();
 		}
+		for(int i=0;i<this.grupos.size();i++) {
+			this.grupos.get(i).actualizaPosiciones();
+		}
 		for (int i = 0; i < this.cantidadDeParticipantes/4; i++) {
 			this.clasificados.add(this.grupos.get(i).getIntegrantes().get(0));
 			this.clasificados.add(this.grupos.get(i).getIntegrantes().get(1));

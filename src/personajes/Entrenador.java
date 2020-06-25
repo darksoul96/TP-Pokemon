@@ -18,7 +18,7 @@ import interfaces.ICarta;
  * con hechizos, y una lista con sus pokemones.
  *
  */
-public class Entrenador implements Comparable<Entrenador>, Cloneable, Clasificable,Serializable {
+public class Entrenador implements Comparable<Entrenador>, Cloneable, Clasificable, Serializable {
 
 	private String nombre;
 	private ArrayList<Pokemon> pokemones = new ArrayList<Pokemon>();
@@ -43,7 +43,6 @@ public class Entrenador implements Comparable<Entrenador>, Cloneable, Clasificab
 		return nombre;
 	}
 
-	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
@@ -81,7 +80,7 @@ public class Entrenador implements Comparable<Entrenador>, Cloneable, Clasificab
 		if (!this.pokemones.contains(pokemon))
 			this.pokemones.add(pokemon);
 	}
-	
+
 	public void eliminarPokemon(Pokemon p) {
 		this.pokemones.remove(p);
 	}
@@ -126,12 +125,11 @@ public class Entrenador implements Comparable<Entrenador>, Cloneable, Clasificab
 	 * pokemones.
 	 */
 	@Override
-	public char calculaClasificacion() {
+	public double calculaClasificacion() {
 		char rango;
 		double experiencia = 0;
 		for (Pokemon p : this.pokemones)
 			experiencia += p.experiencia;
-		experiencia /= this.pokemones.size();
 
 		if (experiencia >= 12)
 			rango = '4';
@@ -143,7 +141,7 @@ public class Entrenador implements Comparable<Entrenador>, Cloneable, Clasificab
 			rango = '1';
 		else
 			rango = '0';
-		return rango;
+		return experiencia ;
 	}
 
 	/**
@@ -172,17 +170,13 @@ public class Entrenador implements Comparable<Entrenador>, Cloneable, Clasificab
 
 	@Override
 	public int compareTo(Entrenador otro) {
-		// TODO Auto-generated method stub
 		int resultado;
 		if (this.calculaClasificacion() < otro.calculaClasificacion())
 			resultado = -1;
-		else {
-			if (this.calculaClasificacion() == otro.calculaClasificacion())
-				resultado = 0;
-			else {
-				resultado = 1;
-			}
-		}
+		else if (this.calculaClasificacion() == otro.calculaClasificacion())
+			resultado = 0;
+		else
+			resultado = 1;
 
 		return resultado;
 	}

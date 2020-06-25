@@ -34,10 +34,12 @@ import javax.swing.SwingUtilities;
 
 import java.awt.Choice;
 import java.awt.Panel;
+import java.awt.ScrollPane;
 import java.awt.Checkbox;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.awt.event.MouseEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
@@ -62,6 +64,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	private JLabel lblEntrenadores;
 	private JList<Entrenador> listEntrenadores;
 	private DefaultListModel<Entrenador> listModelEntrenadores = new DefaultListModel<Entrenador>();
+	private DefaultListModel<Entrenador> dlm;
 	private JPanel panelSur;
 	private JPanel panelBotones;
 	private JPanel panelEtapaGrupos;
@@ -109,7 +112,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	private JLabel lblNewLabel_1;
 	private JList listBatalla;
 	private JPanel panelBatalla;
-	private JPanel[][] grupos;
+	private JPanel[] grupos;
 	private JButton btnSortear;
 	private JButton btnIniciar;
 	private JComboBox comboParticipantes;
@@ -203,8 +206,8 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.lblNumeroDeParticipantes.setToolTipText("Cantidad de participantes");
 		this.lblNumeroDeParticipantes.setBounds(24, 11, 120, 14);
 		this.panel.add(this.lblNumeroDeParticipantes);
-		
-		this.comboParticipantes = new JComboBox();		
+
+		this.comboParticipantes = new JComboBox();
 		this.lblNumeroDeParticipantes.setLabelFor(this.comboParticipantes);
 		this.comboParticipantes.setBounds(116, 8, 53, 20);
 		this.panel.add(this.comboParticipantes);
@@ -526,6 +529,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		int cantidad = Integer.parseInt((String) this.comboParticipantes.getSelectedItem());
 		return cantidad;
 	}
+
 	@Override
 	public void habilitarAgregarEntrenador() {
 		// TODO Auto-generated method stub
@@ -576,50 +580,48 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 
 	public void creaGrupos(ArrayList<Grupo> grupo, int cantidad) {
 		int numerogrupo = 1;
-		this.grupos = new JPanel[cantidad/8][2];
+		this.grupos = new JPanel[cantidad / 4];
 		this.panelMedio.remove(this.panelEtapaGrupos);
 		this.panelMedio.remove(this.panelBotones);
-		for (int i = 0; i < cantidad/8; i++) {
-			for (int j = 0; j < 2; j++) {
-				this.grupos[i][j] = new JPanel();
-				this.grupos[i][j].setBorder(new BevelBorder(BevelBorder.RAISED));
-				this.panelMedio.add(this.grupos[i][j]);
-				this.grupos[i][j].setLayout(new FlowLayout());
-				this.grupos[i][j].setLayout(new GridLayout(0, 1));
+		for (int i = 0; i < cantidad /4; i++) {
+			this.grupos[i] = new JPanel();
+			this.grupos[i].setBorder(new BevelBorder(BevelBorder.RAISED));
+			this.panelMedio.add(this.grupos[i]);
+			this.grupos[i].setLayout(new FlowLayout());
+			this.grupos[i].setLayout(new GridLayout(0, 1));
 
-				JLabel label = new JLabel("Grupo " + numerogrupo);
-				DefaultListModel<Entrenador> dlm = new DefaultListModel<Entrenador>();
-				
-				JList<Entrenador> lista = new JList<Entrenador>(dlm);
-				lista.setSize(new Dimension(0, 547));
-				lista.setMaximumSize(new Dimension(0, 547));
+			JLabel label = new JLabel("Grupo " + numerogrupo);
+			this.dlm = new DefaultListModel<Entrenador>();
 
-				JScrollPane scrollpane = new JScrollPane();
-				scrollpane.setBounds(0, 26, 415, 547);
-				scrollpane.setPreferredSize(new Dimension(50, 2));
-				scrollpane.setViewportView(lista);
+			JList<Entrenador> lista = new JList<Entrenador>(dlm);
+			lista.setSize(new Dimension(0, 547));
+			lista.setMaximumSize(new Dimension(0, 547));
 
-				this.grupos[i][j].add(scrollpane);
-				scrollpane.setColumnHeaderView(lista);
-				for (int k = 0; k < 4; k++) {
-					dlm.addElement(grupo.get(numerogrupo-1).getIntegrantes().get(k));
-				}
-				this.grupos[i][j].add(label);
-				numerogrupo++;
+			JScrollPane scrollpane = new JScrollPane();
+			scrollpane.setBounds(0, 26, 415, 547);
+			scrollpane.setPreferredSize(new Dimension(50, 2));
+			scrollpane.setViewportView(lista);
 
+			this.grupos[i].add(scrollpane);
+			scrollpane.setColumnHeaderView(lista);
+			for (int k = 0; k < 4; k++) {
+				this.dlm.addElement(grupo.get(numerogrupo - 1).getIntegrantes().get(k));
 			}
+			this.grupos[i].add(label);
+			numerogrupo++;
 		}
 		revalidate();
 		repaint();
 	}
+
 	@Override
-	public void modificaNombreArenas(int indice,String nombre) {
+	public void modificaNombreArenas(int indice, String nombre) {
 		this.arenas[indice].setText(nombre);
 	}
 
 	@Override
 	public void faseSiguiente(ArrayList<Entrenador> clasificados) {
-		for(int i=0; i<clasificados.size();i++)
+		for (int i = 0; i < clasificados.size(); i++)
 			System.out.println(clasificados.get(i).toString());
 		this.panelCentral.setVisible(false);
 		this.panelCentral.removeAll();
@@ -629,7 +631,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.panelCentral.setVisible(true);
 		this.revalidate();
 	}
-	
+
 	@Override
 	public void pintarFase1() {
 
@@ -686,14 +688,18 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	@Override
 	public void repintarGrupos(ArrayList<Grupo> grupo) {
 		Component c;
-		for(int i=0;i<grupo.size();i++) {
-			for(int j=0;j<4;j++) {
-				this.listModelEntrenadores.addElement(this.grupo);
-				c=(JList)this.grupos[i][j].getComponent(0);
-				
-				c.repaint();
+		JScrollPane scrollpane;
+		System.out.println("GRUPO SIZE" + grupo.size());
+		for (int i = 0; i < grupo.size(); i++) {
+			this.dlm.clear();
+			scrollpane = (JScrollPane) this.grupos[i].getComponent(0);
+			c = ((JList) scrollpane.getColumnHeader().getComponent(0));
+			for (int j = 0; j < 4; j++) {
+				System.out.println(grupo.get(i).getIntegrantes().get(j));
+				this.dlm.addElement(grupo.get(i).getIntegrantes().get(j));
 			}
+			c.repaint();
 		}
-		
+
 	}
 }

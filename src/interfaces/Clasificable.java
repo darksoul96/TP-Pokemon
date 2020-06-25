@@ -2,5 +2,5 @@ package interfaces;
 
 public interface Clasificable {
 
-	public char calculaClasificacion();
+	public double calculaClasificacion();
 }
