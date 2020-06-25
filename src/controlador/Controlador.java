@@ -103,6 +103,9 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 				System.out.println(e.getLocalizedMessage());
 			}
 		}
+		else if (comando.contentEquals("IMPORTAR_ENTRENADORES")) {
+			
+		}
 
 	}
 
