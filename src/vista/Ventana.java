@@ -128,9 +128,12 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 
 		this.panelCentral = new JPanel();
 		this.contentPane.add(this.panelCentral, BorderLayout.CENTER);
-		this.panelCentral.setLayout(new GridLayout(0, 3, 0, 0)); // columnas central
+		this.panelCentral.setLayout(null);
 
 		this.panelEntrenadoresPokemones = new JPanel();
+		this.panelEntrenadoresPokemones.setLocation(0, 0);
+		this.panelEntrenadoresPokemones.setSize(new Dimension(206, 573));
+		this.panelEntrenadoresPokemones.setMaximumSize(new Dimension(100, 32767));
 		this.panelCentral.add(this.panelEntrenadoresPokemones);
 		this.panelEntrenadoresPokemones.setLayout(new GridLayout(2, 0, 0, 0));
 
@@ -163,6 +166,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.scrollPane.setColumnHeaderView(this.lblPokemones);
 
 		this.panelMedio = new JPanel();
+		this.panelMedio.setBounds(315, 0, 361, 573);
 		this.panelCentral.add(this.panelMedio);
 		this.panelMedio.setLayout(new GridLayout(2, 0, 0, 0));
 
@@ -181,7 +185,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.panel.setLayout(null);
 
 		this.lblEtapa = new JLabel("Etapa:");
-		this.lblEtapa.setBounds(69, 11, 32, 14);
+		this.lblEtapa.setBounds(73, 11, 71, 14);
 		this.panel.add(this.lblEtapa);
 
 		this.panel_2 = new JPanel();
@@ -328,6 +332,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.panelBotonOpciones.add(this.btnExportarEntrenadores);
 //
 		this.panelFaseBatalla = new JPanel();
+		this.panelFaseBatalla.setBounds(676, 0, 338, 573);
 		this.panelCentral.add(this.panelFaseBatalla);
 		this.panelFaseBatalla.setLayout(new GridLayout(2, 1, 0, 0));
 
@@ -380,6 +385,9 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.choicePokemon.add("Tierra");
 		// this.btnNewButton.setVisible(false);
 
+		this.panelEntrenadoresPokemones.setPreferredSize(new Dimension(50,37000));
+		this.listEntrenadores.setPreferredSize(new Dimension(50,37000));
+		this.listPokemones.setPreferredSize(new Dimension(50,37000));
 	}
 
 	@Override
