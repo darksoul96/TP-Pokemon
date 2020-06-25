@@ -27,7 +27,7 @@ public class Arena extends Observable implements Serializable {
 		return estado;
 	}
 
-	public void setEstado(IStateArena estado) {
+	public synchronized void setEstado(IStateArena estado) {
 		this.notifyObservers(estado.getNombre());
 		this.estado = estado;
 	}

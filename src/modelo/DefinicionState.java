@@ -14,7 +14,10 @@ public class DefinicionState implements IStateArena {
 
 	@Override
 	public void comenzar(Enfrentamiento enfrentamiento) {
-		// TODO Auto-generated method stub
+		this.arena.setEstado(new LimpiezaState(arena));
+		enfrentamiento.definicion();
+		arena.comenzar(enfrentamiento);
+		
 		
 	}
 

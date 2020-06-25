@@ -16,12 +16,13 @@ public class BatallaState implements IStateArena, Serializable {
 
 	@Override
 	public void comenzar(Enfrentamiento enfrentamiento) {
-		
+		arena.setEstado(new DefinicionState(arena));
+		enfrentamiento.batalla();
+		arena.comenzar(enfrentamiento);
 	}
 
 	@Override
 	public String getNombre() {
-		// TODO Auto-generated method stub
 		return this.nombre;
 	}
 
