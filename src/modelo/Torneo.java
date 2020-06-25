@@ -207,7 +207,7 @@ public class Torneo extends Observable implements Serializable, Observer {
 		Random r = new Random();
 		int batallas = this.clasificados.size() / 2;
 		ArrayList<Enfrentamiento> enfrentamientos = new ArrayList<Enfrentamiento>();
-		for (int i = 0; i <= batallas; i+=2) {
+		for (int i = 0; i <= batallas; i += 2) {
 			Entrenador e1 = this.clasificados.get(i);
 			Entrenador e2 = this.clasificados.get(i + 1);
 			Enfrentamiento n = new Enfrentamiento(e1, e2);
@@ -271,6 +271,13 @@ public class Torneo extends Observable implements Serializable, Observer {
 		this.setChanged();
 		System.out.println("Notifico" + arenaObservada.getNombreArena() + " " + arenaObservada.getEstado().getNombre());
 		this.notifyObservers(arenaObservada);
+	}
+
+	public void reiniciarArenas() {
+		// TODO Auto-generated method stub
+		for (int i = 0; i < 4; i++) {
+			this.arenas[i].setEstado(new PreliminarState(this.arenas[i]));
+		}
 	}
 
 }

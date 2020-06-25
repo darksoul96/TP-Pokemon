@@ -49,6 +49,11 @@ public class Arena extends Observable implements Serializable {
 	public void setNombreArena(String nombreArena) {
 		this.nombreArena = nombreArena;
 	}
+
+	public void reiniciarEstado() {
+		// TODO Auto-generated method stub
+		this.setEstado(new PreliminarState(this));
+	}
 	
 	
 }

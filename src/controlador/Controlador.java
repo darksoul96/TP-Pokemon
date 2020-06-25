@@ -61,17 +61,21 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 				this.vista.creaArenas(4);
 				this.vista.creaGrupos(this.torneo.getGrupos(), this.cantidad);
 				this.vista.setActionListenerFaseGrupos(this);
+				this.torneo.reiniciarArenas();
 				this.torneo.setFase(this.torneo.getFase() + 1);
 				break;
 			case 1:
 				this.vista.faseSiguiente(this.torneo.getClasificados());
+				this.torneo.reiniciarArenas();
 				this.torneo.setFase(this.torneo.getFase() + 1);
 				this.torneo.faseEliminatoriaSiguiente();
 				break;
 			case 2:
+				this.torneo.reiniciarArenas();
 				this.torneo.setFase(this.torneo.getFase() + 1);
 				break;
 			case 3:
+				this.torneo.reiniciarArenas();
 				this.torneo.setFase(this.torneo.getFase() + 1);
 				break;
 			}
@@ -80,7 +84,7 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 			if (this.torneo.getFase() == 1) {
 				this.torneo.faseDeGrupos();
 				try {
-					TimeUnit.SECONDS.sleep(5);
+					TimeUnit.SECONDS.sleep(1);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -89,7 +93,7 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 					this.vista.repintarBatalla(this.torneo.getGrupos().get(i).getEnfrentamientos());
 				}
 				try {
-					TimeUnit.SECONDS.sleep(2);
+					TimeUnit.SECONDS.sleep(1);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -97,7 +101,7 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 			} else if (this.torneo.getFase() == 2) {
 				this.torneo.faseEliminatoriaSiguiente();
 				try {
-					TimeUnit.SECONDS.sleep(2);
+					TimeUnit.SECONDS.sleep(1);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -213,10 +217,10 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 			this.vista.modificaNombreArenas(1, arenaDesdeTorneo.getEstado().getNombre());
 			break;
 		case "Arena 3":
-			this.vista.modificaNombreArenas(3, arenaDesdeTorneo.getEstado().getNombre());
+			this.vista.modificaNombreArenas(2, arenaDesdeTorneo.getEstado().getNombre());
 			break;
 		case "Arena 4":
-			this.vista.modificaNombreArenas(4, arenaDesdeTorneo.getEstado().getNombre());
+			this.vista.modificaNombreArenas(3, arenaDesdeTorneo.getEstado().getNombre());
 			break;
 		}
 

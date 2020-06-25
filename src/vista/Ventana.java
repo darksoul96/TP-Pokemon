@@ -632,6 +632,9 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.panelCentral.setLayout(new FlowLayout());
 		this.panelCentral.add(fase);
 		this.panelCentral.setVisible(true);
+		for (int i = 0; i < 4; i++) 
+			this.arenas[i].setName("Arena " + i);
+		
 		this.revalidate();
 	}
 
@@ -716,10 +719,9 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		for (int i = 0; i < enfrentamientos.size(); i++) {
 			this.modelBatallas.addElement(enfrentamientos.get(i).getLogBatalla());
 			System.out.println(enfrentamientos.get(i).getLogBatalla());
-			//JOptionPane.showMessageDialog(this, enfrentamientos.get(i).getLogBatalla());
+			// JOptionPane.showMessageDialog(this, enfrentamientos.get(i).getLogBatalla());
 		}
 		repaint();
 	}
-
 
 }
