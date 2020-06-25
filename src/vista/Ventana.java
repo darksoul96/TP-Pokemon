@@ -558,7 +558,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 
 	@Override
 
-	public void creaGrupos(ArrayList<Grupo> grupos) {
+	public void creaGrupos() {
 		int numerogrupo = 1;
 		this.grupos = new JPanel[4][2];
 		this.panelMedio.remove(this.panelEtapaGrupos);
@@ -595,6 +595,11 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		}
 		revalidate();
 		repaint();
+	}
+	
+	@Override
+	public void sortear(ArrayList<Grupo> grupos) {
+		
 	}
 
 	@Override
