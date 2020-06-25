@@ -109,6 +109,7 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 	        {
 	            persistencia.abrirInput("Entrenadores.bin");
 	            this.torneo.setParticipantes((ArrayList<Entrenador>) persistencia.leer());
+	            //comment;
 	            persistencia.cerrarInput();
 	        } catch (IOException e)
 	        {
