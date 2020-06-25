@@ -127,6 +127,12 @@ public class Torneo extends Observable implements Serializable,Observer {
 			}
 		}
 	}
+	
+	
+
+	public ArrayList<Entrenador> getClasificados() {
+		return clasificados;
+	}
 
 	public void faseDeSorteo() {
 		inicializarArenas();

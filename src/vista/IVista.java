@@ -31,5 +31,6 @@ public interface IVista {
 	void setActionListenerFaseGrupos(ActionListener actionListener);
 	int devuelveCantidadParticipantes();
 	void modificaNombreArenas(int indice, String nombre);
+	void faseSiguiente(ArrayList<Entrenador> clasificados);
 	
 }

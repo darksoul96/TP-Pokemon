@@ -63,6 +63,7 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 				this.torneo.setFase(this.torneo.getFase()+1);
 				break;
 			case 1:
+				this.vista.faseSiguiente(this.torneo.getClasificados());
 				this.torneo.setFase(this.torneo.getFase()+1);
 				break;
 			case 2:
