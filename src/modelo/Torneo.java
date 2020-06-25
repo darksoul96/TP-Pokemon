@@ -111,6 +111,7 @@ public class Torneo extends Observable {
 
 	public void faseDeSorteo() {
 		inicializarArenas();
+		//Collections.shuffle(participantes);
 		generaGrupos(participantes);
 	}
 
