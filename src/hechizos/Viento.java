@@ -1,5 +1,7 @@
 package hechizos;
 
+import java.io.Serializable;
+
 import interfaces.Hechizable;
 import interfaces.ICarta;
 
@@ -10,7 +12,7 @@ import interfaces.ICarta;
  * reducida su vitalidad en 15%
  *
  */
-public class Viento implements ICarta {
+public class Viento implements ICarta,Serializable{
 
 	@Override
 	public void hechizar(Hechizable hechizable) {

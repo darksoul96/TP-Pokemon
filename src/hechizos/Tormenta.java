@@ -1,5 +1,7 @@
 package hechizos;
 
+import java.io.Serializable;
+
 import interfaces.Hechizable;
 import interfaces.ICarta;
 
@@ -9,7 +11,7 @@ import interfaces.ICarta;
  * descargas electricas. El pokemon de electricidad se ve inmune a este hechizo.
  *
  */
-public class Tormenta implements ICarta {
+public class Tormenta implements ICarta,Serializable {
 
 	@Override
 	public void hechizar(Hechizable hechizable) {
