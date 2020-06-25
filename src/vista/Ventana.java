@@ -544,7 +544,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	}
 
 	@Override
-	public void creaListaBatallas() {
+	public void pintarFase1() {
 
 		this.setBounds(this.getX(), this.getY(), 1100, 682);
 		

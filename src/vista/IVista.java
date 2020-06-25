@@ -23,6 +23,6 @@ public interface IVista {
 	Pokemon devolverPokemonSeleccionado();
 	void habilitarModificarEntrenador();
 	void habilitarModificarPokemon();
-	void creaListaBatallas();
+	void pintarFase1();
 	
 }
