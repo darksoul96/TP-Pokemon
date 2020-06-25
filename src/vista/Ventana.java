@@ -98,6 +98,9 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	private JList listBatallas;
 	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel_4;
+	private JPanel panelPanelArenas;
+	private JButton btnArena1;
+	private JButton[] arenas;
 
 	/**
 	 * Launch the application.
@@ -349,20 +352,24 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.panelSur = new JPanel();
 		this.panelSur.setBackground(Color.WHITE);
 		this.contentPane.add(this.panelSur, BorderLayout.SOUTH);
-		this.panelSur.setPreferredSize(new Dimension(50, 50));
-		this.panelSur.setLayout(new BorderLayout(0, 0));
+		this.panelSur.setPreferredSize(new Dimension(50, 70));
+		this.panelSur.setLayout(new GridLayout(0, 2, 0, 0));
 
 		this.scrollPane_3 = new JScrollPane();
-		this.panelSur.add(this.scrollPane_3, BorderLayout.CENTER);
+		this.panelSur.add(this.scrollPane_3);
 
 		this.list = new JList();
 		this.scrollPane_3.setViewportView(this.list);
+
+		this.panelPanelArenas = new JPanel();
+		this.panelSur.add(this.panelPanelArenas);
+		this.panelPanelArenas.setLayout(null);
 
 		this.listEntrenadores.setModel(listModelEntrenadores);
 		this.listPokemones.setModel(listModelPokemones);
 
 		this.setVisible(true);
-		
+
 		this.choicePokemon.add("Agua");
 		this.choicePokemon.add("Electricidad");
 		this.choicePokemon.add("Fuego");
@@ -370,6 +377,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.choicePokemon.add("Psiquico");
 		this.choicePokemon.add("Tierra");
 		// this.btnNewButton.setVisible(false);
+
 	}
 
 	@Override
@@ -396,10 +404,8 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 
 	@Override
 	public void sortear() {
-		// TODO Auto-generated method stub
-
+		 this.creaArenas(5);
 	}
-
 
 	public void mouseClicked(MouseEvent arg0) {
 	}
@@ -414,7 +420,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	}
 
 	public void mouseReleased(MouseEvent arg0) {
-		
+
 	}
 
 	@Override
@@ -480,7 +486,6 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	public void actionPerformed(ActionEvent arg0) {
 	}
 
-
 	@Override
 	public Entrenador devolverEntrenadorSeleccionado() {
 		// TODO Auto-generated method stub
@@ -490,9 +495,9 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	@Override
 	public Pokemon devolverPokemon() {
 		// TODO Auto-generated method stub
-		String nombre=this.textFieldNombrePokemon.getText();
-		boolean recarga=this.checkboxGranRecarga.getState();
-		String tipo=this.choicePokemon.getSelectedItem();
+		String nombre = this.textFieldNombrePokemon.getText();
+		boolean recarga = this.checkboxGranRecarga.getState();
+		String tipo = this.choicePokemon.getSelectedItem();
 		return PokemonFactory.fabricaPokemon(nombre, tipo, recarga);
 	}
 
@@ -526,6 +531,19 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		// TODO Auto-generated method stub
 		return this.listPokemones.getSelectedValue();
 	}
-	
-	
+
+	private void creaArenas(int cantidad) {
+
+		this.arenas = new JButton[cantidad];
+		this.panelPanelArenas.setLayout(new GridLayout(1, cantidad));
+
+		for (int i = 0; i < cantidad; i++) {
+			this.arenas[i] = new JButton("Arena " + i);
+			this.panelPanelArenas.add(this.arenas[i]);
+		}
+		this.panelPanelArenas.revalidate();
+		this.validate();
+		this.repaint();
+	}
+
 }

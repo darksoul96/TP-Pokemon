@@ -43,58 +43,54 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 				this.vista.actualizarListaEntrenador(this.torneo.devuelveIteratorEntrenador());
 			}
 		} else if (comando.contentEquals("SORTEAR")) {
-			System.out.println("Sortear");
-		}
-		else if (comando.contentEquals("PRE_AGREGAR_POKEMON") || comando.contentEquals("CREAR_POKEMON")) {
+			this.vista.sortear();
+		} else if (comando.contentEquals("PRE_AGREGAR_POKEMON") || comando.contentEquals("CREAR_POKEMON")) {
 			if (comando.contentEquals("PRE_AGREGAR_POKEMON"))
 				this.vista.habilitarAgregarPokemon();
 			else {
-				Entrenador e=this.vista.devolverEntrenadorSeleccionado();
-				if (e!=null) {
-					Pokemon p=this.vista.devolverPokemon();
+				Entrenador e = this.vista.devolverEntrenadorSeleccionado();
+				if (e != null) {
+					Pokemon p = this.vista.devolverPokemon();
 					e.agregarPokemon(p);
 					this.vista.actualizarListaPokemon(this.torneo.devuelveIteratorPokemon(e));
 				}
 			}
-		}
-		else if (comando.contentEquals("PRE_MODIFICAR_ENTRENADOR") || comando.contentEquals("MODIFICAR_ENTRENADOR")) {
+		} else if (comando.contentEquals("PRE_MODIFICAR_ENTRENADOR") || comando.contentEquals("MODIFICAR_ENTRENADOR")) {
 			if (comando.contentEquals("PRE_MODIFICAR_ENTRENADOR"))
-					this.vista.habilitarModificarEntrenador();
+				this.vista.habilitarModificarEntrenador();
 			else {
-				Entrenador e=this.vista.devolverEntrenadorSeleccionado();
-				if (e!=null) {
+				Entrenador e = this.vista.devolverEntrenadorSeleccionado();
+				if (e != null) {
 					e.setNombre(this.vista.getNombreEntrenador());
 					this.vista.actualizarListaEntrenador(this.torneo.devuelveIteratorEntrenador());
 				}
 			}
-		}
-		else if (comando.contentEquals("PRE_MODIFICAR_POKEMON") || comando.contentEquals("MODIFICAR_POKEMON")) {
+		} else if (comando.contentEquals("PRE_MODIFICAR_POKEMON") || comando.contentEquals("MODIFICAR_POKEMON")) {
 			if (comando.contentEquals("PRE_MODIFICAR_POKEMON"))
 				this.vista.habilitarModificarPokemon();
 			else {
-				Pokemon p=this.vista.devolverPokemonSeleccionado();
-				if (p!=null) {
-					Entrenador e=this.vista.devolverEntrenadorSeleccionado();
+				Pokemon p = this.vista.devolverPokemonSeleccionado();
+				if (p != null) {
+					Entrenador e = this.vista.devolverEntrenadorSeleccionado();
 					p.setNombre(this.vista.getNombrePokemon());
 					this.vista.actualizarListaPokemon(this.torneo.devuelveIteratorPokemon(e));
-				}	
+				}
 			}
-		}
-		else if (comando.contentEquals("ELIMINAR_ENTRENADOR")) {
-			Entrenador e=this.vista.devolverEntrenadorSeleccionado();
-	
+		} else if (comando.contentEquals("ELIMINAR_ENTRENADOR")) {
+			Entrenador e = this.vista.devolverEntrenadorSeleccionado();
+
 			this.torneo.eliminarEntrenador(e);
 			this.vista.actualizarListaEntrenador(this.torneo.devuelveIteratorEntrenador());
-			
-		}
-		else if (comando.contentEquals("ELIMINAR_POKEMON")) {
-			Pokemon p=this.vista.devolverPokemonSeleccionado();
-			if (p!=null) {
-				Entrenador e=this.vista.devolverEntrenadorSeleccionado();
+
+		} else if (comando.contentEquals("ELIMINAR_POKEMON")) {
+			Pokemon p = this.vista.devolverPokemonSeleccionado();
+			if (p != null) {
+				Entrenador e = this.vista.devolverEntrenadorSeleccionado();
 				e.eliminarPokemon(p);
 				this.vista.actualizarListaPokemon(this.torneo.devuelveIteratorPokemon(e));
 			}
 		}
+
 	}
 
 	public IVista getVista() {
