@@ -70,7 +70,7 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 			
 		}
 		else if(comando.contentEquals("SORTEAR")){
-			//this.torneo.faseDeSorteo();
+			this.torneo.faseDeSorteo();
 			System.out.println("SORTEAR");
 		}
 		else if (comando.contentEquals("PRE_AGREGAR_POKEMON") || comando.contentEquals("CREAR_POKEMON")) {

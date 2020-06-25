@@ -64,6 +64,7 @@ public class Torneo extends Observable implements Serializable {
 	}
 
 	private void inicializarArenas() {
+		this.arenas = new Arena[4];
 		arenas[0] = new Arena("Arena 1");
 		arenas[1] = new Arena("Arena 2");
 		arenas[2] = new Arena("Arena 3");
@@ -71,6 +72,7 @@ public class Torneo extends Observable implements Serializable {
 	}
 
 	public void generaGrupos(ArrayList<Entrenador> participantes) {
+		this.grupos = new ArrayList<Grupo>();
 		Grupo g1 = new Grupo("Grupo 1");
 		Grupo g2 = new Grupo("Grupo 2");
 		Grupo g3 = new Grupo("Grupo 3");

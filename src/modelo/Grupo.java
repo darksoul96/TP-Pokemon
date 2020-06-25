@@ -18,6 +18,8 @@ public class Grupo {
 
 	public Grupo(String nombre) {
 		super();
+		this.integrantes = new ArrayList<Entrenador>();
+		this.enfrentamientos = new ArrayList<Enfrentamiento>();
 		this.nombre = nombre;
 	}
 
