@@ -545,26 +545,9 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 
 	@Override
 	public void creaListaBatallas() {
-		// JPanel panelFaseBatalla = new JPanel();
-		// panelFaseBatalla.setVisible(true);
-		// panelFaseBatalla.setBounds(676, 0, 338, 573);
-		// this.panelDerecho.add(panelFaseBatalla);
-		// panelFaseBatalla.setLayout(null);
-
-		// panelFaseBatalla.add(this.scrollPane_2);
-
-		// JList listBatallas = new JList();
-		// listBatallas.setVisible(true);
-		// listBatallas.setEnabled(true);
-		// this.scrollPane_2.setViewportView(listBatallas);
-
-		// lblNewLabel_4 = new JLabel("Batallas");
-		// lblNewLabel_4.setVisible(true);
-		// this.scrollPane_2.setColumnHeaderView(lblNewLabel_4);
-		// this.contentPane.setMaximumSize(new Dimension(1500,682));
 
 		this.setBounds(this.getX(), this.getY(), 1100, 682);
-		//this.setPreferredSize(new Dimension(1100,682));
+		
 		
 		this.panelDerecho = new JPanel();
 		this.panelDerecho.setBounds(679, 5, 415, 573);
@@ -582,25 +565,16 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.scrollPane_2.setPreferredSize(new Dimension(50, 2));
 
 		this.listBatalla = new JList();
-		this.listBatalla.setSize(new Dimension(0, 682));
-		this.listBatalla.setMaximumSize(new Dimension(0, 682));
+		this.listBatalla.setSize(new Dimension(0, 547));
+		this.listBatalla.setMaximumSize(new Dimension(0, 547));
 		this.scrollPane_2.setColumnHeaderView(this.listBatalla);
 
 		this.lblNewLabel_1 = new JLabel("Batallas");
 		this.lblNewLabel_1.setBounds(2, 0, 415, 25);
 		this.panelBatalla.add(this.lblNewLabel_1);
-		//this.panelDerecho.setBounds(this.panelDerecho.getX(), this.panelDerecho.getX(),
-		//		this.panelDerecho.getWidth() + 50, this.panelDerecho.getHeight() + 400);
-		//this.panelBatalla.setBounds(this.panelBatalla.getX(), this.panelBatalla.getX(), this.panelBatalla.getWidth()+50, this.panelBatalla.getHeight()+400);
-		//this.lblNewLabel_1.setBounds(this.lblNewLabel_1.getX(), this.lblNewLabel_1.getY(), 10, 20);
-		//this.scrollPane_2.setBounds(this.scrollPane_2.getX(), this.scrollPane_2.getX(),
-		//		this.scrollPane_2.getWidth() + 50, this.scrollPane_2.getHeight() + 400);
-		//this.listBatalla.setBounds(this.listBatalla.getX(), this.listBatalla.getX(), this.listBatalla.getWidth() + 50,
-		//		this.listBatalla.getHeight() + 400);
-
-		//this.scrollPane_2.setVisible(true);
-		//this.lblNewLabel_1.setVisible(true);
-		//this.listBatalla.setVisible(true);
+		
+		this.panelBotones.setVisible(false);
+		this.panelCM.setVisible(false);
 		repaint();
 		
 	}

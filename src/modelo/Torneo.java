@@ -240,4 +240,14 @@ public class Torneo extends Observable implements Serializable {
 	public Iterator devuelveIteratorPokemon(Entrenador entrenador) {
 		return entrenador.getPokemones().iterator();
 	}
+
+	public int getFase() {
+		return fase;
+	}
+
+	public void setFase(int fase) {
+		this.fase = fase;
+	}
+	
+	
 }

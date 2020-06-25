@@ -48,7 +48,23 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 				this.vista.actualizarListaEntrenador(this.torneo.devuelveIteratorEntrenador());
 			}
 		} else if (comando.contentEquals("SIGUIENTE_ETAPA")) {
-			this.vista.creaListaBatallas();
+			switch(this.torneo.getFase())
+			{
+			case 0:
+				this.vista.creaListaBatallas();
+				this.torneo.setFase(this.torneo.getFase()+1);
+				break;
+			case 1:
+				this.torneo.setFase(this.torneo.getFase()+1);
+				break;
+			case 2:
+				this.torneo.setFase(this.torneo.getFase()+1);
+				break;
+			case 3:
+				this.torneo.setFase(this.torneo.getFase()+1);
+				break;
+			}
+			
 		} 
 		else if (comando.contentEquals("PRE_AGREGAR_POKEMON") || comando.contentEquals("CREAR_POKEMON")) {
 			if (comando.contentEquals("PRE_AGREGAR_POKEMON"))
