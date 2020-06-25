@@ -610,6 +610,10 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		revalidate();
 		repaint();
 	}
+	@Override
+	public void modificaNombreArenas(int indice,String nombre) {
+		this.arenas[indice].setText(nombre);
+	}
 
 	@Override
 	public void pintarFase1() {

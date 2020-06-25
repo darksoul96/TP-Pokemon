@@ -30,5 +30,6 @@ public interface IVista {
 	void creaGrupos(ArrayList<Grupo> grupos, int cantidad);
 	void setActionListenerFaseGrupos(ActionListener actionListener);
 	int devuelveCantidadParticipantes();
+	void modificaNombreArenas(int indice, String nombre);
 	
 }

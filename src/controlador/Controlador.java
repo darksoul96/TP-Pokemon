@@ -15,6 +15,8 @@ import java.util.Observer;
 import persistencia.PersistenciaBIN;
 
 import javax.swing.JList;
+
+import modelo.Arena;
 import modelo.Torneo;
 import interfaces.IPersistencia;
 import persistencia.PersistenciaBIN;
@@ -183,7 +185,21 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
+		Arena arenaDesdeTorneo = (Arena) arg1;
+		switch(arenaDesdeTorneo.getNombreArena()) {
+		case "Arena 1":
+			this.vista.modificaNombreArenas(0,arenaDesdeTorneo.getEstado().getNombre());
+			break;
+		case "Arena 2":
+			this.vista.modificaNombreArenas(1,arenaDesdeTorneo.getEstado().getNombre());
+			break;
+		case "Arena 3":
+			this.vista.modificaNombreArenas(3,arenaDesdeTorneo.getEstado().getNombre());
+			break;
+		case "Arena 4":
+			this.vista.modificaNombreArenas(4,arenaDesdeTorneo.getEstado().getNombre());
+			break;
+		}
 
 	}
 

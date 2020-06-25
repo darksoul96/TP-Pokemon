@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.Observable;
+import java.util.Observer;
 import java.util.Random;
 
 import exceptions.CantidadHechizosExcedidosException;
@@ -16,7 +17,7 @@ import personajes.Entrenador;
  * metodos de competicion del Torneo.
  *
  */
-public class Torneo extends Observable implements Serializable {
+public class Torneo extends Observable implements Serializable,Observer {
 
 	private static Torneo torneo;
 	private ArrayList<Entrenador> participantes;
@@ -66,6 +67,16 @@ public class Torneo extends Observable implements Serializable {
 		arenas[1] = new Arena("Arena 2");
 		arenas[2] = new Arena("Arena 3");
 		arenas[3] = new Arena("Arena 4");
+		arenas[0].addObserver(this);
+		arenas[1].addObserver(this);
+		arenas[2].addObserver(this);
+		arenas[3].addObserver(this);
+		
+	}
+
+	
+	public Arena[] getArenas() {
+		return arenas;
 	}
 
 	public void generaGrupos(ArrayList<Entrenador> participantes) {
@@ -245,6 +256,14 @@ public class Torneo extends Observable implements Serializable {
 
 	public void setFase(int fase) {
 		this.fase = fase;
+	}
+
+	@Override
+	public void update(Observable o, Object arg1) {
+		Arena arenaObservada = (Arena) o;
+		this.setChanged();
+		this.notifyObservers(arenaObservada);
+		
 	}
 
 }
