@@ -172,6 +172,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 
 		this.scrollPane_1.setViewportView(this.listEntrenadores);
 
+		this.scrollPane_1.setPreferredSize(new Dimension(this.scrollPane_1.getWidth(), this.scrollPane_1.getHeight()));
 		this.panelPokemones = new JPanel();
 		this.panelEntrenadoresPokemones.add(this.panelPokemones);
 		this.panelPokemones.setLayout(new BorderLayout(0, 0));
