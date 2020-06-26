@@ -113,7 +113,7 @@ public class Entrenador implements Comparable<Entrenador>, Cloneable, Clasificab
 	@Override
 	public String toString() {
 		String aux;
-		aux = "Entrenador: " + this.getNombre() + " Clasificacion: " + this.calculaClasificacion() + "Cant pokemones: " + this.pokemones.size();
+		aux = this.getNombre() + "C: " + this.calculaClasificacion();
 		return aux;
 	}
 

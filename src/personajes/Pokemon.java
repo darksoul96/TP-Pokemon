@@ -8,7 +8,7 @@ import interfaces.Clasificable;
 import interfaces.Hechizable;
 import interfaces.ICarta;
 
-public abstract class Pokemon implements Cloneable, Atacable, Hechizable, Clasificable,Serializable {
+public abstract class Pokemon implements Cloneable, Atacable, Hechizable, Clasificable, Serializable {
 	protected String nombre;
 	protected double experiencia = 0;
 	protected double escudo;
@@ -19,7 +19,6 @@ public abstract class Pokemon implements Cloneable, Atacable, Hechizable, Clasif
 	protected double ataqueOriginal;
 	protected boolean recarga = false;
 	protected boolean hechizadoPorNiebla = false;
-
 
 	public Pokemon(String nombre, double escudo, double vitalidad, double ataque, boolean recarga) {
 		super();
@@ -37,7 +36,6 @@ public abstract class Pokemon implements Cloneable, Atacable, Hechizable, Clasif
 		return nombre;
 	}
 
-	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
@@ -90,9 +88,7 @@ public abstract class Pokemon implements Cloneable, Atacable, Hechizable, Clasif
 
 	@Override
 	public String toString() {
-		return "Pokemon nombre=" + nombre + ", experiencia=" + (int) experiencia + ", escudo=" + (int) escudo
-				+ ", vitalidad=" + (int) vitalidad + ", ataque=" + (int) ataque + ", recarga=" + recarga + " rango="
-				+ this.calculaClasificacion();
+		return nombre + (int) experiencia + (int) escudo + (int) vitalidad + " rango=" + this.calculaClasificacion();
 	}
 
 	@Override
@@ -112,7 +108,8 @@ public abstract class Pokemon implements Cloneable, Atacable, Hechizable, Clasif
 	@Override
 	public void hechizarTormenta() {
 		this.vitalidad = this.vitalidad * 0.8;
-		//System.out.println("El pokemon " + this.nombre + " ha sido hechizado por la carta Tormenta.");
+		// System.out.println("El pokemon " + this.nombre + " ha sido hechizado por la
+		// carta Tormenta.");
 	}
 
 	@Override
@@ -121,9 +118,11 @@ public abstract class Pokemon implements Cloneable, Atacable, Hechizable, Clasif
 		int chanceDeFallar = r.nextInt(10);
 		if (chanceDeFallar < 2) {
 			this.hechizadoPorNiebla = true;
-			//System.out.println("El pokemon " + this.nombre + " ha sido hechizado por la carta Niebla.");
+			// System.out.println("El pokemon " + this.nombre + " ha sido hechizado por la
+			// carta Niebla.");
 		} else {
-			//System.out.println("El pokemon " + this.nombre + " ha resistido el hechizo de la carta Niebla.");
+			// System.out.println("El pokemon " + this.nombre + " ha resistido el hechizo de
+			// la carta Niebla.");
 		}
 	}
 
@@ -133,15 +132,18 @@ public abstract class Pokemon implements Cloneable, Atacable, Hechizable, Clasif
 		int chanceDeReducirVida = r.nextInt(10);
 		if (chanceDeReducirVida < 2) {
 			this.vitalidad = this.vitalidad * 0.85;
-			//System.out.println("El pokemon " + this.nombre + " ha sido hechizado por la carta Viento.");
+			// System.out.println("El pokemon " + this.nombre + " ha sido hechizado por la
+			// carta Viento.");
 		} else {
-			
+
 		}
-			//System.out.println("El pokemon " + this.nombre + " ha resisitido el hechizo de la carta Viento.");
+		// System.out.println("El pokemon " + this.nombre + " ha resisitido el hechizo
+		// de la carta Viento.");
 	}
 
 	public void fallar() {
-		//System.out.println("El pokemon " + this.nombre + " ha fallado su ataque inicial!");
+		// System.out.println("El pokemon " + this.nombre + " ha fallado su ataque
+		// inicial!");
 	}
 
 	@Override
