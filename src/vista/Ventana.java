@@ -625,6 +625,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 
 	@Override
 	public void faseSiguiente(ArrayList<Entrenador> clasificados) {
+		this.modelBatallas.clear();
 		for (int i = 0; i < clasificados.size(); i++)
 			System.out.println(clasificados.get(i).toString());
 		this.panelCentral.setVisible(false);
@@ -716,7 +717,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 
 	@Override
 	public void repintarBatalla(ArrayList<Enfrentamiento> enfrentamientos) {
-		this.modelBatallas.clear();
+		
 		System.out.println("-------------------------------------------------------");
 		for (int i = 0; i < enfrentamientos.size(); i++) {
 			this.modelBatallas.addElement(enfrentamientos.get(i).getLogBatalla());
