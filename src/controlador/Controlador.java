@@ -39,7 +39,6 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 		this.vista.setActionListener(this);
 		this.torneo = torneo.getInstanceSingleton();
 		this.torneo.addObserver(this);
-		this.torneo.setCantidadDeParticipantes(this.vista.devuelveCantidadParticipantes());
 	}
 
 	@Override
@@ -57,6 +56,7 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 			case 0:
 				this.cantidad = this.vista.devuelveCantidadParticipantes();
 				System.out.println(this.cantidad);
+				this.torneo.setCantidadDeParticipantes(this.vista.devuelveCantidadParticipantes());
 				this.vista.pintarFase1();
 				this.torneo.faseDeSorteo();
 				this.vista.creaArenas(4);
