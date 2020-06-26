@@ -44,6 +44,8 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		String comando = arg0.getActionCommand();
+		if(comando.contentEquals("LOG"))
+			this.vista.mostrarLogs();
 		if (comando.contentEquals("CREAR_ENTRENADOR") || comando.contentEquals("PRE_AGREGAR_ENTRENADOR")) {
 			if (comando.contentEquals("PRE_AGREGAR_ENTRENADOR"))
 				this.vista.habilitarAgregarEntrenador();
@@ -70,11 +72,13 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 				this.torneo.setFase(this.torneo.getFase() + 1);
 				break;
 			case 2:
+				this.torneo.reiniciaEnfrentamientos();
 				this.vista.faseSiguiente(this.torneo.getClasificados());
 				this.torneo.reiniciarArenas();
 				this.torneo.setFase(this.torneo.getFase() + 1);
 				break;
 			case 3:
+				this.torneo.reiniciaEnfrentamientos();
 				this.vista.faseSiguiente(this.torneo.getClasificados());
 				this.torneo.reiniciarArenas();
 				this.torneo.setFase(this.torneo.getFase() + 1);
@@ -85,7 +89,9 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 			if (this.torneo.getFase() == 1) {
 				this.torneo.faseDeGrupos();
 				try {
-					this.torneo.getGrupos().get(this.torneo.getGrupos().size()-1).getEnfrentamientos().get(5).join();
+					for(int i=0;i<6;i++) {
+						this.torneo.getGrupos().get(this.torneo.getGrupos().size()-1).getEnfrentamientos().get(i).join();
+					}
 				} catch (InterruptedException e1) {
 					e1.printStackTrace();
 				}
@@ -100,7 +106,6 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 				try {
 					TimeUnit.SECONDS.sleep(2);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				for (int i = 0; i < this.torneo.getGrupos().size(); i++) {
@@ -194,6 +199,7 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 			}
 
 		}
+		
 	}
 
 	public IVista getVista() {
@@ -269,7 +275,6 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 		if (arg0.getSource().getClass() == JList.class) {
 			JList lista = (JList) arg0.getSource();
 			Iterator<Pokemon> it;

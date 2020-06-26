@@ -291,6 +291,10 @@ public class Torneo extends Observable implements Serializable, Observer {
 			this.arenas[i].setEstado(new PreliminarState(this.arenas[i]));
 		}
 	}
+	
+	public void reiniciaEnfrentamientos() {
+		this.enfrentamientos.clear();
+	}
 
 	public ArrayList<Enfrentamiento> getEnfrentamientos() {
 		return enfrentamientos;

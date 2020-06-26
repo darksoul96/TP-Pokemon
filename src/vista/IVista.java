@@ -35,5 +35,6 @@ public interface IVista {
 	void repintarGrupos(ArrayList<Grupo> grupos);
 	void repintarBatalla(ArrayList<Enfrentamiento> enfrentamientos);
 	void repintarArenas(int indice, String nombre);
+	void mostrarLogs();
 	
 }

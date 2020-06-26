@@ -120,6 +120,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	private JComboBox comboParticipantes;
 	private PanelFaseEliminatoria fase;
 	private DefaultListModel modelBatallas = new DefaultListModel();
+	private JButton logs;
 
 	/**
 	 * Launch the application.
@@ -634,9 +635,9 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.panelCentral.setLayout(new FlowLayout());
 		this.panelCentral.add(fase);
 		this.panelCentral.setVisible(true);
-		for (int i = 0; i < 4; i++) 
+		for (int i = 0; i < 4; i++)
 			this.arenas[i].setName("Arena " + i);
-		
+
 		this.revalidate();
 		repaint();
 	}
@@ -669,6 +670,12 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.btnIniciar.setSize(5, 5);
 		rodeabotonsigetapa.add(this.btnIniciar);
 
+		this.logs = new JButton("Log batalla seleccionada");
+		this.logs.setActionCommand("LOG");
+		this.logs.setBounds(22, 11, 121, 28);
+		this.logs.setSize(5, 5);
+		rodeabotonsigetapa.add(this.logs);
+
 		this.panelBatalla = new JPanel();
 		this.panelBatalla.setBounds(0, 0, 415, 800);
 		this.panelDerecho.add(this.panelBatalla);
@@ -680,12 +687,13 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.scrollPane_2.setPreferredSize(new Dimension(415, 300));
 
 		this.listBatalla = new JList();
-		//this.listBatalla.setSize(new Dimension(0, 800));
-		//this.listBatalla.setMaximumSize(new Dimension(0, 800));
+		// this.listBatalla.setSize(new Dimension(0, 800));
+		// this.listBatalla.setMaximumSize(new Dimension(0, 800));
 		this.scrollPane_2.setViewportView(this.listBatalla);
-		//this.scrollPane_2.setColumnHeaderView(this.listBatalla);
+		// this.scrollPane_2.setColumnHeaderView(this.listBatalla);
 
-		//this.listBatalla.setBounds(this.listBatalla.getX(), this.listBatalla.getY(), 200, 1000);
+		// this.listBatalla.setBounds(this.listBatalla.getX(), this.listBatalla.getY(),
+		// 200, 1000);
 		this.listBatalla.setModel(this.modelBatallas);
 		this.listBatalla.setPreferredSize(new Dimension(200, 800));
 
@@ -718,14 +726,17 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 
 	@Override
 	public void repintarBatalla(ArrayList<Enfrentamiento> enfrentamientos) {
-		
-		System.out.println("-------------------------------------------------------");
 		for (int i = 0; i < enfrentamientos.size(); i++) {
-			this.modelBatallas.addElement(enfrentamientos.get(i).getLogBatalla());
-			System.out.println(enfrentamientos.get(i).getLogBatalla());
-			//JOptionPane.showMessageDialog(this, enfrentamientos.get(i).getLogBatalla());
+			this.modelBatallas.addElement(enfrentamientos.get(i));
+			// JOptionPane.showMessageDialog(this, enfrentamientos.get(i).getLogBatalla());
 		}
 		repaint();
+	}
+
+	@Override
+	public void mostrarLogs() {
+		Enfrentamiento e = (Enfrentamiento) this.listBatalla.getSelectedValue();
+		JOptionPane.showMessageDialog(this,e.getLogPreliminar() + e.getLogBatalla() + e.getLogDefinicion());
 	}
 
 }
