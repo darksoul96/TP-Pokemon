@@ -16,11 +16,7 @@ public class LimpiezaState implements IStateArena {
 
 	@Override
 	public void comenzar(Enfrentamiento enfrentamiento) {
-		try {
-			TimeUnit.SECONDS.sleep(2);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		arena.setEstado(new PreliminarState(arena));
 	}
 
 	@Override

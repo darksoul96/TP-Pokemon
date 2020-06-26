@@ -150,6 +150,8 @@ public class Torneo extends Observable implements Serializable, Observer {
 				enfrentamientos[i] = grupos.get(i).generaEnfrentamiento();
 				if (enfrentamientos[i] != null)
 					enfrentamientos[i].setRecursoCompartido(arenas[r.nextInt(3)]);
+				else
+					System.out.println("Enfrentamiento nulo");
 				if (grupos.get(i).isGrupoFinalizado() == true) {
 					contador++;
 					if (contador == this.cantidadDeParticipantes / 4) {
@@ -158,8 +160,10 @@ public class Torneo extends Observable implements Serializable, Observer {
 				}
 			}
 			contador = 0;
-			for (int i = 0; i < this.cantidadDeParticipantes / 4; i++)
+			for (int i = 0; i < this.cantidadDeParticipantes / 4; i++) {
 				enfrentamientos[i].start();
+			}
+				
 		}
 		for (int i = 0; i < this.grupos.size(); i++) {
 			this.grupos.get(i).actualizaPosiciones();
@@ -266,7 +270,7 @@ public class Torneo extends Observable implements Serializable, Observer {
 	}
 
 	@Override
-	public void update(Observable o, Object arg1) {
+	public synchronized void update(Observable o, Object arg1) {
 		Arena arenaObservada = (Arena) o;
 		this.setChanged();
 		System.out.println("Notifico" + arenaObservada.getNombreArena() + " " + arenaObservada.getEstado().getNombre());

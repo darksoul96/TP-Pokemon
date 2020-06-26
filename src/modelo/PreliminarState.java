@@ -17,11 +17,6 @@ public class PreliminarState implements IStateArena {
 
 	@Override
 	public void comenzar(Enfrentamiento enfrentamiento) {
-		try {
-			TimeUnit.SECONDS.sleep(2);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 		enfrentamiento.preparacionEntrenadores();
 		arena.setEstado(new BatallaState(arena));
 		arena.comenzar(enfrentamiento);

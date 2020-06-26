@@ -55,7 +55,6 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 			switch (this.torneo.getFase()) {
 			case 0:
 				this.cantidad = this.vista.devuelveCantidadParticipantes();
-				System.out.println(this.cantidad);
 				this.torneo.setCantidadDeParticipantes(this.vista.devuelveCantidadParticipantes());
 				this.vista.pintarFase1();
 				this.torneo.faseDeSorteo();
@@ -85,7 +84,7 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 			if (this.torneo.getFase() == 1) {
 				this.torneo.faseDeGrupos();
 				try {
-					TimeUnit.SECONDS.sleep(1);
+					TimeUnit.SECONDS.sleep(5);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -212,16 +211,16 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 		Arena arenaDesdeTorneo = (Arena) arg1;
 		switch (arenaDesdeTorneo.getNombreArena()) {
 		case "Arena 1":
-			this.vista.modificaNombreArenas(0, arenaDesdeTorneo.getEstado().getNombre());
+			this.vista.repintarArenas(0, arenaDesdeTorneo.getEstado().getNombre());
 			break;
 		case "Arena 2":
-			this.vista.modificaNombreArenas(1, arenaDesdeTorneo.getEstado().getNombre());
+			this.vista.repintarArenas(1, arenaDesdeTorneo.getEstado().getNombre());
 			break;
 		case "Arena 3":
-			this.vista.modificaNombreArenas(2, arenaDesdeTorneo.getEstado().getNombre());
+			this.vista.repintarArenas(2, arenaDesdeTorneo.getEstado().getNombre());
 			break;
 		case "Arena 4":
-			this.vista.modificaNombreArenas(3, arenaDesdeTorneo.getEstado().getNombre());
+			this.vista.repintarArenas(3, arenaDesdeTorneo.getEstado().getNombre());
 			break;
 		}
 

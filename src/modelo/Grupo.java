@@ -17,13 +17,14 @@ public class Grupo {
 	private String nombre;
 	private boolean lleno = false;
 	boolean grupoFinalizado = false;
-	int cantidadEf = 0;
+	int cantidadEf;
 
 	public Grupo(String nombre) {
 		super();
 		this.integrantes = new ArrayList<Entrenador>();
 		this.enfrentamientos = new ArrayList<Enfrentamiento>();
 		this.nombre = nombre;
+		this.cantidadEf =0;
 	}
 
 	public void agregarEntrenador(Entrenador e) {
@@ -35,7 +36,7 @@ public class Grupo {
 	}
 
 	public Enfrentamiento generaEnfrentamiento() {
-		Enfrentamiento e = null;
+		Enfrentamiento e = new Enfrentamiento();
 		switch (this.cantidadEf) {
 		case 0:
 			e = new Enfrentamiento(integrantes.get(0), integrantes.get(1));

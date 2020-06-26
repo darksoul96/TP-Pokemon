@@ -618,7 +618,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	}
 
 	@Override
-	public void modificaNombreArenas(int indice, String nombre) {
+	public void repintarArenas(int indice, String nombre) {
 		this.arenas[indice].setText(nombre);
 	}
 
@@ -719,7 +719,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		for (int i = 0; i < enfrentamientos.size(); i++) {
 			this.modelBatallas.addElement(enfrentamientos.get(i).getLogBatalla());
 			System.out.println(enfrentamientos.get(i).getLogBatalla());
-			// JOptionPane.showMessageDialog(this, enfrentamientos.get(i).getLogBatalla());
+			JOptionPane.showMessageDialog(this, enfrentamientos.get(i).getLogBatalla());
 		}
 		repaint();
 	}
