@@ -68,13 +68,14 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 				this.vista.faseSiguiente(this.torneo.getClasificados());
 				this.torneo.reiniciarArenas();
 				this.torneo.setFase(this.torneo.getFase() + 1);
-				this.torneo.faseEliminatoriaSiguiente();
 				break;
 			case 2:
+				this.vista.faseSiguiente(this.torneo.getClasificados());
 				this.torneo.reiniciarArenas();
 				this.torneo.setFase(this.torneo.getFase() + 1);
 				break;
 			case 3:
+				this.vista.faseSiguiente(this.torneo.getClasificados());
 				this.torneo.reiniciarArenas();
 				this.torneo.setFase(this.torneo.getFase() + 1);
 				break;
@@ -98,7 +99,7 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			} else if (this.torneo.getFase() == 2) {
+			} else if (this.torneo.getFase() >= 2) {
 				this.torneo.faseEliminatoriaSiguiente();
 				try {
 					TimeUnit.SECONDS.sleep(1);
