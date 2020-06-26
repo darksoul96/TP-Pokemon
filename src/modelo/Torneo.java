@@ -166,12 +166,6 @@ public class Torneo extends Observable implements Serializable, Observer {
 			}
 				
 		}
-		try {
-			TimeUnit.SECONDS.sleep(9);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		for (int i = 0; i < this.grupos.size(); i++) {
 			this.grupos.get(i).actualizaPosiciones();
 		}
@@ -205,7 +199,7 @@ public class Torneo extends Observable implements Serializable, Observer {
 		case 16:
 			this.notifyObservers("Octavos");
 			break;
-		case 8:
+		case 8:;
 			this.notifyObservers("Cuartos");
 			break;
 		case 4:
@@ -280,7 +274,6 @@ public class Torneo extends Observable implements Serializable, Observer {
 	public synchronized void update(Observable o, Object arg1) {
 		Arena arenaObservada = (Arena) o;
 		this.setChanged();
-		System.out.println("Notifico" + arenaObservada.getNombreArena() + " " + arenaObservada.getEstado().getNombre());
 		this.notifyObservers(arenaObservada);
 	}
 
@@ -292,3 +285,4 @@ public class Torneo extends Observable implements Serializable, Observer {
 	}
 
 }
+  

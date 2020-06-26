@@ -80,17 +80,14 @@ public class Grupo {
 		for(int i=0;i<this.integrantes.size();i++) {
 			clasificados[i] = this.integrantes.get(i);
 		}
-		Entrenador e1 = clasificados[0];
-		Entrenador e2 =clasificados[1];
-		Entrenador e3 =clasificados[2];
-		Entrenador e4 =clasificados[3];
 		Entrenador aux;
 		for(int i=0;i<this.integrantes.size()-1;i++) {
 			for(int j=0;j<this.integrantes.size()-i-1;j++) {
 				if(clasificados[j].compareTo(clasificados[j+1])>0) {
-					aux = e2;
-					e2 = e1;
-					e1 = aux;
+					System.out.println(clasificados [j] + " es mayor a " + clasificados[j+1]);
+					aux = clasificados[j+1];
+					clasificados[j+1] = clasificados[j];
+					clasificados[j] = aux;
 				}
 			}
 		}
