@@ -53,13 +53,14 @@ public class PanelFaseEliminatoria extends JPanel {
 		this.panelCentral = new JPanel();
 		add(this.panelCentral, BorderLayout.CENTER);
 		this.panelCentral.setLayout(new GridLayout(clasificados.size()/2,1));
-		this.panelCentral.setBounds(this.panelCentral.getX(), this.panelCentral.getY(), 500, 682);
+		this.panelCentral.setBounds(this.panelCentral.getX(), this.panelCentral.getY(), 800, 800);
 		int contador = 0;
 		this.llaves = new JPanel[clasificados.size() / 2][2];
-		for (int i = 0; i < clasificados.size() / 2; i++) {
+		for (int i = 0; i < clasificados.size()/2 ; i++) {
 			for (int j = 0; j < 2; j++) {
 				this.llaves[i][j] = new JPanel();
-				this.llaves[i][j].setBounds(this.llaves[i][j].getX(), this.llaves[i][j].getY(), 100, 100);
+				this.llaves[i][j].setBounds(this.llaves[i][j].getX(), this.llaves[i][j].getY(), 200, 200);
+				this.llaves[i][j].setPreferredSize(new Dimension(100,100));
 				this.llaves[i][j].setBorder(new BevelBorder(BevelBorder.RAISED));
 				JLabel nombre = new JLabel(clasificados.get(contador).getNombre());
 				this.llaves[i][j].add(nombre);
