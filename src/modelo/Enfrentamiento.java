@@ -53,8 +53,8 @@ public class Enfrentamiento extends Thread implements Serializable {
 				this.entrenadorDos.getPokemones().get(r.nextInt(this.entrenadorDos.getPokemones().size())));
 
 		this.appendLogPreliminar(this.entrenadorUno + " va a pelear con " + this.entrenadorDos + "\n");
-		this.appendLogPreliminar(this.entrenadorUno + "elige a " + this.entrenadorUno.getPokemonActivo() + "\n");
-		this.appendLogPreliminar(this.entrenadorDos + "elige a " + this.entrenadorDos.getPokemonActivo() + "\n");
+		this.appendLogPreliminar(this.entrenadorUno + "elige a " + this.entrenadorUno.getPokemonActivo().getNombre() + "\n");
+		this.appendLogPreliminar(this.entrenadorDos + "elige a " + this.entrenadorDos.getPokemonActivo().getNombre() + "\n");
 	}
 
 	
@@ -94,25 +94,25 @@ public class Enfrentamiento extends Thread implements Serializable {
 		int atacaprimero = r.nextInt(11);
 
 		if (this.entrenadorUno.getHechizoActivo() != null) {
-			this.appendLogBatalla("El entrenador " + this.entrenadorUno + " utilizo una carta\n");
+			this.appendLogBatalla(this.entrenadorUno.getNombre() + " utilizo una carta\n");
 			this.entrenadorDos.getPokemonActivo().serHechizado(this.entrenadorUno.getHechizoActivo());
 			this.entrenadorUno.setCantidadHechizos(this.entrenadorUno.getCantidadHechizos() - 1);
 		}
 		if (this.entrenadorDos.getHechizoActivo() != null) {
-			this.appendLogBatalla("El entrenador " + this.entrenadorDos + " utilizo una carta\n");
+			this.appendLogBatalla(this.entrenadorDos.getNombre() + " utilizo una carta\n");
 			this.entrenadorUno.getPokemonActivo().serHechizado(this.entrenadorDos.getHechizoActivo());
 			this.entrenadorDos.setCantidadHechizos(this.entrenadorDos.getCantidadHechizos() - 1);
 		}
 
 		if (atacaprimero <= 4) {
-			this.appendLogBatalla("El pokemon " + this.entrenadorUno.getPokemonActivo() + " realiza sus ataques\n");
+			this.appendLogBatalla("El pokemon " + this.entrenadorUno.getPokemonActivo().getNombre() + " ataca\n");
 			this.entrenadorUno.getPokemonActivo().atacar(this.entrenadorDos.getPokemonActivo());
-			this.appendLogBatalla("El pokemon " + this.entrenadorDos.getPokemonActivo() + " realiza sus ataques\n");
+			this.appendLogBatalla("El pokemon " + this.entrenadorDos.getPokemonActivo().getNombre() + " ataca\n");
 			this.entrenadorDos.getPokemonActivo().atacar(this.entrenadorUno.getPokemonActivo());
 		} else {
-			this.appendLogBatalla("El pokemon " + this.entrenadorDos.getPokemonActivo() + " realiza sus ataques\n");
+			this.appendLogBatalla("El pokemon " + this.entrenadorDos.getPokemonActivo().getNombre() + " ataca\n");
 			this.entrenadorDos.getPokemonActivo().atacar(this.entrenadorUno.getPokemonActivo());
-			this.appendLogBatalla("El pokemon " + this.entrenadorUno.getPokemonActivo() + " realiza sus ataques\n");
+			this.appendLogBatalla("El pokemon " + this.entrenadorUno.getPokemonActivo().getNombre() + " ataca\n");
 			this.entrenadorUno.getPokemonActivo().atacar(this.entrenadorDos.getPokemonActivo());
 		}
 	}
@@ -123,11 +123,11 @@ public class Enfrentamiento extends Thread implements Serializable {
 
 		puntaje1 = calculaPuntaje(this.entrenadorUno.getPokemonActivo());
 		this.appendLogDefinicion(
-				"Puntaje de " + this.entrenadorUno.getPokemonActivo().getNombre() + ": " + (int) puntaje1 + "\n");
+				"Puntaje " + this.entrenadorUno.getPokemonActivo().getNombre() + ": " + (int) puntaje1 + "\n");
 
 		puntaje2 = calculaPuntaje(this.entrenadorDos.getPokemonActivo());
 		this.appendLogDefinicion(
-				"Puntaje de " + this.entrenadorDos.getPokemonActivo().getNombre() + ": " + (int) puntaje2 + "\n");
+				"Puntaje " + this.entrenadorDos.getPokemonActivo().getNombre() + ": " + (int) puntaje2 + "\n");
 		if (puntaje1 > puntaje2) {
 			this.ganador = this.entrenadorUno;
 			this.perdedor = this.entrenadorDos;
