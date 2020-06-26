@@ -57,6 +57,7 @@ public class Enfrentamiento extends Thread implements Serializable {
 		this.entrenadorDos.setPokemonActivo(
 				this.entrenadorDos.getPokemones().get(r.nextInt(this.entrenadorDos.getPokemones().size())));
 
+		
 		this.appendLogPreliminar(this.entrenadorUno + " va a pelear con " + this.entrenadorDos + "\n");
 		this.appendLogPreliminar(
 				this.entrenadorUno + "elige a " + this.entrenadorUno.getPokemonActivo().getNombre() + "\n");
@@ -92,6 +93,7 @@ public class Enfrentamiento extends Thread implements Serializable {
 		Random r = new Random();
 		int atacaprimero = r.nextInt(11);
 
+		
 		if (this.entrenadorUno.getHechizoActivo() != null) {
 			this.appendLogBatalla(this.entrenadorUno.getNombre() + " utilizo una carta\n");
 			this.entrenadorDos.getPokemonActivo().serHechizado(this.entrenadorUno.getHechizoActivo());

@@ -638,6 +638,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 			this.arenas[i].setName("Arena " + i);
 		
 		this.revalidate();
+		repaint();
 	}
 
 	@Override
