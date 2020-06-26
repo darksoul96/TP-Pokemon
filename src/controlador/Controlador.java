@@ -104,7 +104,7 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 					e.printStackTrace();
 				}
 				for (int i = 0; i < this.torneo.getGrupos().size(); i++) {
-					this.vista.repintarBatalla(this.torneo.getGrupos().get(i).getEnfrentamientos());
+					this.vista.repintarBatalla(this.torneo.getEnfrentamientos());
 				}
 			}
 

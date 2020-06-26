@@ -236,7 +236,6 @@ public class Torneo extends Observable implements Serializable, Observer {
 			perdedor = enfrentamientos.get(i).getPerdedor();
 			this.clasificados.remove(perdedor);
 		}
-		this.enfrentamientos.clear();
 	}
 
 	@Override
@@ -292,6 +291,11 @@ public class Torneo extends Observable implements Serializable, Observer {
 			this.arenas[i].setEstado(new PreliminarState(this.arenas[i]));
 		}
 	}
+
+	public ArrayList<Enfrentamiento> getEnfrentamientos() {
+		return enfrentamientos;
+	}
+	
 
 }
   
