@@ -17,7 +17,7 @@ import personajes.Entrenador;
  * metodos de competicion del Torneo.
  *
  */
-public class Torneo extends Observable implements Serializable,Observer {
+public class Torneo extends Observable implements Serializable, Observer {
 
 	private static Torneo torneo;
 	private ArrayList<Entrenador> participantes;
@@ -73,17 +73,16 @@ public class Torneo extends Observable implements Serializable,Observer {
 		arenas[1].addObserver(this);
 		arenas[2].addObserver(this);
 		arenas[3].addObserver(this);
-		
+
 	}
 
-	
 	public Arena[] getArenas() {
 		return arenas;
 	}
 
 	public void generaGrupos(ArrayList<Entrenador> participantes) {
 		this.grupos = new ArrayList<Grupo>();
-		switch(this.cantidadDeParticipantes) {
+		switch (this.cantidadDeParticipantes) {
 		case 8:
 			Grupo g1 = new Grupo("Grupo 1");
 			Grupo g2 = new Grupo("Grupo 2");
@@ -119,7 +118,7 @@ public class Torneo extends Observable implements Serializable,Observer {
 			this.grupos.add(g8);
 		}
 		int bandera = 0;
-		for (int i = 0; i < this.cantidadDeParticipantes/4; i++) {
+		for (int i = 0; i < this.cantidadDeParticipantes / 4; i++) {
 			for (int k = 0; k < 4; k++) {
 				if (this.participantes.size() != 0) {
 					this.grupos.get(i).agregarEntrenador(this.participantes.get(0));
@@ -129,8 +128,6 @@ public class Torneo extends Observable implements Serializable,Observer {
 			}
 		}
 	}
-	
-	
 
 	public ArrayList<Entrenador> getClasificados() {
 		return clasificados;
@@ -145,29 +142,29 @@ public class Torneo extends Observable implements Serializable,Observer {
 
 	public void faseDeGrupos() {
 		boolean faseDeGruposFinalizada = false;
-		Enfrentamiento[] enfrentamientos = new Enfrentamiento[this.cantidadDeParticipantes/4];
+		Enfrentamiento[] enfrentamientos = new Enfrentamiento[this.cantidadDeParticipantes / 4];
 		Random r = new Random();
 		int contador = 0;
 		while (faseDeGruposFinalizada == false) {
-			for (int i = 0; i < this.cantidadDeParticipantes/4; i++) {
+			for (int i = 0; i < this.cantidadDeParticipantes / 4; i++) {
 				enfrentamientos[i] = grupos.get(i).generaEnfrentamiento();
 				if (enfrentamientos[i] != null)
 					enfrentamientos[i].setRecursoCompartido(arenas[r.nextInt(3)]);
 				if (grupos.get(i).isGrupoFinalizado() == true) {
 					contador++;
-					if (contador == this.cantidadDeParticipantes/4) {
+					if (contador == this.cantidadDeParticipantes / 4) {
 						faseDeGruposFinalizada = true;
 					}
 				}
 			}
 			contador = 0;
-			for (int i = 0; i < this.cantidadDeParticipantes/4; i++)
+			for (int i = 0; i < this.cantidadDeParticipantes / 4; i++)
 				enfrentamientos[i].start();
 		}
-		for(int i=0;i<this.grupos.size();i++) {
+		for (int i = 0; i < this.grupos.size(); i++) {
 			this.grupos.get(i).actualizaPosiciones();
 		}
-		for (int i = 0; i < this.cantidadDeParticipantes/4; i++) {
+		for (int i = 0; i < this.cantidadDeParticipantes / 4; i++) {
 			this.clasificados.add(this.grupos.get(i).getIntegrantes().get(0));
 			this.clasificados.add(this.grupos.get(i).getIntegrantes().get(1));
 		}
@@ -210,7 +207,7 @@ public class Torneo extends Observable implements Serializable,Observer {
 		Random r = new Random();
 		int batallas = this.clasificados.size() / 2;
 		ArrayList<Enfrentamiento> enfrentamientos = new ArrayList<Enfrentamiento>();
-		for (int i = 0; i < batallas; i = i + 2) {
+		for (int i = 0; i <= batallas; i += 2) {
 			Entrenador e1 = this.clasificados.get(i);
 			Entrenador e2 = this.clasificados.get(i + 1);
 			Enfrentamiento n = new Enfrentamiento(e1, e2);
@@ -272,8 +269,15 @@ public class Torneo extends Observable implements Serializable,Observer {
 	public void update(Observable o, Object arg1) {
 		Arena arenaObservada = (Arena) o;
 		this.setChanged();
-		System.out.println("Notifico"+ arenaObservada.getNombreArena() + " " + arenaObservada.getEstado().getNombre());
+		System.out.println("Notifico" + arenaObservada.getNombreArena() + " " + arenaObservada.getEstado().getNombre());
 		this.notifyObservers(arenaObservada);
+	}
+
+	public void reiniciarArenas() {
+		// TODO Auto-generated method stub
+		for (int i = 0; i < 4; i++) {
+			this.arenas[i].setEstado(new PreliminarState(this.arenas[i]));
+		}
 	}
 
 }

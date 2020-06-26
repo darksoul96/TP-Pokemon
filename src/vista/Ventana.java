@@ -586,7 +586,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.grupos = new JPanel[cantidad / 4];
 		this.panelMedio.remove(this.panelEtapaGrupos);
 		this.panelMedio.remove(this.panelBotones);
-		for (int i = 0; i < cantidad /4; i++) {
+		for (int i = 0; i < cantidad / 4; i++) {
 			this.grupos[i] = new JPanel();
 			this.grupos[i].setBorder(new BevelBorder(BevelBorder.RAISED));
 			this.panelMedio.add(this.grupos[i]);
@@ -632,6 +632,9 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.panelCentral.setLayout(new FlowLayout());
 		this.panelCentral.add(fase);
 		this.panelCentral.setVisible(true);
+		for (int i = 0; i < 4; i++) 
+			this.arenas[i].setName("Arena " + i);
+		
 		this.revalidate();
 	}
 
@@ -673,14 +676,12 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.panelBatalla.add(this.scrollPane_2);
 		this.scrollPane_2.setPreferredSize(new Dimension(50, 2));
 
-		
-		
 		this.listBatalla = new JList();
 		this.listBatalla.setSize(new Dimension(0, 547));
 		this.listBatalla.setMaximumSize(new Dimension(0, 547));
 		this.scrollPane_2.setColumnHeaderView(this.listBatalla);
-				
-		this.listBatalla.setBounds(this.listBatalla.getX(), this.listBatalla.getY(), 200, 200);;
+
+		this.listBatalla.setBounds(this.listBatalla.getX(), this.listBatalla.getY(), 200, 200);
 		this.listBatalla.setModel(this.modelBatallas);
 
 		this.lblNewLabel_1 = new JLabel("Batallas");
@@ -715,11 +716,12 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	public void repintarBatalla(ArrayList<Enfrentamiento> enfrentamientos) {
 		this.modelBatallas.clear();
 		System.out.println("-------------------------------------------------------");
-		for(int i=0;i<enfrentamientos.size();i++) {
+		for (int i = 0; i < enfrentamientos.size(); i++) {
 			this.modelBatallas.addElement(enfrentamientos.get(i).getLogBatalla());
 			System.out.println(enfrentamientos.get(i).getLogBatalla());
-			JOptionPane.showMessageDialog(this, enfrentamientos.get(i).getLogBatalla());
+			// JOptionPane.showMessageDialog(this, enfrentamientos.get(i).getLogBatalla());
 		}
 		repaint();
 	}
+
 }
