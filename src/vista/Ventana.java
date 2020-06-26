@@ -645,7 +645,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.setBounds(this.getX(), this.getY(), 1100, 682);
 
 		this.panelDerecho = new JPanel();
-		this.panelDerecho.setBounds(679, 5, 415, 573);
+		this.panelDerecho.setBounds(679, 5, 415, 300);
 		this.contentPane.add(this.panelDerecho);
 		this.panelDerecho.setLayout(new GridLayout(0, 1));
 		// this.panelDerecho.setLayout(new FlowLayout());
@@ -668,22 +668,24 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		rodeabotonsigetapa.add(this.btnIniciar);
 
 		this.panelBatalla = new JPanel();
-		this.panelBatalla.setBounds(0, 0, 415, 573);
+		this.panelBatalla.setBounds(0, 0, 415, 800);
 		this.panelDerecho.add(this.panelBatalla);
 		this.panelBatalla.setLayout(null);
 
 		this.scrollPane_2 = new JScrollPane();
-		this.scrollPane_2.setBounds(0, 26, 415, 547);
+		this.scrollPane_2.setBounds(0, 26, 415, 300);
 		this.panelBatalla.add(this.scrollPane_2);
-		this.scrollPane_2.setPreferredSize(new Dimension(50, 2));
+		this.scrollPane_2.setPreferredSize(new Dimension(415, 300));
 
 		this.listBatalla = new JList();
-		this.listBatalla.setSize(new Dimension(0, 547));
-		this.listBatalla.setMaximumSize(new Dimension(0, 547));
-		this.scrollPane_2.setColumnHeaderView(this.listBatalla);
+		//this.listBatalla.setSize(new Dimension(0, 800));
+		//this.listBatalla.setMaximumSize(new Dimension(0, 800));
+		this.scrollPane_2.setViewportView(this.listBatalla);
+		//this.scrollPane_2.setColumnHeaderView(this.listBatalla);
 
-		this.listBatalla.setBounds(this.listBatalla.getX(), this.listBatalla.getY(), 200, 200);
+		//this.listBatalla.setBounds(this.listBatalla.getX(), this.listBatalla.getY(), 200, 1000);
 		this.listBatalla.setModel(this.modelBatallas);
+		this.listBatalla.setPreferredSize(new Dimension(200, 800));
 
 		this.lblNewLabel_1 = new JLabel("Batallas");
 		this.lblNewLabel_1.setBounds(2, 0, 415, 25);
@@ -692,7 +694,6 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.panelBotones.setVisible(false);
 		this.panelCM.setVisible(false);
 		repaint();
-
 	}
 
 	@Override
