@@ -224,6 +224,12 @@ public class Torneo extends Observable implements Serializable, Observer {
 			enfrentamientos.get(i).start();
 		}
 		Entrenador perdedor;
+		try {
+			enfrentamientos.get(enfrentamientos.size()-1).join();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		for (int i = 0; i < batallas; i++) {
 			perdedor = enfrentamientos.get(i).getPerdedor();
 			this.clasificados.remove(perdedor);
