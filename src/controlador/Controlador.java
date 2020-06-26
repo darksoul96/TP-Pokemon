@@ -44,8 +44,9 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		String comando = arg0.getActionCommand();
-		if(comando.contentEquals("LOG"))
-			this.vista.mostrarLogs();
+		
+		
+		
 		if (comando.contentEquals("CREAR_ENTRENADOR") || comando.contentEquals("PRE_AGREGAR_ENTRENADOR")) {
 			if (comando.contentEquals("PRE_AGREGAR_ENTRENADOR"))
 				this.vista.habilitarAgregarEntrenador();
@@ -53,7 +54,10 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 				torneo.agregarEntrenador(new Entrenador(this.vista.getNombreEntrenador()));
 				this.vista.actualizarListaEntrenador(this.torneo.devuelveIteratorEntrenador());
 			}
-		} else if (comando.contentEquals("SIGUIENTE_ETAPA")) {
+		}
+		else if(comando.contentEquals("LOG"))
+			this.vista.mostrarLogs();
+		else if (comando.contentEquals("SIGUIENTE_ETAPA")) {
 			switch (this.torneo.getFase()) {
 			case 0:
 				this.cantidad = this.vista.devuelveCantidadParticipantes();
@@ -84,7 +88,7 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 				this.torneo.setFase(this.torneo.getFase() + 1);
 				break;
 			}
-
+			
 		} else if (comando.contentEquals("INICIAR_COMBATES")) {
 			if (this.torneo.getFase() == 1) {
 				this.torneo.faseDeGrupos();

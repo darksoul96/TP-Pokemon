@@ -115,7 +115,6 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	private JList listBatalla;
 	private JPanel panelBatalla;
 	private JPanel[] grupos;
-	private JButton btnSortear;
 	private JButton btnIniciar;
 	private JComboBox comboParticipantes;
 	private PanelFaseEliminatoria fase;
@@ -732,11 +731,12 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		}
 		repaint();
 	}
-
+	
 	@Override
 	public void mostrarLogs() {
-		Enfrentamiento e = (Enfrentamiento) this.listBatalla.getSelectedValue();
-		JOptionPane.showMessageDialog(this,e.getLogPreliminar() + e.getLogBatalla() + e.getLogDefinicion());
+		Enfrentamiento e =  (Enfrentamiento) this.listBatalla.getSelectedValue();
+		System.out.println(e.getLogBatalla());
+		JOptionPane.showMessageDialog(this,e.getLogBatalla());
 	}
 
 }
