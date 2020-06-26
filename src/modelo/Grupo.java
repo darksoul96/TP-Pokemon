@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.SortedMap;
 
 import personajes.Entrenador;
@@ -74,7 +75,29 @@ public class Grupo {
 	}
 	
 	public void actualizaPosiciones() {
-		Collections.sort(this.integrantes);
+		//Collections.sort(this.integrantes);
+		Entrenador[]clasificados = new Entrenador[4];
+		for(int i=0;i<this.integrantes.size();i++) {
+			clasificados[i] = this.integrantes.get(i);
+		}
+		Entrenador e1 = clasificados[0];
+		Entrenador e2 =clasificados[1];
+		Entrenador e3 =clasificados[2];
+		Entrenador e4 =clasificados[3];
+		Entrenador aux;
+		for(int i=0;i<this.integrantes.size()-1;i++) {
+			for(int j=0;j<this.integrantes.size()-i-1;j++) {
+				if(clasificados[j].compareTo(clasificados[j+1])>0) {
+					aux = e2;
+					e2 = e1;
+					e1 = aux;
+				}
+			}
+		}
+		this.integrantes.removeAll(this.integrantes);
+		for(int i=0;i<4;i++) {
+			this.integrantes.add(clasificados[i]);
+		}
 	}
 
 	public ArrayList<Entrenador> getIntegrantes() {

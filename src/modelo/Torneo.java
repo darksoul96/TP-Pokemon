@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import exceptions.CantidadHechizosExcedidosException;
 import exceptions.PokemonInvalidoException;
@@ -164,6 +165,12 @@ public class Torneo extends Observable implements Serializable, Observer {
 				enfrentamientos[i].start();
 			}
 				
+		}
+		try {
+			TimeUnit.SECONDS.sleep(9);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		for (int i = 0; i < this.grupos.size(); i++) {
 			this.grupos.get(i).actualizaPosiciones();

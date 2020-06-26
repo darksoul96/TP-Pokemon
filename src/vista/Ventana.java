@@ -719,7 +719,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		for (int i = 0; i < enfrentamientos.size(); i++) {
 			this.modelBatallas.addElement(enfrentamientos.get(i).getLogBatalla());
 			System.out.println(enfrentamientos.get(i).getLogBatalla());
-			JOptionPane.showMessageDialog(this, enfrentamientos.get(i).getLogBatalla());
+			//JOptionPane.showMessageDialog(this, enfrentamientos.get(i).getLogBatalla());
 		}
 		repaint();
 	}
