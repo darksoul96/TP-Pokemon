@@ -40,7 +40,6 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 		this.torneo = torneo.getInstanceSingleton();
 		this.torneo.addObserver(this);
 		this.torneo.setCantidadDeParticipantes(this.vista.devuelveCantidadParticipantes());
-		this.cantidad = this.vista.devuelveCantidadParticipantes();
 	}
 
 	@Override
@@ -56,6 +55,8 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 		} else if (comando.contentEquals("SIGUIENTE_ETAPA")) {
 			switch (this.torneo.getFase()) {
 			case 0:
+				this.cantidad = this.vista.devuelveCantidadParticipantes();
+				System.out.println(this.cantidad);
 				this.vista.pintarFase1();
 				this.torneo.faseDeSorteo();
 				this.vista.creaArenas(4);
