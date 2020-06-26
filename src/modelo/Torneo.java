@@ -166,15 +166,18 @@ public class Torneo extends Observable implements Serializable, Observer {
 			}
 				
 		}
-		for (int i = 0; i < this.grupos.size(); i++) {
-			this.grupos.get(i).actualizaPosiciones();
-		}
 		for (int i = 0; i < this.cantidadDeParticipantes / 4; i++) {
 			this.clasificados.add(this.grupos.get(i).getIntegrantes().get(0));
 			this.clasificados.add(this.grupos.get(i).getIntegrantes().get(1));
 		}
 		Collections.shuffle(clasificados);
 		this.notifyObservers(fase);
+	}
+	
+	public void actualizaPosiciones(ArrayList <Grupo> grupos) {
+		for (int i = 0; i < this.grupos.size(); i++) {
+			grupos.get(i).actualizaPosiciones();
+		}
 	}
 
 	public void faseEliminatoriaSiguiente() {
@@ -225,15 +228,15 @@ public class Torneo extends Observable implements Serializable, Observer {
 		}
 		Entrenador perdedor;
 		try {
-			enfrentamientos.get(enfrentamientos.size()-1).join();
+			enfrentamientos.get(enfrentamientos.size()-1).join(); // sino no da tiempo a borrar el perdedor
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		for (int i = 0; i < batallas; i++) {
 			perdedor = enfrentamientos.get(i).getPerdedor();
 			this.clasificados.remove(perdedor);
 		}
+		this.enfrentamientos.clear();
 	}
 
 	@Override

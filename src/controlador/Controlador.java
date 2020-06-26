@@ -85,29 +85,17 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 			if (this.torneo.getFase() == 1) {
 				this.torneo.faseDeGrupos();
 				try {
-					TimeUnit.SECONDS.sleep(5);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
+					this.torneo.getGrupos().get(this.torneo.getGrupos().size()-1).getEnfrentamientos().get(5).join();
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
 				}
+				this.torneo.actualizaPosiciones(this.torneo.getGrupos());
 				this.vista.repintarGrupos(this.torneo.getGrupos());
 				for (int i = 0; i < this.torneo.getGrupos().size(); i++) {
 					this.vista.repintarBatalla(this.torneo.getGrupos().get(i).getEnfrentamientos());
 				}
-				try {
-					TimeUnit.SECONDS.sleep(1);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
 			} else if (this.torneo.getFase() >= 2) {
 				this.torneo.faseEliminatoriaSiguiente();
-				try {
-					TimeUnit.SECONDS.sleep(1);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
 			}
 
 		} else if (comando.contentEquals("PRE_AGREGAR_POKEMON") || comando.contentEquals("CREAR_POKEMON")) {
