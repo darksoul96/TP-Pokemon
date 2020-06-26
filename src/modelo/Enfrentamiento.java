@@ -28,9 +28,14 @@ public class Enfrentamiento extends Thread implements Serializable {
 		super();
 		this.entrenadorUno = entrenadorUno;
 		this.entrenadorDos = entrenadorDos;
+		this.logPreliminar = "";
+		this.logBatalla = "";
+		this.logDefinicion = "";
 		this.recursoCompartido = null;
 	}
 
+	public Enfrentamiento() {
+	}
 
 	public void preparacionEntrenadores() {
 
@@ -53,41 +58,35 @@ public class Enfrentamiento extends Thread implements Serializable {
 				this.entrenadorDos.getPokemones().get(r.nextInt(this.entrenadorDos.getPokemones().size())));
 
 		this.appendLogPreliminar(this.entrenadorUno + " va a pelear con " + this.entrenadorDos + "\n");
-		this.appendLogPreliminar(this.entrenadorUno + "elige a " + this.entrenadorUno.getPokemonActivo().getNombre() + "\n");
-		this.appendLogPreliminar(this.entrenadorDos + "elige a " + this.entrenadorDos.getPokemonActivo().getNombre() + "\n");
+		this.appendLogPreliminar(
+				this.entrenadorUno + "elige a " + this.entrenadorUno.getPokemonActivo().getNombre() + "\n");
+		this.appendLogPreliminar(
+				this.entrenadorDos + "elige a " + this.entrenadorDos.getPokemonActivo().getNombre() + "\n");
 	}
 
-	
-	
 	public String getLogPreliminar() {
 		return logPreliminar;
 	}
-
 
 	public void setLogPreliminar(String logPreliminar) {
 		this.logPreliminar = logPreliminar;
 	}
 
-
 	public String getLogBatalla() {
 		return logBatalla;
 	}
-
 
 	public void setLogBatalla(String logBatalla) {
 		this.logBatalla = logBatalla;
 	}
 
-
 	public String getLogDefinicion() {
 		return logDefinicion;
 	}
 
-
 	public void setLogDefinicion(String logDefinicion) {
 		this.logDefinicion = logDefinicion;
 	}
-
 
 	public void batalla() {
 		Random r = new Random();
@@ -157,6 +156,12 @@ public class Enfrentamiento extends Thread implements Serializable {
 		return p.getVitalidad() * 0.5 + p.getAtaque() * 0.9 + p.getEscudo() * 0.4;
 	}
 
+	public String devuelveGanador(){
+		if(this.ganador!=null)
+			return this.ganador.getNombre();
+		else
+			return "Enfrentamiento no jugado";
+	}
 	public Entrenador getGanador() {
 		return this.ganador;
 	}
@@ -180,7 +185,7 @@ public class Enfrentamiento extends Thread implements Serializable {
 	@Override
 	public String toString() {
 		return "Participante 1 :" + this.entrenadorUno.getNombre() + " Participante 2: "
-				+ this.entrenadorDos.getNombre() + ", Ganador: " + this.ganador.getNombre() + "\n";
+				+ this.entrenadorDos.getNombre() + ", Ganador: " +  devuelveGanador() + "\n";
 	}
 
 	@Override

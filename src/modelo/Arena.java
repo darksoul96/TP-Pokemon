@@ -29,15 +29,15 @@ public class Arena extends Observable implements Serializable {
 		return estado;
 	}
 
-	public void setEstado(IStateArena estado) {
+	public synchronized void setEstado(IStateArena estado) {
 		this.estado = estado;
 		Random r = new Random();
-		//try {
-			//TimeUnit.SECONDS.sleep(r.nextInt(3));
-		//} catch (InterruptedException e) {
+		try {
+			TimeUnit.SECONDS.sleep(r.nextInt(2));
+		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
-			//e.printStackTrace();
-		//}
+			e.printStackTrace();
+		}
 		this.setChanged();
 		this.notifyObservers(this);
 	}
