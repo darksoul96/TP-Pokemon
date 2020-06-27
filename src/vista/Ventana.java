@@ -367,10 +367,6 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.btnImportarFase.setActionCommand("IMPORTAR_FASE");
 		this.panelBotonOpciones.add(this.btnImportarFase);
 
-		this.btnExportarFase = new JButton("Exportar Fase");
-		this.btnExportarFase.addActionListener(this);
-		this.panelBotonOpciones.add(this.btnExportarFase);
-
 		this.panelSur = new JPanel();
 		this.panelSur.setBounds(5, 578, 1014, 70);
 		this.panelSur.setBackground(Color.WHITE);
@@ -420,6 +416,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.btnModificarP.addActionListener(actionListener);
 		this.btnModificarPokemon.addActionListener(actionListener);
 		this.btnSiguienteEtapa.addActionListener(actionListener);
+		this.btnImportarFase.addActionListener(actionListener);
 		this.listEntrenadores.addMouseListener((MouseListener) actionListener); // OJO ACA
 	}
 
@@ -428,6 +425,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.btnSiguienteEtapa.addActionListener(actionListener);
 		this.btnIniciar.addActionListener(actionListener);
 		this.btnlogs.addActionListener(actionListener);
+		this.btnExportarFase.addActionListener(actionListener);
 	}
 
 	@Override
@@ -643,10 +641,15 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	}
 
 	@Override
-	public void pintarFase1() {
-
+	public void redimensionarVentanaOcultarPaneles() {
 		this.setBounds(this.getX(), this.getY(), 1100, 682);
+		this.panelBotones.setVisible(false);
+		this.panelCM.setVisible(false);
+	}
 
+	@Override
+	public void pintarFase1() {
+		redimensionarVentanaOcultarPaneles();
 		this.panelDerecho = new JPanel();
 		this.panelDerecho.setBounds(679, 5, 415, 300);
 		this.contentPane.add(this.panelDerecho);
@@ -676,6 +679,13 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.btnlogs.setSize(5, 5);
 		rodeabotonsigetapa.add(this.btnlogs);
 
+		this.btnExportarFase = new JButton("Exportar Fase");
+		this.btnExportarFase.setActionCommand("EXPORTAR_FASE");
+		this.btnExportarFase.addActionListener(this);
+		this.btnExportarFase.setBounds(22, 11, 121, 28);
+		this.btnExportarFase.setSize(5, 5);
+		rodeabotonsigetapa.add(this.btnExportarFase);
+
 		this.panelBatalla = new JPanel();
 		this.panelBatalla.setBounds(0, 0, 415, 800);
 		this.panelDerecho.add(this.panelBatalla);
@@ -701,8 +711,6 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.lblNewLabel_1.setBounds(2, 0, 415, 25);
 		this.panelBatalla.add(this.lblNewLabel_1);
 
-		this.panelBotones.setVisible(false);
-		this.panelCM.setVisible(false);
 		repaint();
 	}
 
@@ -732,12 +740,13 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		}
 		repaint();
 	}
-	
+
 	@Override
 	public void mostrarLogs() {
-		Enfrentamiento e =  (Enfrentamiento) this.listBatalla.getSelectedValue();
+		Enfrentamiento e = (Enfrentamiento) this.listBatalla.getSelectedValue();
 		System.out.println(e.getLogPreliminar() + e.getLogBatalla() + e.getLogDefinicion());
-		JOptionPane.showMessageDialog(this,e.getLogPreliminar() + e.getLogBatalla() + e.getLogDefinicion());
+		JOptionPane.showMessageDialog(this,
+				e.getLogPreliminar() + "\n" + e.getLogBatalla() + "\n" + e.getLogDefinicion());
 	}
 
 }

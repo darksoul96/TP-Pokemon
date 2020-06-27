@@ -1,8 +1,10 @@
 package modelo;
 
+import java.io.Serializable;
+
 import interfaces.IStateArena;
 
-public class DefinicionState implements IStateArena {
+public class DefinicionState implements IStateArena,Serializable {
 
 	private Arena arena;
 	private String nombre;

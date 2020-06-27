@@ -57,32 +57,28 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 		else if (comando.contentEquals("SIGUIENTE_ETAPA")) {
 			switch (this.torneo.getFase()) {
 			case 0:
-				this.cantidad = this.vista.devuelveCantidadParticipantes();
-				this.torneo.setCantidadDeParticipantes(this.vista.devuelveCantidadParticipantes());
-				this.vista.pintarFase1();
-				this.torneo.faseDeSorteo();
-				this.vista.creaArenas(4);
-				this.vista.creaGrupos(this.torneo.getGrupos(), this.cantidad);
-				this.vista.setActionListenerFaseGrupos(this);
-				this.torneo.reiniciarArenas();
+				generaFaseDeGrupos();
 				this.torneo.setFase(this.torneo.getFase() + 1);
 				break;
 			case 1:
-				this.vista.faseSiguiente(this.torneo.getClasificados());
-				this.torneo.reiniciarArenas();
-				this.torneo.setFase(this.torneo.getFase() + 1);
+				generaFaseEliminatoria(1);
+				//this.vista.faseSiguiente(this.torneo.getClasificados());
+				//this.torneo.reiniciarArenas();
+				//this.torneo.setFase(this.torneo.getFase() + 1);
 				break;
 			case 2:
-				this.torneo.reiniciaEnfrentamientos();
-				this.vista.faseSiguiente(this.torneo.getClasificados());
-				this.torneo.reiniciarArenas();
-				this.torneo.setFase(this.torneo.getFase() + 1);
+				generaFaseEliminatoria(2);
+				//this.torneo.reiniciaEnfrentamientos();
+				//this.vista.faseSiguiente(this.torneo.getClasificados());
+				//this.torneo.reiniciarArenas();
+				//this.torneo.setFase(this.torneo.getFase() + 1);
 				break;
 			case 3:
-				this.torneo.reiniciaEnfrentamientos();
-				this.vista.faseSiguiente(this.torneo.getClasificados());
-				this.torneo.reiniciarArenas();
-				this.torneo.setFase(this.torneo.getFase() + 1);
+				generaFaseEliminatoria(3);
+				//this.torneo.reiniciaEnfrentamientos();
+				//this.vista.faseSiguiente(this.torneo.getClasificados());
+				//this.torneo.reiniciarArenas();
+				//this.torneo.setFase(this.torneo.getFase() + 1);
 				break;
 			}
 
@@ -183,11 +179,26 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 			try {
 				persistencia.abrirInput("Torneo.bin");
 				this.torneo = (Torneo) persistencia.leer();
+				persistencia.cerrarInput();
+				int aux = this.torneo.getFase()-1;
+				System.out.println(aux);
+				switch (aux) {
+				case 0:
+					generaFaseDeGrupos();
+				case 1:
+					generaFaseEliminatoria(1);
+					break;
+				case 2:
+					generaFaseEliminatoria(2);
+					break;
+				case 3:
+					generaFaseEliminatoria(3);
+					break;
+				}
+
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
@@ -231,6 +242,26 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 			break;
 		}
 
+	}
+	
+	public void generaFaseDeGrupos() {
+		this.cantidad = this.vista.devuelveCantidadParticipantes();
+		this.torneo.setCantidadDeParticipantes(this.vista.devuelveCantidadParticipantes());
+		this.vista.pintarFase1();
+		this.torneo.faseDeSorteo();
+		this.vista.creaArenas(4);
+		this.vista.creaGrupos(this.torneo.getGrupos(), this.cantidad);
+		this.vista.setActionListenerFaseGrupos(this);
+		this.torneo.reiniciarArenas();
+	}
+
+	public void generaFaseEliminatoria(int fase) {
+		this.vista.redimensionarVentanaOcultarPaneles();
+		this.vista.creaArenas(4);
+		this.torneo.reiniciaEnfrentamientos();
+		this.vista.faseSiguiente(this.torneo.getClasificados());
+		this.torneo.reiniciarArenas();
+		this.torneo.setFase(this.torneo.getFase() + fase);
 	}
 
 	@Override

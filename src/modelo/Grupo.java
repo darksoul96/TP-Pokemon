@@ -1,5 +1,6 @@
 package modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -12,7 +13,7 @@ import personajes.Entrenador;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-public class Grupo {
+public class Grupo implements Serializable {
 	private ArrayList<Entrenador> integrantes;
 	private ArrayList<Enfrentamiento> enfrentamientos;
 	private String nombre;

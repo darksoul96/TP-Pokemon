@@ -20,7 +20,7 @@ import personajes.Entrenador;
  */
 public class Torneo extends Observable implements Serializable, Observer {
 
-	private static Torneo torneo;
+	private transient static Torneo torneo;
 	private ArrayList<Entrenador> participantes;
 	private ArrayList<Entrenador> clasificados;
 	private ArrayList<Enfrentamiento> enfrentamientos;

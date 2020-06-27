@@ -1,6 +1,8 @@
 package interfaces;
 
-public interface ICarta {
+import java.io.Serializable;
+
+public interface ICarta extends Serializable {
 
 	void hechizar(Hechizable hechizable);
 }

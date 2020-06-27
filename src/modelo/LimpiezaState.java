@@ -1,10 +1,11 @@
 package modelo;
 
+import java.io.Serializable;
 import java.util.concurrent.TimeUnit;
 
 import interfaces.IStateArena;
 
-public class LimpiezaState implements IStateArena {
+public class LimpiezaState implements IStateArena,Serializable {
 	private String nombre;
 	private Arena arena;
 
