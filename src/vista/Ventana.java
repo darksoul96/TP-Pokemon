@@ -754,4 +754,16 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		JOptionPane.showMessageDialog(this,"El ganador del torneo es: " + arg1.getNombre()+ " !!!!");
 		
 	}
+
+	@Override
+	public void popupImportar() {
+		// TODO Auto-generated method stub
+		JOptionPane.showMessageDialog(this, "Fase importada correctamente!");
+	}
+
+	@Override
+	public void popupExportar() {
+		// TODO Auto-generated method stub
+		JOptionPane.showMessageDialog(this, "Fase exportada correctamente!");
+	}
 }

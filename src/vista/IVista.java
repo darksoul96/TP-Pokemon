@@ -39,5 +39,7 @@ public interface IVista {
 	void redimensionarVentanaOcultarPaneles();
 	void mostrarGanador();
 	void informarganador(Entrenador arg1);
+	void popupImportar();
+	void popupExportar();
 	
 }
