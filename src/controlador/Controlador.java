@@ -63,9 +63,6 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 				break;
 			case 1:
 				generaFaseEliminatoria(1);
-				//this.vista.faseSiguiente(this.torneo.getClasificados());
-				//this.torneo.reiniciarArenas();
-				//this.torneo.setFase(this.torneo.getFase() + 1);
 				break;
 			case 2:
 				generaFaseEliminatoria(2);
@@ -86,14 +83,6 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 		} else if (comando.contentEquals("INICIAR_COMBATES")) {
 			if (this.torneo.getFase() == 1) {
 				this.torneo.faseDeGrupos();
-				try {
-					for (int i = 0; i < 6; i++) {
-						this.torneo.getGrupos().get(this.torneo.getGrupos().size() - 1).getEnfrentamientos().get(i)
-								.join();
-					}
-				} catch (InterruptedException e1) {
-					e1.printStackTrace();
-				}
 				this.torneo.actualizaPosiciones(this.torneo.getGrupos());
 				this.vista.repintarGrupos(this.torneo.getGrupos());
 				for (int i = 0; i < this.torneo.getGrupos().size(); i++) {
@@ -203,9 +192,9 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 			int aux = this.torneo.getFase()-1;
 			System.out.println(aux);
 			switch (aux) {
-			case 0:
+			case 0:				// GRUPOS
 				generaFaseDeGrupos();
-			case 1:
+			case 1:	
 				this.vista.redimensionarVentanaOcultarPaneles();
 				this.vista.creaArenas(4);
 				this.vista.pintarFase1();
@@ -279,7 +268,7 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 		this.torneo.reiniciaEnfrentamientos();
 		this.vista.faseSiguiente(this.torneo.getClasificados());
 		this.torneo.reiniciarArenas();
-		this.torneo.setFase(this.torneo.getFase() + fase);
+		this.torneo.setFase(this.torneo.getFase() + 1);
 	}
 
 	@Override

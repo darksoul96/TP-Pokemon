@@ -749,4 +749,8 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 				e.getLogPreliminar() + "\n" + e.getLogBatalla() + "\n" + e.getLogDefinicion());
 	}
 
+	@Override
+	public void mostrarGanador() {
+		
+	}
 }

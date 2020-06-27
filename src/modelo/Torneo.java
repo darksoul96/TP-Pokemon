@@ -170,7 +170,7 @@ public class Torneo extends Observable implements Serializable, Observer {
 			this.clasificados.add(this.grupos.get(i).getIntegrantes().get(0));
 			this.clasificados.add(this.grupos.get(i).getIntegrantes().get(1));
 		}
-		Collections.shuffle(clasificados);
+		Collections.sort(clasificados);
 		this.notifyObservers(fase);
 	}
 	
@@ -236,8 +236,13 @@ public class Torneo extends Observable implements Serializable, Observer {
 			perdedor = enfrentamientos.get(i).getPerdedor();
 			this.clasificados.remove(perdedor);
 		}
+		
 	}
 
+	public Entrenador informarGanador() {
+		return this.clasificados.get(0);
+	}
+	
 	@Override
 	public String toString() {
 		String aux = "Lista de participantes: \n";

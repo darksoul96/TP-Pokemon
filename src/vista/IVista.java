@@ -37,5 +37,6 @@ public interface IVista {
 	void repintarArenas(int indice, String nombre);
 	void mostrarLogs();
 	void redimensionarVentanaOcultarPaneles();
+	void mostrarGanador();
 	
 }
