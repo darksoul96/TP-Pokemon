@@ -421,7 +421,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	}
 
 	@Override
-	public void setActionListenerFaseGrupos(ActionListener actionListener) {
+	public void setActionListenerBotonesNuevos(ActionListener actionListener) {
 		this.btnSiguienteEtapa.addActionListener(actionListener);
 		this.btnIniciar.addActionListener(actionListener);
 		this.btnlogs.addActionListener(actionListener);

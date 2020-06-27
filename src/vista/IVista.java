@@ -29,7 +29,7 @@ public interface IVista {
 	void pintarFase1();
 	void creaArenas(int i);
 	void creaGrupos(ArrayList<Grupo> grupos, int cantidad);
-	void setActionListenerFaseGrupos(ActionListener actionListener);
+	void setActionListenerBotonesNuevos(ActionListener actionListener);
 	int devuelveCantidadParticipantes();
 	void faseSiguiente(ArrayList<Entrenador> clasificados);
 	void repintarGrupos(ArrayList<Grupo> grupos);

@@ -57,6 +57,7 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 		else if (comando.contentEquals("SIGUIENTE_ETAPA")) {
 			switch (this.torneo.getFase()) {
 			case 0:
+				this.vista.creaArenas(4);
 				generaFaseDeGrupos();
 				this.torneo.setFase(this.torneo.getFase() + 1);
 				break;
@@ -176,43 +177,62 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 				System.out.println(e.getMessage());
 			}
 		} else if (comando.contentEquals("IMPORTAR_FASE")) {
-			try {
-				persistencia.abrirInput("Torneo.bin");
-				this.torneo = (Torneo) persistencia.leer();
-				persistencia.cerrarInput();
-				int aux = this.torneo.getFase()-1;
-				System.out.println(aux);
-				switch (aux) {
-				case 0:
-					generaFaseDeGrupos();
-				case 1:
-					generaFaseEliminatoria(1);
-					break;
-				case 2:
-					generaFaseEliminatoria(2);
-					break;
-				case 3:
-					generaFaseEliminatoria(3);
-					break;
-				}
-
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
+			importarFase();
 
 		} else if (comando.contentEquals("EXPORTAR_FASE")) {
-			try {
-				persistencia.abrirOutput("Torneo.bin");
-				persistencia.escribir(this.torneo);
-				persistencia.cerrarOutput();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-
+			exportarFase();
 		}
 
+	}
+	
+	public void exportarFase() {
+		try {
+			persistencia.abrirOutput("Torneo.bin");
+			persistencia.escribir(this.torneo);
+			persistencia.cerrarOutput();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void importarFase() {
+		try {
+			persistencia.abrirInput("Torneo.bin");
+			this.torneo = (Torneo) persistencia.leer();
+			persistencia.cerrarInput();
+			int aux = this.torneo.getFase()-1;
+			System.out.println(aux);
+			switch (aux) {
+			case 0:
+				generaFaseDeGrupos();
+			case 1:
+				this.vista.redimensionarVentanaOcultarPaneles();
+				this.vista.creaArenas(4);
+				this.vista.pintarFase1();
+				this.vista.setActionListenerBotonesNuevos(this);
+				generaFaseEliminatoria(1);
+				break;
+			case 2:
+				this.vista.redimensionarVentanaOcultarPaneles();
+				this.vista.creaArenas(4);
+				this.vista.pintarFase1();
+				this.vista.setActionListenerBotonesNuevos(this);
+				generaFaseEliminatoria(2);
+				break;
+			case 3:
+				this.vista.redimensionarVentanaOcultarPaneles();
+				this.vista.creaArenas(4);
+				this.vista.pintarFase1();
+				this.vista.setActionListenerBotonesNuevos(this);
+				generaFaseEliminatoria(3);
+				break;
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public IVista getVista() {
@@ -244,20 +264,18 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 
 	}
 	
+	
 	public void generaFaseDeGrupos() {
 		this.cantidad = this.vista.devuelveCantidadParticipantes();
 		this.torneo.setCantidadDeParticipantes(this.vista.devuelveCantidadParticipantes());
 		this.vista.pintarFase1();
 		this.torneo.faseDeSorteo();
-		this.vista.creaArenas(4);
 		this.vista.creaGrupos(this.torneo.getGrupos(), this.cantidad);
-		this.vista.setActionListenerFaseGrupos(this);
+		this.vista.setActionListenerBotonesNuevos(this);
 		this.torneo.reiniciarArenas();
 	}
 
 	public void generaFaseEliminatoria(int fase) {
-		this.vista.redimensionarVentanaOcultarPaneles();
-		this.vista.creaArenas(4);
 		this.torneo.reiniciaEnfrentamientos();
 		this.vista.faseSiguiente(this.torneo.getClasificados());
 		this.torneo.reiniciarArenas();
