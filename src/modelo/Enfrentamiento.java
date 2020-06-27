@@ -187,7 +187,7 @@ public class Enfrentamiento extends Thread implements Serializable {
 	@Override
 	public String toString() {
 		return this.entrenadorUno.getNombre() + " vs "
-				+ this.entrenadorDos.getNombre() + " -> " +  devuelveGanador() + " WINS\n";
+				+ this.entrenadorDos.getNombre() + "       GANO: " +  devuelveGanador() + "!!";
 	}
 
 	@Override

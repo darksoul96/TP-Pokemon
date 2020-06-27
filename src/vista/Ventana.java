@@ -119,7 +119,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	private JComboBox comboParticipantes;
 	private PanelFaseEliminatoria fase;
 	private DefaultListModel modelBatallas = new DefaultListModel();
-	private JButton logs;
+	private JButton btnlogs;
 
 	/**
 	 * Launch the application.
@@ -427,6 +427,7 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	public void setActionListenerFaseGrupos(ActionListener actionListener) {
 		this.btnSiguienteEtapa.addActionListener(actionListener);
 		this.btnIniciar.addActionListener(actionListener);
+		this.btnlogs.addActionListener(actionListener);
 	}
 
 	@Override
@@ -669,11 +670,11 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 		this.btnIniciar.setSize(5, 5);
 		rodeabotonsigetapa.add(this.btnIniciar);
 
-		this.logs = new JButton("Log batalla seleccionada");
-		this.logs.setActionCommand("LOG");
-		this.logs.setBounds(22, 11, 121, 28);
-		this.logs.setSize(5, 5);
-		rodeabotonsigetapa.add(this.logs);
+		this.btnlogs = new JButton("Log batalla seleccionada");
+		this.btnlogs.setActionCommand("LOG");
+		this.btnlogs.setBounds(22, 11, 121, 28);
+		this.btnlogs.setSize(5, 5);
+		rodeabotonsigetapa.add(this.btnlogs);
 
 		this.panelBatalla = new JPanel();
 		this.panelBatalla.setBounds(0, 0, 415, 800);
@@ -735,8 +736,8 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	@Override
 	public void mostrarLogs() {
 		Enfrentamiento e =  (Enfrentamiento) this.listBatalla.getSelectedValue();
-		System.out.println(e.getLogBatalla());
-		JOptionPane.showMessageDialog(this,e.getLogBatalla());
+		System.out.println(e.getLogPreliminar() + e.getLogBatalla() + e.getLogDefinicion());
+		JOptionPane.showMessageDialog(this,e.getLogPreliminar() + e.getLogBatalla() + e.getLogDefinicion());
 	}
 
 }

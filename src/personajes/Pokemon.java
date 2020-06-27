@@ -88,7 +88,8 @@ public abstract class Pokemon implements Cloneable, Atacable, Hechizable, Clasif
 
 	@Override
 	public String toString() {
-		return nombre + (int) experiencia + (int) escudo + (int) vitalidad + " rango=" + this.calculaClasificacion();
+		return nombre + "EXP: " + (int) experiencia + " ESC " + (int) escudo + " VIT" + (int) vitalidad + " R:"
+				+ this.calculaClasificacion();
 	}
 
 	@Override

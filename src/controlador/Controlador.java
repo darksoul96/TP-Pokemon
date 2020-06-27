@@ -44,9 +44,7 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		String comando = arg0.getActionCommand();
-		
-		
-		
+		System.out.println(comando);
 		if (comando.contentEquals("CREAR_ENTRENADOR") || comando.contentEquals("PRE_AGREGAR_ENTRENADOR")) {
 			if (comando.contentEquals("PRE_AGREGAR_ENTRENADOR"))
 				this.vista.habilitarAgregarEntrenador();
@@ -54,8 +52,7 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 				torneo.agregarEntrenador(new Entrenador(this.vista.getNombreEntrenador()));
 				this.vista.actualizarListaEntrenador(this.torneo.devuelveIteratorEntrenador());
 			}
-		}
-		else if(comando.contentEquals("LOG"))
+		} else if (comando.contentEquals("LOG"))
 			this.vista.mostrarLogs();
 		else if (comando.contentEquals("SIGUIENTE_ETAPA")) {
 			switch (this.torneo.getFase()) {
@@ -88,13 +85,14 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 				this.torneo.setFase(this.torneo.getFase() + 1);
 				break;
 			}
-			
+
 		} else if (comando.contentEquals("INICIAR_COMBATES")) {
 			if (this.torneo.getFase() == 1) {
 				this.torneo.faseDeGrupos();
 				try {
-					for(int i=0;i<6;i++) {
-						this.torneo.getGrupos().get(this.torneo.getGrupos().size()-1).getEnfrentamientos().get(i).join();
+					for (int i = 0; i < 6; i++) {
+						this.torneo.getGrupos().get(this.torneo.getGrupos().size() - 1).getEnfrentamientos().get(i)
+								.join();
 					}
 				} catch (InterruptedException e1) {
 					e1.printStackTrace();
@@ -105,7 +103,7 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 					this.vista.repintarBatalla(this.torneo.getGrupos().get(i).getEnfrentamientos());
 				}
 			} else if (this.torneo.getFase() >= 2) {
-				
+
 				this.torneo.faseEliminatoriaSiguiente();
 				try {
 					TimeUnit.SECONDS.sleep(2);
@@ -203,7 +201,7 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 			}
 
 		}
-		
+
 	}
 
 	public IVista getVista() {

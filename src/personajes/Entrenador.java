@@ -113,7 +113,7 @@ public class Entrenador implements Comparable<Entrenador>, Cloneable, Clasificab
 	@Override
 	public String toString() {
 		String aux;
-		aux = this.getNombre() + " C: " + this.calculaClasificacion();
+		aux = this.getNombre() + " Rango: " + this.calculaClasificacion( )+ " ";
 		return aux;
 	}
 
@@ -168,7 +168,6 @@ public class Entrenador implements Comparable<Entrenador>, Cloneable, Clasificab
 	@Override
 	public int compareTo(Entrenador otro) {
 		int resultado;
-		System.out.println("Entrenador A :" +this.getNombre() + "PUNTOS: " + this.calculaClasificacion() + "Entrenador B: "+ otro.getNombre() + "Clasificacion: "+otro.calculaClasificacion());
 		if(this.calculaClasificacion() > otro.calculaClasificacion()) {
 			resultado = 1;
 		}
