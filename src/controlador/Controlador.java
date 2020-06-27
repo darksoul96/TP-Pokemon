@@ -170,11 +170,14 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 			} catch (ClassNotFoundException e) {
 				System.out.println(e.getMessage());
 			}
-		} else if (comando.contentEquals("IMPORTAR_FASE")) {
+		} 
+		else if (comando.contentEquals("IMPORTAR_FASE")) {
 			importarFase();
-
-		} else if (comando.contentEquals("EXPORTAR_FASE")) {
+			this.vista.popupImportar();
+		} 
+		else if (comando.contentEquals("EXPORTAR_FASE")) {
 			exportarFase();
+			this.vista.popupExportar();
 		}
 
 	}
