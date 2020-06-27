@@ -260,6 +260,7 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 		}
 		else {
 			if(arg1.getClass()==Entrenador.class) {
+				System.out.println("INFORMO GANADOR!!!!!!!!!!!!!!!!!!");
 				this.vista.informarganador((Entrenador) arg1);
 			}
 		}
