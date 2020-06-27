@@ -243,7 +243,6 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		System.out.println(arg1.getClass());
 		if(arg1.getClass() == Arena.class) {
 			Arena arenaDesdeTorneo = (Arena) arg1;
 			switch (arenaDesdeTorneo.getNombreArena()) {
