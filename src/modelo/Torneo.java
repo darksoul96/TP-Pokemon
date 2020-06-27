@@ -236,6 +236,9 @@ public class Torneo extends Observable implements Serializable, Observer {
 			perdedor = enfrentamientos.get(i).getPerdedor();
 			this.clasificados.remove(perdedor);
 		}
+		if(this.clasificados.size()==1) {
+			this.notifyObservers(this.clasificados.get(0));
+		}
 		
 	}
 

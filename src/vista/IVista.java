@@ -38,5 +38,6 @@ public interface IVista {
 	void mostrarLogs();
 	void redimensionarVentanaOcultarPaneles();
 	void mostrarGanador();
+	void informarganador(Entrenador arg1);
 	
 }

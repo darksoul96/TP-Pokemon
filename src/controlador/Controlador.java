@@ -44,7 +44,6 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		String comando = arg0.getActionCommand();
-		System.out.println(comando);
 		if (comando.contentEquals("CREAR_ENTRENADOR") || comando.contentEquals("PRE_AGREGAR_ENTRENADOR")) {
 			if (comando.contentEquals("PRE_AGREGAR_ENTRENADOR"))
 				this.vista.habilitarAgregarEntrenador();
@@ -77,6 +76,12 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 				//this.vista.faseSiguiente(this.torneo.getClasificados());
 				//this.torneo.reiniciarArenas();
 				//this.torneo.setFase(this.torneo.getFase() + 1);
+				break;
+			case 4:
+				generaFaseEliminatoria(4);
+				break;
+			case 5:
+				generaFaseEliminatoria(5);
 				break;
 			}
 
@@ -235,21 +240,30 @@ public class Controlador implements ActionListener, Observer, KeyListener, Mouse
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		Arena arenaDesdeTorneo = (Arena) arg1;
-		switch (arenaDesdeTorneo.getNombreArena()) {
-		case "Arena 1":
-			this.vista.repintarArenas(0, arenaDesdeTorneo.getEstado().getNombre());
-			break;
-		case "Arena 2":
-			this.vista.repintarArenas(1, arenaDesdeTorneo.getEstado().getNombre());
-			break;
-		case "Arena 3":
-			this.vista.repintarArenas(2, arenaDesdeTorneo.getEstado().getNombre());
-			break;
-		case "Arena 4":
-			this.vista.repintarArenas(3, arenaDesdeTorneo.getEstado().getNombre());
-			break;
+		System.out.println(arg1.getClass());
+		if(arg1.getClass() == Arena.class) {
+			Arena arenaDesdeTorneo = (Arena) arg1;
+			switch (arenaDesdeTorneo.getNombreArena()) {
+			case "Arena 1":
+				this.vista.repintarArenas(0, arenaDesdeTorneo.getEstado().getNombre());
+				break;
+			case "Arena 2":
+				this.vista.repintarArenas(1, arenaDesdeTorneo.getEstado().getNombre());
+				break;
+			case "Arena 3":
+				this.vista.repintarArenas(2, arenaDesdeTorneo.getEstado().getNombre());
+				break;
+			case "Arena 4":
+				this.vista.repintarArenas(3, arenaDesdeTorneo.getEstado().getNombre());
+				break;
+			}
 		}
+		else {
+			if(arg1.getClass()==Entrenador.class) {
+				this.vista.informarganador((Entrenador) arg1);
+			}
+		}
+		
 
 	}
 	

@@ -625,8 +625,6 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	@Override
 	public void faseSiguiente(ArrayList<Entrenador> clasificados) {
 		this.modelBatallas.clear();
-		for (int i = 0; i < clasificados.size(); i++)
-			System.out.println(clasificados.get(i).toString());
 		this.panelCentral.setVisible(false);
 		this.panelCentral.removeAll();
 		this.fase = new PanelFaseEliminatoria(clasificados);
@@ -718,13 +716,11 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	public void repintarGrupos(ArrayList<Grupo> grupo) {
 		Component c;
 		JScrollPane scrollpane;
-		System.out.println("GRUPO SIZE" + grupo.size());
 		for (int i = 0; i < grupo.size(); i++) {
 			this.dlm.clear();
 			scrollpane = (JScrollPane) this.grupos[i].getComponent(0);
 			c = ((JList) scrollpane.getColumnHeader().getComponent(0));
 			for (int j = 0; j < 4; j++) {
-				System.out.println(grupo.get(i).getIntegrantes().get(j));
 				this.dlm.addElement(grupo.get(i).getIntegrantes().get(j));
 			}
 			c.repaint();
@@ -744,13 +740,18 @@ public class Ventana extends JFrame implements IVista, MouseListener, KeyListene
 	@Override
 	public void mostrarLogs() {
 		Enfrentamiento e = (Enfrentamiento) this.listBatalla.getSelectedValue();
-		System.out.println(e.getLogPreliminar() + e.getLogBatalla() + e.getLogDefinicion());
 		JOptionPane.showMessageDialog(this,
 				e.getLogPreliminar() + "\n" + e.getLogBatalla() + "\n" + e.getLogDefinicion());
 	}
 
 	@Override
 	public void mostrarGanador() {
+		
+	}
+
+	@Override
+	public void informarganador(Entrenador arg1) {
+		JOptionPane.showMessageDialog(this,"El ganador del torneo es: " + arg1.getNombre()+ " !!!!");
 		
 	}
 }
